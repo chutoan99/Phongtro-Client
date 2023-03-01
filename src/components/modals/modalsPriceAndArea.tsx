@@ -48,7 +48,7 @@ function ModalsPriceAndArea({
     const stackRect = stackEl.getBoundingClientRect();
     let percent = value
       ? value
-      : Math.round(((e.clientX - stackRect.left) * 100) / stackRect.width, 0);
+      : Math.round(((e.clientX - stackRect.left) * 100) / stackRect.width);
     if (Math.abs(percent - persent1) <= Math.abs(percent - persent2)) {
       setPersent1(percent);
     } else {

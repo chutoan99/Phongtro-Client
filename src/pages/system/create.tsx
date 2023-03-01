@@ -4,7 +4,6 @@ import {
   SystemAside,
   SystemNavMenu,
   SystemMain,
-  SystemCreatePost,
   SystemContent,
 } from "../../components/index";
 const CreatePost: NextPage = () => {

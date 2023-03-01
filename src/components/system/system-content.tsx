@@ -523,10 +523,7 @@ function SystemContent() {
                   <div className="col-md-12">
                     <p>Cập nhật hình ảnh rõ ràng sẽ cho thuê nhanh hơn</p>
                     <div className="form-group">
-                      <div
-                        className="browse_photos js-dropzone dz-clickable"
-                        htmlFor="browse_photos"
-                      >
+                      <div className="browse_photos js-dropzone dz-clickable">
                         <i className="icon-upload-image"></i>
                         <label htmlFor="file">Thêm Ảnh</label>{" "}
                         <input

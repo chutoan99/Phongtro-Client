@@ -258,7 +258,7 @@ table thead {
 #form_dangtin h3 {
   font-weight: bold;
 }
-#form_dangtin .browse_photos {
+.browse_photos {
   padding: 2rem;
   background: #fff;
   border: 2px dashed #bbb;
