@@ -1,4 +1,4 @@
-export const Register = (name: string, password: string, phone: string) => {
+export const Register = (payload: any) => {
   return {
     query: `mutation ($input: RegisterInput!) {
         register(input: $input) {
@@ -7,10 +7,16 @@ export const Register = (name: string, password: string, phone: string) => {
           token
         }
       }`,
-    variables: { input: { name: name, password: password, phone: phone } },
+    variables: {
+      input: {
+        name: payload.name,
+        password: payload.password,
+        phone: payload.phone,
+      },
+    },
   };
 };
-export const login = (password: string, phone: string) => {
+export const login = (payload: any) => {
   return {
     query: `mutation Mutation($input: LoginInput!) {
         login(input: $input) {
@@ -27,6 +33,6 @@ export const login = (password: string, phone: string) => {
         token
         }
       }`,
-    variables: { input: { password: password, phone: phone } },
+    variables: { input: { password: payload.password, phone: payload.phone } },
   };
 };

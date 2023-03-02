@@ -1,71 +1,99 @@
-import { Header } from "../components/index";
-import { useEffect, useState } from "react";
+import { Header, NavBarMenu } from "../components/index";
+import { useState } from "react";
 import { apiLogin } from "../services/auth";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import { AppState } from "../app/store";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import Link from "next/link";
 
 const LoginPage: NextPage = () => {
   const dispatch = useDispatch();
   const Router = useRouter();
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [payload, setPayload] = useState({
+    phone: "",
+    password: "",
+  });
+
   const handleLogin = async () => {
-    await apiLogin({ phone, password }, dispatch, Router);
+    await apiLogin(payload, dispatch, Router);
   };
 
   return (
-    <div className="w-full h-full">
+    <div id="webpage">
       <Header />
-      <div className="bg-[#f5f5f5]">
-        <div className="max-w-1100 h-[100vh] mx-[auto] pt-[20px] ">
-          <div className="w-[460px] mx-[auto] p-[30px] bg-white rounded-[10px]">
-            <div>
-              <h1 className="text-xl">Đăng Nhập</h1>
-            </div>
-            <div className="my-[20px]">
-              <label className="text-[15px] mb-[10px] capitalize">
-                số điện thoại
-              </label>
+      <NavBarMenu />
+      <main id="main" style={{ height: "100vh" }}>
+        <section className="section section-access">
+          <div className="section-header">
+            <h1 className="section-title big">Đăng nhập</h1>
+          </div>
+          <div className="section-content">
+            <div className="form-access login-form js-login-form clearfix">
+              <div className="form-group form-group-phone">
+                <label htmlFor="inputPhoneEmailLogin">Số điện thoại</label>
+                <input
+                  value={payload.phone}
+                  onChange={(e) =>
+                    setPayload((prev) => {
+                      return {
+                        ...prev,
+                        phone: e.target.value,
+                      };
+                    })
+                  }
+                  type="text"
+                  className="form-control"
+                  id="inputPhoneEmailLogin"
+                  placeholder=""
+                  name="loginname"
+                />
+              </div>
+              <div className="form-group form-group-password">
+                <label htmlFor="password">Mật khẩu</label>
+                <input
+                  value={payload.password}
+                  onChange={(e) =>
+                    setPayload((prev) => {
+                      return {
+                        ...prev,
+                        password: e.target.value,
+                      };
+                    })
+                  }
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder=""
+                  name="password"
+                />
+              </div>
+              <div className="form-group">
+                <button
+                  type="submit"
+                  name="wp-submit-login"
+                  className="btn btn-submit"
+                  onClick={handleLogin}
+                >
+                  Đăng nhập
+                </button>
+              </div>
+              <div className="form-group clearfix">
+                <a href="https://phongtro123.com/quen-mat-khau">
+                  Bạn quên mật khẩu?
+                </a>
+                <Link style={{ float: "right" }} href="">
+                  Tạo tài khoản mới
+                </Link>
+              </div>
               <input
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                type="text"
-                className="bg-[#e8f0fe] w-[100%] h-[45px] p-[10px] rounded-[5px] focus:outline-none"
+                type="hidden"
+                name="redirect"
+                value="https://phongtro123.com/"
               />
-            </div>
-            <div className="my-[20px]">
-              <label className="text-[15px] mb-[10px] capitalize">
-                mật khẩu
-              </label>
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="text"
-                className="bg-[#e8f0fe] w-[100%] h-[45px] p-[10px] rounded-[5px] focus:outline-none"
-              />
-            </div>
-            <div className="w-[100%]  rounded-[5px] bg-[#1266dd] mb-[15px]">
-              <button
-                className="text-white h-[40px] w-full capitalize text-center"
-                onClick={handleLogin}
-              >
-                Đăng nhập
-              </button>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-[#1266dd] hover:text-red-500 cursor-pointer">
-                Bạn quên mật khẩu?
-              </span>
-              <span className="text-[#1266dd]  hover:text-red-500 cursor-pointer">
-                Tạo tài khoản mới
-              </span>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };

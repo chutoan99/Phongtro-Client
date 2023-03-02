@@ -1,8 +1,11 @@
 import { memo, useEffect, useState } from "react";
 import {
+  convert100ToTarget,
+  convertTo100,
   getNumbersPrice,
   getNumbersArea,
 } from "../../utils/Commom/fomarNumber";
+import { getCodesArea, getCodesPrice } from "../../utils/Commom/getCodePrice";
 function ModalsPriceAndArea({
   items,
   modals,
@@ -13,99 +16,111 @@ function ModalsPriceAndArea({
   handleSubmit,
   arrMinMax,
 }) {
-  const [persent1, setPersent1] = useState(
-    name === "price" && arrMinMax?.priceArr
+  let number;
+  name === "price" ? (number = +15) : (number = +90);
+  const [perSent1, setPerSent1] = useState(
+    name === "price" && arrMinMax?.priceArr?.length > 0
       ? arrMinMax?.priceArr[0]
-      : name === "area" && arrMinMax?.areaArr
+      : name === "area" && arrMinMax?.areaArr?.length > 0
       ? arrMinMax?.areaArr[0]
       : 0
   );
-  const [persent2, setPersent2] = useState(
-    name === "price" && arrMinMax?.priceArr
+  const [perSent2, setPerSent2] = useState(
+    name === "price" && arrMinMax?.priceArr?.length > 0
       ? arrMinMax?.priceArr[1]
-      : name === "area" && arrMinMax?.areaArr
+      : name === "area" && arrMinMax?.areaArr?.length > 0
       ? arrMinMax?.areaArr[1]
       : 100
   );
-  const [activedEl, setActivedEl] = useState("");
-
+  const [number1, setNumber1] = useState(0);
+  const [number2, setNumber2] = useState(number);
+  const isLoseModel = () => {
+    setModals(false);
+  };
+  const handleClickMin = () => {
+    setNumber1(0);
+    setPerSent1(0);
+  };
+  const handleClickMax = () => {
+    setNumber2(number);
+    setPerSent2(100);
+  };
   useEffect(() => {
-    const activedTrackEl = document.getElementById("track-active");
-    console.log(activedTrackEl);
-    if (activedTrackEl) {
-      if (persent2 <= persent1) {
-        activedTrackEl.style.left = `${persent2}%`;
-        activedTrackEl.style.right = `${100 - persent1}%`;
-      } else {
-        activedTrackEl.style.left = `${persent1}%`;
-        activedTrackEl.style.right = `${100 - persent2}%`;
-      }
-    }
-  }, [persent1, persent2]);
-
-  const handleClickTrack = (e, value) => {
-    const stackEl = document.getElementById("track");
-    const stackRect = stackEl.getBoundingClientRect();
-    let percent = value
-      ? value
-      : Math.round(((e.clientX - stackRect.left) * 100) / stackRect.width);
-    if (Math.abs(percent - persent1) <= Math.abs(percent - persent2)) {
-      setPersent1(percent);
+    const activeTrackId = document.getElementById("track-active");
+    if (perSent1 <= perSent2) {
+      activeTrackId.style.left = `${perSent1}%`;
+      activeTrackId.style.right = `${100 - perSent2}%`;
+      setNumber1(convert100ToTarget(perSent1, name));
+      setNumber2(convert100ToTarget(perSent2, name));
     } else {
-      setPersent2(percent);
+      activeTrackId.style.left = `${perSent2}%`;
+      activeTrackId.style.right = `${100 - perSent1}%`;
+      setNumber1(convert100ToTarget(perSent2, name));
+      setNumber2(convert100ToTarget(perSent1, name));
+    }
+    console.log(activeTrackId);
+  }, [perSent2, perSent1]);
+  // lấy vị trí click
+  const handleClickStack = (e) => {
+    // e.stopPropagation();
+    const stackEl = document.getElementById("stack");
+    const stackRect = stackEl.getBoundingClientRect();
+    let perSent =
+      Math.round((e.clientX - stackRect.left) * 100) / stackRect.width;
+    if (Math.abs(perSent - perSent1) <= Math.abs(perSent - perSent2)) {
+      setPerSent1(perSent);
+      setNumber1(convert100ToTarget(perSent, name));
+    } else {
+      setPerSent2(perSent);
+      setNumber2(convert100ToTarget(perSent, name));
     }
   };
-  const convert100toTarget = (percent) => {
-    return name === "price"
-      ? (Math.ceil(Math.round(percent * 1.5) / 5) * 5) / 10
-      : name === "area"
-      ? Math.ceil(Math.round(percent * 0.9) / 5) * 5
-      : 0;
-  };
-  const convertto100 = (percent) => {
-    let target = name === "price" ? 15 : name === "area" ? 90 : 1;
-    return Math.floor((percent / target) * 100);
-  };
-  const handleActive = (code, value) => {
-    setActivedEl(code);
-
-    let arrMaxMin =
-      name === "price" ? getNumbersPrice(value) : getNumbersArea(value);
+  const handleChangeRange = (value) => {
+    let arrMaxMin;
+    name === "price"
+      ? (arrMaxMin = getNumbersPrice(value))
+      : (arrMaxMin = getNumbersArea(value));
     if (arrMaxMin.length === 1) {
       if (arrMaxMin[0] === 1) {
-        setPersent1(0);
-        setPersent2(convertto100(1));
+        setPerSent1(0);
+        setPerSent2(convertTo100(1, name));
       }
       if (arrMaxMin[0] === 20) {
-        setPersent1(0);
-        setPersent2(convertto100(20));
+        setPerSent1(0);
+        setPerSent2(convertTo100(20, name));
       }
-      if (arrMaxMin[0] === 15 || arrMaxMin[0] === 90) {
-        setPersent1(100);
-        setPersent2(100);
+      if (arrMaxMin[0] === number) {
+        setPerSent1(100);
+        setPerSent2(100);
       }
-    }
-    if (arrMaxMin.length === 2) {
-      setPersent1(convertto100(arrMaxMin[0]));
-      setPersent2(convertto100(arrMaxMin[1]));
+    } else {
+      setPerSent1(convertTo100(arrMaxMin[0], name));
+      setPerSent2(convertTo100(arrMaxMin[1], name));
     }
   };
-  const handleBeforeSubmit = (e) => {
-    let min = persent1 <= persent2 ? persent1 : persent2;
-    let max = persent1 <= persent2 ? persent2 : persent1;
-    let arrMinMax = [convert100toTarget(min), convert100toTarget(max)];
 
+  const handleBeforeSubmit = () => {
+    let min =
+      perSent1 <= perSent2
+        ? convert100ToTarget(perSent1, name)
+        : convert100ToTarget(perSent2, name);
+    let max =
+      perSent1 <= perSent2
+        ? convert100ToTarget(perSent2, name)
+        : convert100ToTarget(perSent1, name);
+    let result = [min, max];
+    const gaps =
+      name === "price"
+        ? getCodesPrice(result, items)
+        : name === "area"
+        ? getCodesArea(result, items)
+        : [];
     handleSubmit(
-      e,
       {
-        [`${name}Number`]: arrMinMax,
-        [name]: `Từ ${convert100toTarget(min)} - ${convert100toTarget(max)} ${
-          name === "price" ? "triệu" : "m2"
-        }`,
+        [`${name}Code`]: gaps?.map((item) => item.code),
+        [name]: `Từ ${min} - ${max} ${name === "price" ? "triệu" : "m2"}`,
       },
-      {
-        [`${name}Arr`]: [min, max],
-      }
+      { [`${name}Arr`]: [perSent1, perSent2] }
     );
   };
 
@@ -143,26 +158,18 @@ function ModalsPriceAndArea({
                     fontWeight: "bold",
                   }}
                 >
-                  {persent1 === 100 && persent2 === 100
-                    ? `Trên ${convert100toTarget(persent1)} ${
-                        name === "price" ? "triệu" : "m2"
-                      } +`
-                    : `Từ ${
-                        persent1 <= persent2
-                          ? convert100toTarget(persent1)
-                          : convert100toTarget(persent2)
-                      } - ${
-                        persent2 >= persent1
-                          ? convert100toTarget(persent2)
-                          : convert100toTarget(persent1)
-                      } ${name === "price" ? "triệu" : "m2"}`}
+                  {perSent1 === 100 && perSent2 === 100
+                    ? `Trên ${number2} ${name === "price" ? "Triệu" : "m2"}`
+                    : `Từ ${number1} - ${number2}  ${
+                        name === "price" ? "Triệu" : "m2"
+                      }`}
                 </p>
               </div>
               <div style={{ margin: "0 48px" }}>
                 <div className="input-slider-wrapper">
                   <div
                     className="slider-track input-slider-track"
-                    onClick={(e) => handleClickTrack}
+                    onClick={handleClickStack}
                     style={{
                       backgroundColor: "rgb(209 213 219 / 1",
                       width: "100%",
@@ -173,7 +180,7 @@ function ModalsPriceAndArea({
                     className="slider-track-active input-slider-track"
                     id="track-active"
                     style={{ backgroundColor: "rgb(234 88 12 / 1" }}
-                    onClick={(e) => handleClickTrack}
+                    onClick={handleClickStack}
                   ></div>
                   <input
                     type="range"
@@ -181,22 +188,16 @@ function ModalsPriceAndArea({
                     min="0"
                     step="1"
                     className="input-range"
-                    value={persent1}
-                    onChange={(e) => {
-                      setPersent1(+e.target.value);
-                      activedEl && setActivedEl("");
-                    }}
+                    value={perSent1}
+                    onChange={(e) => setPerSent1(+e.target.value)}
                   />
                   <input
                     type="range"
                     max="100"
                     min="0"
                     step="1"
-                    value={persent2}
-                    onChange={(e) => {
-                      setPersent2(+e.target.value);
-                      activedEl && setActivedEl("");
-                    }}
+                    value={perSent2}
+                    onChange={(e) => setPerSent2(+e.target.value)}
                     className="input-range"
                   />
                 </div>
@@ -211,21 +212,16 @@ function ModalsPriceAndArea({
                   <span
                     className="translate-x-2"
                     style={{ fontSize: "15px" }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleClickTrack(e, 0);
-                    }}
+                    onClick={handleClickMin}
                   >
                     0
                   </span>
+
                   {name === "price" ? (
                     <span
                       style={{ fontSize: "15px" }}
                       className="translate-x-5"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleClickTrack(e, 100);
-                      }}
+                      onClick={handleClickMax}
                     >
                       +15 triệu/đồng
                     </span>
@@ -233,10 +229,7 @@ function ModalsPriceAndArea({
                     <span
                       style={{ fontSize: "15px" }}
                       className="translate-x-5"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleClickTrack(e, 100);
-                      }}
+                      onClick={handleClickMax}
                     >
                       90m2
                     </span>
@@ -254,7 +247,7 @@ function ModalsPriceAndArea({
                       <li
                         className=""
                         key={index}
-                        onClick={() => handleActive(item.value, item.code)}
+                        onClick={() => handleChangeRange(item.value)}
                       >
                         {item.value}
                       </li>

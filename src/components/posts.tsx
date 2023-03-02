@@ -44,14 +44,18 @@ function Post({ data }) {
             </h3>
 
             <div className="meta-row clearfix">
-              <span className="post-price">{item.attributes.price}</span>
-              <span className="post-acreage">{item.attributes.acreage}</span>
+              <span className="post-price">{item?.attributes?.price}</span>
+              <span className="post-acreage">{item?.attributes?.acreage}</span>
               <span className="post-location">
-                <a href="" title={item.title}>
+                <a href="" title={item?.title}>
                   {`${
-                    item?.address.split(",")[item.address.split(",").length - 2]
+                    item?.address.split(",")[
+                      item?.address.split(",").length - 2
+                    ]
                   },${
-                    item?.address.split(",")[item.address.split(",").length - 1]
+                    item?.address.split(",")[
+                      item?.address.split(",").length - 1
+                    ]
                   }`}
                 </a>
               </span>

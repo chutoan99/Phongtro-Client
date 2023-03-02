@@ -1,10 +1,10 @@
 import config from "../configs/axios";
 import { userActions } from "../redux/user.slice";
 import { userIdQuery } from "../graphql/queries/user";
+import { authActions } from "../redux/auth.slice";
 
-export const GetCurrentUser = async (dispatch) => {
+export const GetCurrentUser = async (id: string, dispatch) => {
   try {
-    const id = "cd010a38-b5a5-4f0f-86a3-1b5ccd625d18";
     dispatch(userActions.currentUserStart());
     const response = await config({
       method: "post",
@@ -15,12 +15,15 @@ export const GetCurrentUser = async (dispatch) => {
       },
       data: JSON.stringify(userIdQuery(id)),
     });
-    if (response.status === 200) {
+    if (response?.status === 200) {
+      dispatch(authActions.updateIdUser());
       dispatch(
-        userActions.currentUserSuccess(response.data.data.userId.response)
+        userActions.currentUserSuccess(response?.data?.data?.userId?.response)
       );
     } else {
-      dispatch(userActions.currentUserFailed(response.data.data.userId.msg));
+      dispatch(
+        userActions.currentUserFailed(response?.data?.data?.userId?.msg)
+      );
     }
   } catch (error) {
     dispatch(userActions.currentUserFailed(error));

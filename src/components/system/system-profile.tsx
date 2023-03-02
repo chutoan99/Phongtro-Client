@@ -1,15 +1,15 @@
+import { useAppSelector } from "../../app/hooks";
+import { AppState } from "../../app/store";
+
 function SystemProfile() {
+  const { data } = useAppSelector((state: AppState) => state.user);
+  const { isLogin } = useAppSelector((state: AppState) => state.auth.login);
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 className="h2">Cập nhật thông tin cá nhân</h1>
       </div>
-      <form
-        className="js-form-submit-data"
-        action="#"
-        data-action-url="https://phongtro123.com/api/user/update/profile"
-        method="POST"
-      >
+      <form className="js-form-submit-data" action="#">
         <div className="form-group row mt-5">
           <label
             htmlFor="user_id"
@@ -60,7 +60,7 @@ function SystemProfile() {
               className="form-control"
               id="user_name"
               name="name"
-              value="cu toan"
+              value={data.name}
               placeholder="Ex: Nguyễn Văn A"
             />
           </div>
@@ -147,8 +147,7 @@ function SystemProfile() {
                 <div
                   className="user-avatar-preview js-one-image-preview"
                   style={{
-                    background:
-                      "url(https://phongtro123.com/images/default-user.png) center no-repeat",
+                    background: `url(${data.avatar}) center no-repeat`,
                     backgroundSize: "cover",
                   }}
                 ></div>

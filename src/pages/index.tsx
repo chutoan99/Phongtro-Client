@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getArea } from "../services/area";
 import { getPrices } from "../services/price";
 import { GetProvince } from "../services/province";
-import { GetCurrentUser } from "../services/user";
 import { Header, Container, Footer, NavBarMenu } from "../components/index";
 import { GetNavigation } from "../services/navigation";
 import { GetPosts, GetNewPosts } from "../services/posts";
 import { useRouter } from "next/router";
+import { GetCurrentUser } from "../services/user";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -32,23 +32,20 @@ const HomePage = () => {
     (async () => {
       await GetProvince(dispatch);
     })();
-
-    (async () => {
-      await GetCurrentUser(dispatch);
-    })();
-  }, []);
-  const [token, setToken] = useState(null);
-
-  useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedToken = JSON.parse(localStorage.getItem("token"));
+      const storedToken = JSON.parse(localStorage.getItem("token"))?.token;
+      console.log(storedToken);
       if (storedToken) {
-        setToken(storedToken.token);
+        const idUser = JSON.parse(localStorage.getItem("token"))?.id;
+        if (idUser) {
+          GetCurrentUser(idUser, dispatch);
+        }
       } else {
         Router.push("/login");
       }
     }
-  }, []);
+  }, [dispatch]);
+
   return (
     <div className="w-[100vw]  bg-[#f5f5f5]">
       <Header />

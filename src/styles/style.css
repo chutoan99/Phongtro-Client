@@ -84,7 +84,7 @@ figure img:hover {
   display: inline-block;
 }
 .dropdown .dropdown-menu {
-  display: none;
+  display: block;
   position: absolute;
   left: 0;
   box-shadow: 0 0 20px rgb(75 75 75 / 30%);
@@ -1041,7 +1041,12 @@ body.fix-body #navbar-menu {
 .post-listing .post-item .post-summary {
   margin: 10px 0 0;
   color: #8a8d91;
-  float: none;
+  /* float: none; */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* số dòng hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .post-listing .post-item .post-author {
   display: inline-flex;

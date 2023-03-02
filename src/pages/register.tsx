@@ -1,94 +1,119 @@
-import { Header } from "../components/index";
+import { Header, NavBarMenu } from "../components/index";
 import { useState } from "react";
 import { apiRegister } from "../services/auth";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import Link from "next/link";
+
 const RegisterPage: NextPage = () => {
   const dispatch = useDispatch();
   const Router = useRouter();
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [payload, setPayload] = useState({
+    name: "",
+    phone: "",
+    password: "",
+  });
   const handleRegister = async () => {
-    await apiRegister({ name, phone, password }, dispatch, Router);
+    await apiRegister(payload, dispatch, Router);
   };
   return (
-    <div className="w-full h-full">
+    <div id="webpage">
       <Header />
-      <div className="bg-[#f5f5f5]">
-        <div className="max-w-1100  h-[100vh] mx-[auto] pt-[20px] ">
-          <div className="w-[600px] mx-[auto] p-[30px] bg-white rounded-[10px]">
-            <div>
-              <h1 className="text-xl">Đăng Ký</h1>
-            </div>
-            <div className="my-[20px]">
-              <label className="text-[15px] mb-[10px] capitalize">
-                họ và tên
-              </label>
-              <input
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                type="text"
-                className="bg-[#e8f0fe] w-[100%] h-[45px] p-[10px] rounded-[5px] focus:outline-none"
-              />
-            </div>
-            <div className="my-[20px]">
-              <label className="text-[15px] mb-[10px] capitalize">
-                số điện thoại
-              </label>
-              <input
-                value={phone}
-                onChange={(e) => {
-                  setPhone(e.target.value);
-                }}
-                type="text"
-                className="bg-[#e8f0fe] w-[100%] h-[45px] p-[10px] rounded-[5px] focus:outline-none"
-              />
-            </div>
-            <div className="my-[20px]">
-              <label className="text-[15px] mb-[10px] capitalize">
-                mật khẩu
-              </label>
-              <input
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                type="text"
-                className="bg-[#e8f0fe] w-[100%] h-[45px] p-[10px] rounded-[5px] focus:outline-none"
-              />
-            </div>
-            <div className="w-[100%]  rounded-[5px] bg-[#1266dd] mb-[15px]">
-              <button
-                className="text-white h-[40px] w-full capitalize text-center"
-                onClick={handleRegister}
-                type="submit"
-              >
-                tạo tài khoản
-              </button>
-            </div>
-            <div className="">
-              <label className="mb-[20px]">
-                Bấm vào nút đăng ký tức là bạn đã đồng ý với
-                <span className="text-[#1266dd] hover:text-red-500 cursor-pointer mx-1">
-                  quy định sử dụng
-                </span>
-                của chúng tôi
-              </label>
-              <label>
-                Bạn đã có tài khoản?
-                <span className="text-[#1266dd]  hover:text-red-500 cursor-pointer mx-1">
-                  Đăng nhập ngay
-                </span>
-              </label>
+      <NavBarMenu />
+      <main id="main" style={{ height: "100vh" }}>
+        <section className="section section-access">
+          <div className="section-header">
+            <h1 className="section-title big">Tạo tài khoản mới</h1>
+          </div>
+          <div className="section-content">
+            <div className="form-access register-form js-register-form clearfix">
+              <div className="form-group form-group-fullname">
+                <label htmlFor="inputFullName">Họ tên</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={payload.name}
+                  onChange={(e) => {
+                    setPayload((prev) => {
+                      return {
+                        ...prev,
+                        name: e.target.value,
+                      };
+                    });
+                  }}
+                  min-length="3"
+                  id="inputFullName"
+                  name="fullname"
+                  data-msg="Không được phép để trống"
+                />
+              </div>
+              <div className="form-group form-group-phone">
+                <label htmlFor="inputPhone">Số điện thoại</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={payload.phone}
+                  onChange={(e) =>
+                    setPayload((prev) => {
+                      return {
+                        ...prev,
+                        phone: e.target.value,
+                      };
+                    })
+                  }
+                  id="inputPhone"
+                  name="phone"
+                />
+              </div>
+              <div className="form-group form-group-password">
+                <label htmlFor="password">Tạo mật khẩu</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={payload.password}
+                  onChange={(e) => {
+                    setPayload((prev) => {
+                      return {
+                        ...prev,
+                        password: e.target.value,
+                      };
+                    });
+                  }}
+                />
+              </div>
+
+              <div className="form-group">
+                <button
+                  name="wp-submit-register"
+                  className="btn btn-submit"
+                  onClick={handleRegister}
+                  type="submit"
+                >
+                  Tạo tài khoản
+                </button>
+              </div>
+              <div className="form-group">
+                <p style={{ padding: "5px 0" }}>
+                  Bấm vào nút đăng ký tức là bạn đã đồng ý với
+                  <Link href="" target="_blank">
+                    quy định sử dụng
+                  </Link>
+                  của chúng tôi
+                </p>
+                <p style={{ padding: "5px 0" }}>
+                  Bạn đã có tài khoản?{" "}
+                  <Link className="link" href="">
+                    Đăng nhập ngay
+                  </Link>
+                </p>
+              </div>
+              <input type="hidden" name="redirect" value="" />
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };

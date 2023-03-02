@@ -1,6 +1,6 @@
 import { AppState } from "../app/store";
 import type { NextPage } from "next";
-import Image from "next/image";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -41,8 +41,8 @@ const Header: NextPage = () => {
       <div className="user-welcome clearfix js-reload-html-header">
         {isLogin && (
           <Link className="welcome-text" href="" rel="nofollow">
-            <Image
-              src={data.avatar}
+            <img
+              src={data?.avatar}
               alt="Avatar"
               width={40}
               height={40}
@@ -79,7 +79,7 @@ const Header: NextPage = () => {
           <i className="icon heart size-18"></i> Yêu thích{" "}
           <span className="number-count js-save-post-total">1</span>
         </Link>
-        {!isLogin ? (
+        {!isLogin && (
           <>
             <a rel="nofollow" className="btn" href="/login">
               <i className="icon register"></i> Đăng nhập
@@ -88,41 +88,51 @@ const Header: NextPage = () => {
               <i className="icon login"></i> Đăng ký
             </a>
           </>
-        ) : (
+        )}
+        {isLogin && (
           <div className="dropdown">
             <button
               className="btn dropdown-toggle"
               type="button"
               id="dropdownMenu2"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
               onClick={() => setIsDropDown(!isDropDown)}
             >
               <i className="icon dashboard"></i> Quản lý tài khoản
             </button>
-            {isDropDown ? (
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {isDropDown && (
+              <ul className="dropdown-menu">
                 {menuManage.map((item: any, index: number) => (
                   <li key={index}>
                     <Link
-                      onClick={() => handleMenuManage(item.id)}
+                      onClick={() => handleMenuManage(item?.id)}
                       className="dropdown-menu-item dang-tin"
                       rel="nofollow"
-                      href=""
-                      title="Đăng tin cho thuê"
+                      href={item?.path}
+                      title={item?.text}
+                      style={{ gap: "5px" }}
                     >
-                      <i></i> Đăng tin cho thuê
+                      <div
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "50%",
+                        }}
+                      >
+                        <img className="mr-2" src={item.icon} alt="icon" />
+                      </div>
+                      <span>{item.text}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
-            ) : null}
+            )}
           </div>
         )}
-        <Link rel="nofollow" className="btn btn-add-post" href="/system/">
-          Đăng tin mới <i></i>
-        </Link>
+        {isLogin && (
+          <Link rel="nofollow" className="btn btn-add-post" href="/system/">
+            Đăng tin mới <i></i>
+          </Link>
+        )}
       </div>
     </div>
   );

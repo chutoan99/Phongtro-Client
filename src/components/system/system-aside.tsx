@@ -1,12 +1,23 @@
+import Link from "next/link";
+import { useAppSelector } from "../../app/hooks";
+import { AppState } from "../../app/store";
 import { menuManage } from "../../utils/menuUser";
 
 function SystemAside() {
+  const { data } = useAppSelector((state: AppState) => state.user);
   return (
     <nav className="col-lg-2 d-none d-lg-block bg-light sidebar">
       <div className="user_info">
-        <a href="#" className="clearfix">
+        <Link href="#" className="clearfix">
           <div className="user_avatar">
-            <img src="https://phongtro123.com/images/default-user.png" />
+            {data?.avatar ? (
+              <img src={data?.avatar} alt="" />
+            ) : (
+              <img
+                src="https://phongtro123.com/images/default-user.png"
+                alt=""
+              />
+            )}
           </div>
           <div className="user_meta">
             <div className="inner">
@@ -19,7 +30,7 @@ function SystemAside() {
               </div>
             </div>
           </div>
-        </a>
+        </Link>
         <ul>
           <li>
             <span>Mã thành viên:</span>{" "}

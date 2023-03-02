@@ -8,6 +8,7 @@ const authSlice = createSlice({
       error: false,
       success: false,
       token: null,
+      response: {},
     },
     register: {
       isFetching: false,
@@ -27,11 +28,13 @@ const authSlice = createSlice({
       state.login.isLogin = true;
       state.login.token = action.payload.token;
       state.login.success = true;
+      state.login.response = action.payload.response;
     },
     loginFailed: (state, action: PayloadAction<any>) => {
       state.login.isLogin = false;
       state.login.error = action.payload;
     },
+
     // register
     registerStart: (state) => {
       state.register.isFetching = false;
@@ -50,6 +53,10 @@ const authSlice = createSlice({
       state.register.error = action.payload.msg;
       state.register.success = false;
       state.register.token = null;
+    },
+    // update
+    updateIdUser: (state) => {
+      state.login.isLogin = true;
     },
     // logout
     logoutSuccess: (state) => {
