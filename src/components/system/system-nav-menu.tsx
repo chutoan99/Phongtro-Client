@@ -1,12 +1,4 @@
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { formatVietnameseToString } from "../../utils/Commom/formatVietnameseToString";
-import Link from "next/link";
-import { AppState } from "../../app/store";
-
 function SystemNavMenu() {
-  const { data } = useSelector((state: AppState) => state.category);
-
   return (
     <nav
       className="navbar navbar-expand-md fixed-top flex-md-nowrap p-0"

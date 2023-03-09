@@ -1,17 +1,23 @@
 import Link from "next/link";
+import { useQueryClient } from "react-query";
 import { useAppSelector } from "../../app/hooks";
 import { AppState } from "../../app/store";
 import { menuManage } from "../../utils/menuUser";
 
 function SystemAside() {
-  const { data } = useAppSelector((state: AppState) => state.user);
+  const queryClient = useQueryClient();
+
+  const dataUser =
+    queryClient.getQueriesData<any>(["user"]).length > 0
+      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
+      : null;
   return (
     <nav className="col-lg-2 d-none d-lg-block bg-light sidebar">
       <div className="user_info">
         <Link href="#" className="clearfix">
           <div className="user_avatar">
-            {data?.avatar ? (
-              <img src={data?.avatar} alt="" />
+            {dataUser?.avatar ? (
+              <img src={dataUser?.avatar} alt="" />
             ) : (
               <img
                 src="https://phongtro123.com/images/default-user.png"

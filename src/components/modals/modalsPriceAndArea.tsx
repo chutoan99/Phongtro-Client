@@ -34,9 +34,7 @@ function ModalsPriceAndArea({
   );
   const [number1, setNumber1] = useState(0);
   const [number2, setNumber2] = useState(number);
-  const isLoseModel = () => {
-    setModals(false);
-  };
+
   const handleClickMin = () => {
     setNumber1(0);
     setPerSent1(0);
@@ -58,7 +56,6 @@ function ModalsPriceAndArea({
       setNumber1(convert100ToTarget(perSent2, name));
       setNumber2(convert100ToTarget(perSent1, name));
     }
-    console.log(activeTrackId);
   }, [perSent2, perSent1]);
   // lấy vị trí click
   const handleClickStack = (e) => {
@@ -116,6 +113,13 @@ function ModalsPriceAndArea({
         ? getCodesArea(result, items)
         : [];
     handleSubmit(
+      {
+        [`${name}Code`]: gaps?.map((item) => item.code),
+        [name]: `Từ ${min} - ${max} ${name === "price" ? "triệu" : "m2"}`,
+      },
+      { [`${name}Arr`]: [perSent1, perSent2] }
+    );
+    console.log(
       {
         [`${name}Code`]: gaps?.map((item) => item.code),
         [name]: `Từ ${min} - ${max} ${name === "price" ? "triệu" : "m2"}`,

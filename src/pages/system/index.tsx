@@ -5,7 +5,6 @@ import {
   SystemNavMenu,
   SystemSection,
 } from "../../components/index";
-import { path } from "../../utils/constant";
 
 const SystemPage: NextPage = () => {
   return (

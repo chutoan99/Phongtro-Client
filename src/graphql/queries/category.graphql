@@ -1,5 +1,5 @@
-export const CategoryQuery = {
-  query: `query {
+export const categoryQuery = gql`
+  query {
     category {
       err
       msg
@@ -7,11 +7,12 @@ export const CategoryQuery = {
         code
         createdAt
         header
+        path
         id
         subHeader
         value
         updatedAt
       }
     }
-  }`,
-};
+  }
+`;

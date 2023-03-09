@@ -1,14 +1,20 @@
 import { renderStart } from "../utils/Commom/renderStart";
 import Link from "next/link";
-import { Post as PostInterFace } from "../types/post.type";
-function Post({ data }) {
+import { Post as PostInterFace } from "../models/post";
+import { useQueryClient } from "react-query";
+function Post() {
+  const queryClient = useQueryClient();
+  const dataPost =
+    queryClient.getQueriesData<any>(["Post"]).length > 0
+      ? queryClient.getQueriesData<any>(["Post"])[0][1]?.post?.response
+      : null;
   return (
     <>
-      {data.map((item: PostInterFace, index: number) => (
+      {dataPost?.map((item: PostInterFace, index: number) => (
         <li
           key={index}
           className="post-item post-id-212446 style-4 clearfix tin-vip vipnoibat"
-          style={{ borderColor: "#E13427" }}
+          style={{ borderColor: "#311f1e" }}
         >
           <figure className="post-thumb">
             <Link href={`/detail/${item?.id}`} className="clearfix">
@@ -16,7 +22,7 @@ function Post({ data }) {
                 className="lazy_done"
                 src={item?.listImage?.postImg}
                 data-src={item?.listImage?.postImg}
-                alt="PHÒNG TRỌ MỚI XÂY RẤT ĐẸP SỐ 373/1/2A ĐƯỜNG LÝ THƯỜNG KIỆT, QUẬN TÂN BÌNH - GẦN BÊN TRƯỜNG ĐẠI HỌC BÁCH KHOA"
+                alt={item?.title}
                 height="100"
                 width="100"
                 data-loaded="true"
@@ -69,15 +75,15 @@ function Post({ data }) {
             <div className="meta-row clearfix">
               <div className="post-author">
                 <img src={item?.user?.avatar} alt="avatar" />
-                <span className="author-name">{item.user.name}</span>
+                <span className="author-name">{item.user?.name}</span>
               </div>
               <a
                 rel="nofollow"
                 target="_blank"
-                href={`https://zalo.me/${item.user.zalo}`}
+                href={`https://zalo.me/${item?.user?.zalo}`}
                 className="btn-quick-zalo"
               >
-                Nhắn Zalo: {item.user.zalo}
+                Nhắn Zalo: {item?.user?.zalo}
               </a>
               <a
                 rel="nofollow"

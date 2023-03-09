@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 function AsideArea({ item }) {
   return (
     <section className="section">

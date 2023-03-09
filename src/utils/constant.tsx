@@ -1,20 +1,3 @@
-export const path = {
-  HOME: "/",
-  SEARCH: "/search",
-  LOGIN: "/login",
-  HOME_PAGE: "/:page",
-  REGISTER: "/register",
-  PAGE_DETAIL: "/detail/:id",
-  SYSTEM: "/he-thong",
-  CREATE_POST: "/he-thong/tao-moi-bai-đang",
-  MANAGE_POST: "/he-thong/quan-ly-bai-đang",
-  PROFILE: "/he-thong/thong-tin-tai-khoan",
-  CHO_THUE_CAN_HO: "/cho-thue-can-ho",
-  NHA_CHO_THUE: "/nha-cho-thue",
-  CHO_THUE_MAT_BANG: "/cho-thue-mat-bang",
-  CHO_THUE_PHONG_TRO: "/cho-thue-phong-tro",
-};
-
 export const text = {
   title: "Cho Thuê Căn Hộ Chung Cư, Giá Rẻ, Mới Nhất 2022",
   des: "Kênh thông tin Phòng Trọ số 1 Việt Nam - Website đăng tin cho thuê phòng trọ, nhà nguyên căn, căn hộ, ở ghép nhanh, hiệu quả với 100.000+ tin đăng và 2.500.000 lượt xem mỗi tháng.",

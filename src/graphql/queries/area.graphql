@@ -1,6 +1,6 @@
-export const PriceQuery = {
-  query: `query {
-    price {
+export const areaQuery = gql`
+  query {
+    area {
       err
       msg
       response {
@@ -12,5 +12,5 @@ export const PriceQuery = {
         value
       }
     }
-  }`,
-};
+  }
+`;

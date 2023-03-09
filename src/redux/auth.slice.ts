@@ -1,22 +1,39 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// 0785110988 tấn
+import { User } from "../models/user";
+
+interface initialState {
+  login: {
+    isLogin: boolean;
+    error: boolean;
+    success: boolean;
+    token: string | null;
+    response: User;
+  };
+  register: {
+    isFetching: boolean;
+    error: boolean;
+    success: boolean;
+    token: string | null;
+  };
+}
+const initialStateAuth: initialState = {
+  login: {
+    isLogin: false,
+    error: false,
+    success: false,
+    token: null,
+    response: {} as User,
+  },
+  register: {
+    isFetching: false,
+    error: false,
+    success: false,
+    token: null,
+  },
+};
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    login: {
-      isLogin: false,
-      error: false,
-      success: false,
-      token: null,
-      response: {},
-    },
-    register: {
-      isFetching: false,
-      error: false,
-      success: false,
-      token: null,
-    },
-  },
+  initialState: initialStateAuth,
   reducers: {
     // login
     loginStart: (state) => {

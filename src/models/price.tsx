@@ -1,15 +1,11 @@
-export interface Welcome {
-  data: Data;
-}
-
-export interface Data {
-  price: Price;
-}
-
 export interface PriceResponse {
-  err: number;
-  msg: string;
-  response: Price[];
+  data: {
+    price: {
+      err: number;
+      msg: string;
+      response: Price[];
+    };
+  };
 }
 
 export interface Price {

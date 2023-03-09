@@ -1,17 +1,23 @@
 import { AppState } from "../app/store";
 import type { NextPage } from "next";
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { authActions } from "../redux/auth.slice";
 import menuManage from "../utils/menuManage";
+import { GraphQLClient, gql } from "graphql-request";
+import { useQuery, useQueryClient } from "react-query";
 
 const Header: NextPage = () => {
   const Router = useRouter();
   const dispatch = useAppDispatch();
-  const { data } = useAppSelector((state: AppState) => state.user);
+  const queryClient = useQueryClient();
+
+  const dataUser =
+    queryClient.getQueriesData<any>(["user"]).length > 0
+      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
+      : null;
   const { isLogin } = useAppSelector((state: AppState) => state.auth.login);
   const [isDropDown, setIsDropDown] = useState(false);
   const handleMenuManage = (id) => {
@@ -42,7 +48,7 @@ const Header: NextPage = () => {
         {isLogin && (
           <Link className="welcome-text" href="" rel="nofollow">
             <img
-              src={data?.avatar}
+              src={dataUser?.avatar}
               alt="Avatar"
               width={40}
               height={40}
@@ -64,11 +70,12 @@ const Header: NextPage = () => {
                   whiteSpace: "nowrap",
                 }}
               >
-                Xin chào, <strong> {data?.name}</strong>
+                Xin chào, <strong> {dataUser?.name}</strong>
               </span>
               <span style={{ fontSize: "0.9rem" }}>
-                Mã tài khoản: <strong> {data?.id?.slice(0, 15) + `...`}</strong>
-                . TK Chính:
+                Mã tài khoản:{" "}
+                <strong> {dataUser?.id?.slice(0, 15) + `...`}</strong>. TK
+                Chính:
                 <strong>0 VNĐ</strong>
               </span>
             </div>

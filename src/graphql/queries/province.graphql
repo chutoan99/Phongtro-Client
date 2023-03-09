@@ -1,5 +1,5 @@
-export const provinceQuery = {
-  query: `query {
+export const PriceQuery = gql`
+  query {
     province {
       err
       msg
@@ -11,5 +11,5 @@ export const provinceQuery = {
         value
       }
     }
-  }`,
-};
+  }
+`;

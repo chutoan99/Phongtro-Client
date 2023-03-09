@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { optionCategory } from "../../utils/Commom/optionSelect";
-import { apiCreatePost } from "../../services/posts";
-import { apiUploadImages } from "../../services/posts";
-import { Loading } from "../../components/index";
+import { apiUploadImages } from "../../services/orther";
 import { getCodesPrice, getCodesArea } from "../../utils/Commom/getCodePrice";
-import { AppState } from "../../app/store";
 import {
   GetAllDistrictVietNam,
   GetAllDistrictWithProvinceCode,
   GetALLProvinceVietNam,
   GetAllWardVietNam,
   GetAllWardWithDistrictCode,
-} from "../../services/province";
-import { useAppSelector } from "../../app/hooks";
+} from "../../services/orther";
+import { useQueryClient } from "react-query";
 interface Payload {
   areaNumber: number;
   priceNumber: number;
@@ -32,9 +28,7 @@ interface Payload {
 }
 function SystemContent() {
   // const { data } = useSelector((state: AppState) => state.post.);
-  const { price, area, category, user } = useSelector(
-    (state: AppState) => state
-  );
+
   const [payLoad, setPayload] = useState<Payload>({
     areaNumber: 0,
     priceNumber: 0,
@@ -51,7 +45,8 @@ function SystemContent() {
     label: "",
     userId: "",
   });
-  const { data } = useAppSelector((state: AppState) => state.category);
+
+  const queryClient = useQueryClient();
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
   const [provinceCode, setProvinceCode] = useState();
@@ -63,6 +58,22 @@ function SystemContent() {
   const [loading, setLoading] = useState(false);
   const [imageReview, setImageReview] = useState([]);
 
+  const category =
+    queryClient.getQueriesData<any>(["Menu"]).length > 0
+      ? queryClient.getQueriesData<any>(["Menu"])[0][1]?.category?.response
+      : null;
+  const price =
+    queryClient.getQueriesData<any>(["Price"]).length > 0
+      ? queryClient.getQueriesData<any>(["Price"])[0][1]?.price?.response
+      : null;
+  const area =
+    queryClient.getQueriesData<any>(["Area"]).length > 0
+      ? queryClient.getQueriesData<any>(["Area"])[0][1]?.area?.response
+      : null;
+  const user =
+    queryClient.getQueriesData<any>(["user"]).length > 0
+      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
+      : null;
   useEffect(() => {
     (async () => await GetALLProvinceVietNam(setProvince))();
   }, []);

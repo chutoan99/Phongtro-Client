@@ -1,35 +1,5 @@
-import { provinceActions } from "../redux/province.slice";
-import config from "../configs/axios";
 import axiosDefault from "axios";
-import { provinceQuery } from "../graphql/queries/province";
-
-export const GetProvince = async (dispatch) => {
-  try {
-    dispatch(provinceActions.fetchProvinceStart());
-    const response = await config({
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://localhost:8000/graphql",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: JSON.stringify(provinceQuery),
-    });
-    if (response.status === 200) {
-      dispatch(
-        provinceActions.fetchProvinceSuccess(
-          response.data.data.province.response
-        )
-      );
-    } else {
-      dispatch(
-        provinceActions.fetchProvinceFailed(response.data.data.province.msg)
-      );
-    }
-  } catch (error) {
-    dispatch(provinceActions.fetchProvinceFailed(error));
-  }
-};
+import axios from "axios";
 
 export const GetALLProvinceVietNam = (setProvince) =>
   new Promise(async (resolve, reject) => {
@@ -118,6 +88,20 @@ export const GetAllWardWithDistrictCode = (districtCode: any, setWard: any) =>
       } else {
         console.log("lỗi");
       }
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const apiUploadImages = (formData) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios({
+        method: "post",
+        url: `https://api.cloudinary.com/v1_1/dxcershra/image/upload/`,
+        data: formData,
+      });
       resolve(response);
     } catch (error) {
       reject(error);

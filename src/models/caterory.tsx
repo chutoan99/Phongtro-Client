@@ -1,15 +1,11 @@
-export interface Welcome {
-  data: Data;
-}
-
-export interface Data {
-  category: Category;
-}
-
 export interface CategoryResponse {
-  err: number;
-  msg: string;
-  response: Category[];
+  data: {
+    category: {
+      err: number;
+      msg: string;
+      response: Category[];
+    };
+  };
 }
 
 export interface Category {
@@ -20,4 +16,5 @@ export interface Category {
   subHeader: string;
   updatedAt: Date;
   value: string;
+  path: string;
 }

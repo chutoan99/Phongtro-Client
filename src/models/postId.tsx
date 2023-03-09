@@ -1,17 +1,32 @@
-export interface PostResponse {
+export interface Welcome {
   data: {
-    post: {
+    postId: {
       err: number;
       msg: string;
-      response: Post[];
+      response: PostId;
     };
   };
 }
 
-export interface Post {
+export interface PostId {
   address: string;
   areaCode: string;
   areaNumber: number;
+  attributesId: string;
+  categoryCode: string;
+  createdAt: Date;
+  description: string;
+  id: string;
+  imagesId: string;
+  labelCode: string;
+  overviewId: string;
+  priceCode: string;
+  priceNumber: number;
+  provinceCode: string;
+  start: string;
+  title: string;
+  updatedAt: Date;
+  userId: string;
   attributes: {
     acreage: string;
     createdAt: Date;
@@ -21,49 +36,34 @@ export interface Post {
     published: string;
     updatedAt: Date;
   };
-  attributesId: string;
-  categoryCode: string;
-  createdAt: Date;
-  description: string;
-  id: string;
-  imagesId: string;
-  labelCode: string;
   listImage: {
     createdAt: Date;
     id: string;
     image: string;
-    updatedAt: Date;
     postImg: string;
-    total: string;
+    total: number;
+    updatedAt: Date;
   };
-  overviewId: string;
   overviews: {
-    createdAt: Date;
     area: string;
     bonus: string;
-    created: string;
     code: string;
-    expired: string;
+    created: string;
+    createdAt: Date;
     id: string;
+    expired: string;
     target: string;
     type: string;
     updatedAt: Date;
   };
-  priceCode: string;
-  priceNumber: number;
-  provinceCode: string;
-  start: string;
-  title: string;
-  updatedAt: Date;
-  userId: string;
   user: {
+    avatar: string;
     createdAt: Date;
     id: string;
-    name: string;
     password: string;
+    name: string;
     phone: string;
-    zalo: string;
     updatedAt: Date;
-    avatar: string;
+    zalo: string;
   };
 }

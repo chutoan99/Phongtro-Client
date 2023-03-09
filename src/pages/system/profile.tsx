@@ -10,8 +10,6 @@ import { AppState } from "../../app/store";
 import { NextPage } from "next";
 
 const ProfilePage: NextPage = () => {
-  const { data } = useSelector((state: AppState) => state.user);
-
   return (
     <div className="desktop dashboard quan-ly dang-tin dang-tin-moi loaded ready">
       <div id="webpage" style={{ position: "relative" }}>

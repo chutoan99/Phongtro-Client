@@ -1,11 +1,13 @@
-function AsideNewNews({ item }) {
+import { newPost } from "../../utils/constant";
+
+function AsideNewNews() {
   return (
     <section className="section section-sublink">
       <div className="section-header">
-        <span className="section-title">{item.header}</span>
+        <span className="section-title">{newPost.header}</span>
       </div>
       <ul className="list-links clearfix">
-        {item.lists.map((ele: any, index: number) => (
+        {newPost?.lists.map((ele: any, index: number) => (
           <li key={index}>
             <a href="# " title={ele}>
               {ele}

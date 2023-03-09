@@ -6,26 +6,22 @@ import {
   SystemNavMenu,
   SystemSection,
 } from "../../components/index";
-import { postActions } from "../../redux/post.slice";
-import { apiPosted } from "../../services/posts";
 import moment from "moment";
 import { AppState } from "../../app/store";
 import { NextPage } from "next";
 import SystemManager from "../../components/system/system-manager";
+import { useQueryClient } from "react-query";
 
 const ManagePost: NextPage = () => {
   const dispatch = useDispatch();
-  const { id } = useSelector((state: AppState) => state.user.data);
-  const { data } = useSelector((state: AppState) => state.post.posted);
   const [edit, setEdit] = useState(false);
+  const queryClient = useQueryClient();
+  const dataUser =
+    queryClient.getQueriesData<any>(["user"]).length > 0
+      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
+      : null;
+  const query = { UserId: dataUser.id };
 
-  const query = { UserId: id };
-  useEffect(() => {
-    const fetchApiPosted = async () => {
-      await apiPosted(query, dispatch);
-    };
-    fetchApiPosted();
-  }, [id]);
   const checkStatus = (dateTime) =>
     moment(dateTime, "DD/MM/YYYY").isSameOrAfter(new Date().toDateString());
   // const handleShowEditPost = (item) => {

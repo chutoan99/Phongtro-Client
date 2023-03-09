@@ -1,24 +1,47 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import querystring from "querystring";
 import { ModalsCategoryAndProvince } from "./index";
 import ModalsPriceAndArea from "./modals/modalsPriceAndArea";
-import { useSelector } from "react-redux";
-import { AppState } from "../app/store";
+import { useQueryClient } from "react-query";
+
 function Search() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [indexModels, setIndexModals] = useState();
   const [modals, setModals] = useState(true);
   const [queries, setQueries] = useState<any>([]);
   const [arrMinMax, setArrMinMax] = useState({});
   const [overPlay, setOverPlay] = useState(false);
+
+  const dataProvince =
+    queryClient.getQueriesData<any>(["Province"]).length > 0
+      ? queryClient.getQueriesData<any>(["Province"])[0][1]?.province?.response
+      : null;
+  const dataCategory =
+    queryClient.getQueriesData<any>(["Menu"]).length > 0
+      ? queryClient.getQueriesData<any>(["Menu"])[0][1]?.category?.response
+      : null;
+  const dataPrice =
+    queryClient.getQueriesData<any>(["Price"]).length > 0
+      ? queryClient.getQueriesData<any>(["Price"])[0][1]?.price?.response
+      : null;
+  const dataArea =
+    queryClient.getQueriesData<any>(["Area"]).length > 0
+      ? queryClient.getQueriesData<any>(["Area"])[0][1]?.area?.response
+      : null;
+
+  useEffect(() => {
+    if (!modals && overPlay) {
+      setOverPlay(false);
+    }
+  }, [modals]);
+
   const handleIsShowModel = (number) => {
     setIndexModals(number);
     setModals(true);
   };
-  const { price, area, province, category } = useSelector(
-    (state: AppState) => state
-  );
+
   const handleSubmit = useCallback(
     (query, arrMaxMin) => {
       setQueries((prev) => ({ ...prev, ...query }));
@@ -92,7 +115,7 @@ function Search() {
             {indexModels === 0 && (
               <ModalsCategoryAndProvince
                 handleSubmit={handleSubmit}
-                items={category?.data}
+                items={dataCategory}
                 modals={modals}
                 setModals={setModals}
                 setOverPlay={setOverPlay}
@@ -103,7 +126,7 @@ function Search() {
             )}
             {indexModels === 1 && (
               <ModalsCategoryAndProvince
-                items={province?.data}
+                items={dataProvince}
                 modals={modals}
                 queries={queries}
                 setOverPlay={setOverPlay}
@@ -115,7 +138,7 @@ function Search() {
             )}
             {indexModels === 2 && (
               <ModalsPriceAndArea
-                items={price?.data}
+                items={dataPrice}
                 modals={modals}
                 setModals={setModals}
                 setOverPlay={setOverPlay}
@@ -127,7 +150,7 @@ function Search() {
             )}
             {indexModels === 3 && (
               <ModalsPriceAndArea
-                items={area?.data}
+                items={dataArea}
                 modals={modals}
                 setModals={setModals}
                 handleSubmit={handleSubmit}

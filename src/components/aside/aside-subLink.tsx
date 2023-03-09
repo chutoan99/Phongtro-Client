@@ -1,11 +1,13 @@
-function AsideSubLink({ item }) {
+import { subLink } from "../../utils/subLink";
+
+function AsideSubLink() {
   return (
     <section className="section section-sublink">
       <div className="section-header">
-        <span className="section-title">{item?.header}</span>
+        <span className="section-title">{subLink?.header}</span>
       </div>
       <ul className="list-links clearfix">
-        {item?.lists?.map((ele: any, index: number) => (
+        {subLink?.lists?.map((ele: any, index: number) => (
           <li key={index}>
             <a
               href="/news/hop-dong-thue-nha-tro-phong-tro"

@@ -20,7 +20,7 @@ const RegisterPage: NextPage = () => {
   return (
     <div id="webpage">
       <Header />
-      <NavBarMenu />
+      <NavBarMenu path="index" />
       <main id="main" style={{ height: "100vh" }}>
         <section className="section section-access">
           <div className="section-header">

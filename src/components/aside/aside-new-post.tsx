@@ -1,18 +1,20 @@
 import Link from "next/link";
-import { Post } from "../../types/post.type";
+import { useQueryClient } from "react-query";
+import { Post } from "../../models/post";
 
-interface AsideNewPost {
-  item: Post[];
-}
-
-function AsideNewPost({ item }: AsideNewPost) {
+function AsideNewPost() {
+  const queryClient = useQueryClient();
+  const dataNewPost =
+    queryClient.getQueriesData<any>(["NewPost"]).length > 0
+      ? queryClient.getQueriesData<any>(["NewPost"])[0][1]?.post?.response
+      : null;
   return (
     <section className="section section-aside-tinmoidang">
       <div className="section-header">
         <span className="section-title">Tin mới đăng</span>
       </div>
       <ul className="post-listing aside clearfix">
-        {item.map((ele: Post, index: number) => (
+        {dataNewPost?.map((ele: Post, index: number) => (
           <li
             className="post-item clearfix tin-vip vip3"
             post-id="617232"
@@ -23,8 +25,7 @@ function AsideNewPost({ item }: AsideNewPost) {
                 <img
                   className="lazy_done"
                   src={ele?.listImage?.postImg}
-                  data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2023/02/24/5ba01f27-e77c-4529-b054-e05ba577c642_1677239744.jpg"
-                  alt="HiFriendz Khai trương phòng trọ mới tinh ngay tại Phan Huy Ích"
+                  alt={ele?.title}
                   height="100"
                   width="100"
                   data-loaded="true"

@@ -1,9 +1,12 @@
-import { useAppSelector } from "../../app/hooks";
-import { AppState } from "../../app/store";
+import { useQueryClient } from "react-query";
 
 function SystemProfile() {
-  const { data } = useAppSelector((state: AppState) => state.user);
-  const { isLogin } = useAppSelector((state: AppState) => state.auth.login);
+  const queryClient = useQueryClient();
+  const dataUser =
+    queryClient.getQueriesData<any>(["user"]).length > 0
+      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
+      : null;
+
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -60,7 +63,7 @@ function SystemProfile() {
               className="form-control"
               id="user_name"
               name="name"
-              value={data.name}
+              value={dataUser.name}
               placeholder="Ex: Nguyễn Văn A"
             />
           </div>
@@ -147,7 +150,7 @@ function SystemProfile() {
                 <div
                   className="user-avatar-preview js-one-image-preview"
                   style={{
-                    background: `url(${data.avatar}) center no-repeat`,
+                    background: `url(${dataUser.avatar}) center no-repeat`,
                     backgroundSize: "cover",
                   }}
                 ></div>

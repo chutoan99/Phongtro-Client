@@ -8,9 +8,6 @@ function ModalsCategoryAndProvince({
   handleSubmit,
   queries,
 }) {
-  const isLoseModel = () => {
-    setModals(false);
-  };
   return (
     <>
       {modals ? (

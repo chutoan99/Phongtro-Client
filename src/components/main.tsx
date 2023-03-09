@@ -1,12 +1,8 @@
 import { Aside } from "./index";
 import { Pagination, Post } from "./index";
-import { AppState } from "../app/store";
-import { useSelector } from "react-redux";
 
 import Link from "next/link";
 function Main() {
-  const { data, total } = useSelector((state: AppState) => state.post.allPosts);
-
   return (
     <div className="container clearfix">
       <div id="left-col">
@@ -27,11 +23,11 @@ function Main() {
             </Link>
           </div>
           <ul className="post-listing clearfix">
-            <Post data={data} />
+            <Post />
           </ul>
         </section>
         <div className="flex items-center justify-center">
-          <Pagination length={total} count={data?.length} />
+          <Pagination length={100} count={10} />
         </div>
       </div>
       <div id="aside">

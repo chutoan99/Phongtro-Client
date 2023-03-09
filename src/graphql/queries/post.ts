@@ -1,64 +1,30 @@
-export const postQuery = (pageNumber, pageSize) => {
+export const postQuery = (pageNumber, pageSize, categoryCode) => {
   return {
-    query: `query ($pageSize: Int, $pageNumber: Int, $orderBy: String, $direction: String, $userid: String, $start: String, $title: String, $address: String, $categoryCode: String, $priceCode: String, $areaCode: String, $provinceCode: String) {
-      post(pageSize: $pageSize, pageNumber: $pageNumber, orderBy: $orderBy, direction: $direction, userid: $userid, start: $start, title: $title, address: $address, categoryCode: $categoryCode, priceCode: $priceCode, areaCode: $areaCode, provinceCode: $provinceCode) {
+    query: `query ($pageSize: Int, $pageNumber: Int, $orderBy: String, $direction: String, $userid: String, $start: String, $title: String, $address: String, $categoryCode: String, $priceNumber: [Int], $areaNumber: [Int], $provinceCode: String) {
+      post(pageSize: $pageSize, pageNumber: $pageNumber, orderBy: $orderBy, direction: $direction, userid: $userid, start: $start, title: $title, address: $address, categoryCode: $categoryCode, priceNumber: $priceNumber, areaNumber: $areaNumber, provinceCode: $provinceCode) {
         err
         msg
         pageNumber
         pageSize
         response {
           address
-          areaCode
-          areaNumber
+          id
           attributes {
             price
             acreage
-            createdAt
-            hashtag
-            id
             published
-            updatedAt
           }
-          attributesId
-          categoryCode
-          createdAt
           description
-          id
-          imagesId
-          labelCode
           listImage {
-            createdAt
-            id
             postImg
-            image
             total
-            updatedAt
           }
-          overviewId
-          overviews {
-            area
-            bonus
-            created
-            code
-            createdAt
-            expired
-            id
-            target
-            type
-            updatedAt
-          }
-          priceCode
-          priceNumber
-          provinceCode
           start
           title
           updatedAt
           user {
             avatar
-            createdAt
-            id
             name
-            password
             phone
             updatedAt
             zalo
@@ -70,15 +36,15 @@ export const postQuery = (pageNumber, pageSize) => {
     variables: {
       pageNumber,
       pageSize,
+      categoryCode,
       orderBy: null,
       direction: null,
       userid: null,
       start: null,
       title: null,
       address: null,
-      categoryCode: null,
-      priceCode: null,
-      areaCode: null,
+      priceNumber: null,
+      areaNumber: null,
       provinceCode: null,
     },
   };
@@ -92,7 +58,7 @@ export const postIdQuery = (id: String) => {
       msg
       response {
         address
-        areaCode
+        areaNumber
         areaNumber
         attributes {
           acreage
@@ -131,7 +97,7 @@ export const postIdQuery = (id: String) => {
           type
           updatedAt
         }
-        priceCode
+        priceNumber
         start
         priceNumber
         provinceCode
@@ -163,7 +129,7 @@ export const newPostQuery = (pageNumber, pageSize) => {
         msg
         response {
           address
-          areaCode
+          areaNumber
           areaNumber
           attributesId
           attributes {
@@ -202,7 +168,7 @@ export const newPostQuery = (pageNumber, pageSize) => {
             type
             updatedAt
           }
-          priceCode
+          priceNumber
           priceNumber
           provinceCode
           start
