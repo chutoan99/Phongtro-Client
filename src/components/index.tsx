@@ -30,7 +30,6 @@ export { default as AsidePrice } from "./aside/aside-price";
 export { default as AsideDirectoryRental } from "./aside/aside-directory-rental";
 export { default as AsideNewNews } from "./aside/aside-new-news";
 export { default as AsideAcreage } from "./aside/aside-acreage";
-export { default as SystemBreadcrumb } from "./system/system-breadcrumb";
 export { default as SystemContent } from "./system/system-content";
 export { default as SystemMain } from "./system/system-main";
 export { default as SystemSection } from "./system/system-section";

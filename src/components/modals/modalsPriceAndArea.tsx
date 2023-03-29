@@ -114,14 +114,7 @@ function ModalsPriceAndArea({
         : [];
     handleSubmit(
       {
-        [`${name}Code`]: gaps?.map((item) => item.code),
-        [name]: `Từ ${min} - ${max} ${name === "price" ? "triệu" : "m2"}`,
-      },
-      { [`${name}Arr`]: [perSent1, perSent2] }
-    );
-    console.log(
-      {
-        [`${name}Code`]: gaps?.map((item) => item.code),
+        [`${name}Number`]: [min, max],
         [name]: `Từ ${min} - ${max} ${name === "price" ? "triệu" : "m2"}`,
       },
       { [`${name}Arr`]: [perSent1, perSent2] }

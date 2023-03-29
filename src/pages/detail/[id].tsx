@@ -23,7 +23,7 @@ const DetailPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const graphQLClient = new GraphQLClient("http://localhost:8000/graphql");
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
 
   const dataPostId = useQuery<any>(["PostId", id], () =>
     graphQLClient.request(

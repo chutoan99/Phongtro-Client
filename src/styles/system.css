@@ -237,6 +237,14 @@ table thead {
   color: #000;
   background: #f1f1f1;
   margin-left: 0;
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  padding: 15px 18px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #f1f1f1;
 }
 .pagination .page-link:hover {
   background: #ddd;
@@ -769,4 +777,14 @@ table thead {
 }
 .dashboard .btn-copy.active .icon-copy {
   display: none;
+}
+
+/* table */
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
 }

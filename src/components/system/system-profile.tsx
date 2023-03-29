@@ -1,11 +1,15 @@
 import { useQueryClient } from "react-query";
-
+import { useEffect, useState } from "react";
 function SystemProfile() {
   const queryClient = useQueryClient();
-  const dataUser =
-    queryClient.getQueriesData<any>(["user"]).length > 0
-      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
-      : null;
+  const [dataUser, setDataUser] = useState<any>();
+  useEffect(() => {
+    setDataUser(
+      queryClient.getQueriesData<any>(["User"]).length > 0
+        ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
+        : null
+    );
+  }, []);
 
   return (
     <>
@@ -41,7 +45,7 @@ function SystemProfile() {
               type="phone"
               className="form-control disable"
               id="user_phone"
-              value="0349324722"
+              value={dataUser?.phone}
             />
             <div className="form-text text-muted">
               <a style={{ display: "inline-block", marginTop: "5px" }} href="">
@@ -63,7 +67,7 @@ function SystemProfile() {
               className="form-control"
               id="user_name"
               name="name"
-              value={dataUser.name}
+              value={dataUser?.name}
               placeholder="Ex: Nguyễn Văn A"
             />
           </div>
@@ -99,7 +103,7 @@ function SystemProfile() {
               className="form-control"
               id="user_zalo"
               name="user_zalo"
-              value="0349324722"
+              value={dataUser?.zalo}
             />
           </div>
         </div>
@@ -150,7 +154,7 @@ function SystemProfile() {
                 <div
                   className="user-avatar-preview js-one-image-preview"
                   style={{
-                    background: `url(${dataUser.avatar}) center no-repeat`,
+                    background: `url(${dataUser?.avatar}) center no-repeat`,
                     backgroundSize: "cover",
                   }}
                 ></div>

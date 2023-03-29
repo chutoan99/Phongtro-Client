@@ -1,25 +1,32 @@
-import { AppState } from "../app/store";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { authActions } from "../redux/auth.slice";
+import { useState, useEffect } from "react";
 import menuManage from "../utils/menuManage";
-import { GraphQLClient, gql } from "graphql-request";
 import { useQuery, useQueryClient } from "react-query";
-
+import { gql, GraphQLClient } from "graphql-request";
+interface local {
+  id: any;
+  isLogin: any;
+  token: string;
+}
 const Header: NextPage = () => {
   const Router = useRouter();
-  const dispatch = useAppDispatch();
   const queryClient = useQueryClient();
-
-  const dataUser =
-    queryClient.getQueriesData<any>(["user"]).length > 0
-      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
-      : null;
-  const { isLogin } = useAppSelector((state: AppState) => state.auth.login);
   const [isDropDown, setIsDropDown] = useState(false);
+  const [isLogin, setIslogin] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const data: local = JSON.parse(localStorage.getItem("token"));
+      if (data?.isLogin || typeof data?.isLogin !== "undefined") {
+        setIslogin(true);
+      }
+    }
+  }, []);
+  const dataUser =
+    queryClient.getQueriesData<any>(["User"]).length > 0
+      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
+      : null;
   const handleMenuManage = (id) => {
     if (id === 1) {
       Router.push(`${menuManage[0].path}`);
@@ -28,11 +35,7 @@ const Header: NextPage = () => {
     } else if (id === 3) {
       Router.push(`${menuManage[2].path}`);
     } else if (id === 4) {
-      dispatch(authActions.logoutSuccess());
-      localStorage.setItem(
-        "token",
-        JSON.stringify({ isLogin: false, token: null })
-      );
+      localStorage.removeItem("token");
     }
   };
   return (

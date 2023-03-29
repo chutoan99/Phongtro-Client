@@ -27,8 +27,6 @@ interface Payload {
   userId: string;
 }
 function SystemContent() {
-  // const { data } = useSelector((state: AppState) => state.post.);
-
   const [payLoad, setPayload] = useState<Payload>({
     areaNumber: 0,
     priceNumber: 0,
@@ -71,8 +69,8 @@ function SystemContent() {
       ? queryClient.getQueriesData<any>(["Area"])[0][1]?.area?.response
       : null;
   const user =
-    queryClient.getQueriesData<any>(["user"]).length > 0
-      ? queryClient.getQueriesData<any>(["user"])[0][1]?.userId?.response
+    queryClient.getQueriesData<any>(["User"]).length > 0
+      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
       : null;
   useEffect(() => {
     (async () => await GetALLProvinceVietNam(setProvince))();

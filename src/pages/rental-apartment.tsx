@@ -3,57 +3,55 @@ import { gql, GraphQLClient } from "graphql-request";
 import { useQuery } from "react-query";
 
 const RentalApartment = () => {
-  const graphQLClient = new GraphQLClient("http://localhost:8000/graphql");
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
   const pageSize = 20;
 
   const pageNumber = 1;
   const categoryCode = "TNOG";
 
-  const dataPost = useQuery<any>(
-    ["Post", pageSize, pageNumber, categoryCode],
-    async () =>
-      graphQLClient.request(
-        gql`
-          query ($pageSize: Int, $pageNumber: Int, $categoryCode: String) {
-            post(
-              pageSize: $pageSize
-              pageNumber: $pageNumber
-              categoryCode: $categoryCode
-            ) {
-              err
-              msg
-              total
-              pageNumber
-              pageSize
-              response {
-                address
-                id
-                attributes {
-                  price
-                  acreage
-                  published
-                }
-                description
-                listImage {
-                  postImg
-                  total
-                }
-                start
-                title
+  useQuery<any>(["Post", pageNumber], async () =>
+    graphQLClient.request(
+      gql`
+        query ($pageSize: Int, $pageNumber: Int, $categoryCode: String) {
+          post(
+            pageSize: $pageSize
+            pageNumber: $pageNumber
+            categoryCode: $categoryCode
+          ) {
+            err
+            msg
+            total
+            pageNumber
+            pageSize
+            response {
+              address
+              id
+              attributes {
+                price
+                acreage
+                published
+              }
+              description
+              listImage {
+                postImg
+                total
+              }
+              start
+              title
+              updatedAt
+              user {
+                avatar
+                name
+                phone
                 updatedAt
-                user {
-                  avatar
-                  name
-                  phone
-                  updatedAt
-                  zalo
-                }
+                zalo
               }
             }
           }
-        `,
-        { pageSize, pageNumber, categoryCode }
-      )
+        }
+      `,
+      { pageSize, pageNumber, categoryCode }
+    )
   );
   return (
     <div className="w-[100vw]  bg-[#f5f5f5]">

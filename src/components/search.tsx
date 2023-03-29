@@ -13,7 +13,6 @@ function Search() {
   const [queries, setQueries] = useState<any>([]);
   const [arrMinMax, setArrMinMax] = useState({});
   const [overPlay, setOverPlay] = useState(false);
-
   const dataProvince =
     queryClient.getQueriesData<any>(["Province"]).length > 0
       ? queryClient.getQueriesData<any>(["Province"])[0][1]?.province?.response
@@ -51,10 +50,9 @@ function Search() {
     [queries, modals]
   );
   const handelSearch = () => {
-    const queryCodes = Object.entries(queries).filter((item) =>
-      item[0].includes("Code")
+    const queryCodes = Object.entries(queries).filter(
+      (item) => item[0].includes("Code") || item[0].includes("Number")
     );
-    console.log(queries, "queries");
 
     let queryCodesObj = {};
     queryCodes.forEach((item) => {
@@ -64,7 +62,6 @@ function Search() {
       pathname: "/",
       search: "?" + querystring.stringify(queryCodesObj),
     });
-    console.log(queryCodesObj, "queryCodesObj");
   };
 
   return (

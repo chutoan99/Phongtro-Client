@@ -1,198 +1,203 @@
 import { Header, Container, Footer, NavBarMenu } from "../components/index";
 import { GraphQLClient, gql } from "graphql-request";
-import { useQuery } from "react-query";
+import { useQueries, useQuery } from "react-query";
 import { useRouter } from "next/router";
-
-const provinceQuery = gql`
-  query {
-    province {
-      err
-      msg
-      response {
-        code
-        createdAt
-        updatedAt
-        id
-        value
-      }
-    }
-  }
-`;
-const priceQuery = gql`
-  query {
-    price {
-      err
-      msg
-      response {
-        code
-        createdAt
-        id
-        order
-        updatedAt
-        value
-      }
-    }
-  }
-`;
-const categoryQuery = gql`
-  query {
-    category {
-      err
-      msg
-      response {
-        code
-        createdAt
-        header
-        path
-        id
-        subHeader
-        value
-        updatedAt
-      }
-    }
-  }
-`;
-const areaQuery = gql`
-  query {
-    area {
-      err
-      msg
-      response {
-        code
-        createdAt
-        id
-        order
-        updatedAt
-        value
-      }
-    }
-  }
-`;
+interface local {
+  id: any;
+  isLogin: boolean;
+  token: string;
+}
 const HomePage = () => {
   const router = useRouter();
-  const graphQLClient = new GraphQLClient("http://localhost:8000/graphql");
-
-  useQuery<any>(["Province"], () => graphQLClient.request(provinceQuery)).data
-    ?.province?.response;
-
-  useQuery<any>(["Price"], () => graphQLClient.request(priceQuery)).data?.price
-    ?.response;
-
-  useQuery<any>(["Menu"], () => graphQLClient.request(categoryQuery)).data
-    ?.category?.response;
-
-  useQuery<any>(["Area"], () => graphQLClient.request(areaQuery)).data?.area
-    ?.response;
-  const pageSize = 20;
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  const pageSize = 15;
   const pageNumber = 1;
-
-  useQuery<any>(["Post", pageSize, pageNumber], () =>
-    graphQLClient.request(
-      gql`
-        query ($pageSize: Int, $pageNumber: Int) {
-          post(pageSize: $pageSize, pageNumber: $pageNumber) {
-            err
-            msg
-            total
-            pageNumber
-            pageSize
-            response {
-              address
-              id
-              attributes {
-                price
-                acreage
-                published
-              }
-              description
-              listImage {
-                postImg
-                total
-              }
-              start
-              title
-              updatedAt
-              user {
-                avatar
-                name
-                phone
+  useQueries([
+    {
+      queryKey: ["Province"],
+      queryFn: () =>
+        graphQLClient.request(gql`
+          query {
+            province {
+              err
+              msg
+              response {
+                code
+                createdAt
                 updatedAt
-                zalo
+                id
+                value
               }
-              userId
             }
           }
-        }
-      `,
-      { pageSize, pageNumber }
-    )
-  )?.data?.post;
-
-  useQuery<any>(["NewPost", pageSize, pageNumber], () =>
-    graphQLClient.request(
-      gql`
-        query ($pageSize: Int, $pageNumber: Int) {
-          post(pageSize: $pageSize, pageNumber: $pageNumber) {
-            err
-            msg
-            total
-            pageNumber
-            pageSize
-            response {
-              address
-              id
-              attributes {
-                price
-                acreage
-                published
+        `),
+    },
+    {
+      queryKey: ["Price"],
+      queryFn: () =>
+        graphQLClient.request(gql`
+          query {
+            price {
+              err
+              msg
+              response {
+                code
+                createdAt
+                id
+                order
+                updatedAt
+                value
               }
-
-              listImage {
-                postImg
-              }
-              title
-              updatedAt
             }
           }
-        }
-      `,
-      { pageSize, pageNumber }
-    )
-  )?.data?.post;
-
-  if (typeof window !== "undefined") {
-    const storedToken = JSON.parse(localStorage.getItem("token"))?.token;
-    if (storedToken) {
-      const idUser = JSON.parse(localStorage.getItem("token"))?.id;
-      if (idUser) {
-        const graphQLClient = new GraphQLClient(
-          "http://localhost:8000/graphql"
-        );
-        useQuery<any>(["user", idUser], async () =>
-          graphQLClient.request(
-            gql`
-              query Query($userIdId: ID!) {
-                userId(id: $userIdId) {
-                  response {
+        `),
+    },
+    {
+      queryKey: ["Menu"],
+      queryFn: () =>
+        graphQLClient.request(gql`
+          query {
+            category {
+              err
+              msg
+              response {
+                code
+                createdAt
+                header
+                path
+                id
+                subHeader
+                value
+                updatedAt
+              }
+            }
+          }
+        `),
+    },
+    {
+      queryKey: ["Area"],
+      queryFn: () =>
+        graphQLClient.request(gql`
+          query {
+            area {
+              err
+              msg
+              response {
+                code
+                createdAt
+                id
+                order
+                updatedAt
+                value
+              }
+            }
+          }
+        `),
+    },
+    {
+      queryKey: ["Post", pageNumber],
+      queryFn: () =>
+        graphQLClient.request(
+          gql`
+            query ($pageSize: Int, $pageNumber: Int) {
+              post(pageSize: $pageSize, pageNumber: $pageNumber) {
+                err
+                msg
+                total
+                pageNumber
+                pageSize
+                response {
+                  address
+                  id
+                  attributes {
+                    price
+                    acreage
+                    published
+                  }
+                  description
+                  listImage {
+                    postImg
+                    total
+                  }
+                  start
+                  title
+                  updatedAt
+                  user {
                     avatar
-                    createdAt
-                    id
                     name
                     phone
-                    zalo
                     updatedAt
+                    zalo
                   }
-                  err
-                  msg
+                  userId
                 }
               }
-            `,
-            { idUser }
-          )
-        );
-      }
-    } else {
+            }
+          `,
+          { pageSize, pageNumber }
+        ),
+    },
+    {
+      queryKey: ["NewPost"],
+      queryFn: () =>
+        graphQLClient.request(
+          gql`
+            query ($pageSize: Int, $pageNumber: Int) {
+              post(pageSize: $pageSize, pageNumber: $pageNumber) {
+                err
+                msg
+                total
+                pageNumber
+                pageSize
+                response {
+                  address
+                  id
+                  attributes {
+                    price
+                    acreage
+                    published
+                  }
+
+                  listImage {
+                    postImg
+                  }
+                  title
+                  updatedAt
+                }
+              }
+            }
+          `,
+          { pageSize, pageNumber }
+        ),
+    },
+  ]);
+  if (typeof window !== "undefined") {
+    const data: local = JSON.parse(localStorage.getItem("token"));
+    if (!data?.token || data?.token === "undefined") {
       router.push("/login");
+    } else {
+      useQuery<any>(["User", data?.id], async () =>
+        graphQLClient.request(
+          gql`
+            query Query($userId: ID!) {
+              userId(id: $userId) {
+                response {
+                  avatar
+                  createdAt
+                  id
+                  name
+                  phone
+                  zalo
+                  updatedAt
+                }
+                err
+                msg
+              }
+            }
+          `,
+          { userId: data?.id }
+        )
+      );
     }
   }
   return (

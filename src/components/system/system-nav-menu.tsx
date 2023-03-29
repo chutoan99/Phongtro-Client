@@ -1,72 +1,68 @@
+import Link from "next/link";
+
 function SystemNavMenu() {
   return (
     <nav
       className="navbar navbar-expand-md fixed-top flex-md-nowrap p-0"
       id="mobile_navbar_top"
     >
-      <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="/">
+      <Link className="navbar-brand col-sm-3 col-md-2 p-3" href="/">
         Phongtro123.com
-      </a>
+      </Link>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link" target="_blank" href="/">
+            <Link className="nav-link" target="_blank" href="/">
               Trang chủ
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item d-none d-md-block">
-            <a className="nav-link" target="_blank" href="">
-              Phòng trọ
-            </a>
+            <Link className="nav-link" target="_blank" href="/rental-apartment">
+              Cho thuê căn hộ
+            </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <a className="nav-link" target="_blank" href="">
+            <Link className="nav-link" target="_blank" href="/rental-house">
               Nhà cho thuê
-            </a>
+            </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <a className="nav-link" target="_blank" href="">
-              Căn hộ
-            </a>
+            <Link className="nav-link" target="_blank" href="/rental-motel">
+              Cho thuê phòng trọ
+            </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <a className="nav-link" target="_blank" href="">
-              Mặt bằng
-            </a>
+            <Link className="nav-link" target="_blank" href="/rental-ground">
+              Cho thuê mặt bằng
+            </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <a className="nav-link" target="_blank" href="">
-              Ở ghép
-            </a>
+            <Link className="nav-link" target="_blank" href="/roommate">
+              Tìm người Ở ghép
+            </Link>
+          </li>
+
+          <li className="nav-item d-none d-md-block">
+            <Link className="nav-link" target="_blank" href="/blog">
+              Blog
+            </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <a className="nav-link" target="_blank" href="">
+            <Link className="nav-link" target="_blank" href="/user-manal">
+              Hướng dẫn
+            </Link>
+          </li>
+          <li className="nav-item d-none d-md-block">
+            <Link className="nav-link" target="_blank" href="/money">
+              Nạp tiền
+            </Link>
+          </li>
+          <li className="nav-item d-none d-md-block">
+            <Link className="nav-link" target="_blank" href="/price">
               Bảng giá dịch vụ
-            </a>
+            </Link>
           </li>
-        </ul>
-        <ul className="navbar-nav float-right pr-4">
-          <div className="dropdown">
-            <button
-              className="btn btn_account d-none d-md-flex"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Xin chào <strong>cu toan</strong>
-            </button>
-            <div
-              className="dropdown-menu dropdown-menu-right"
-              aria-labelledby="dropdownMenuLink"
-            >
-              <a className="dropdown-item" href="">
-                Thoát
-              </a>
-            </div>
-          </div>
         </ul>
       </div>
       <div className="button-item menu js_btn_menu">

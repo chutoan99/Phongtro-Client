@@ -185,7 +185,7 @@ export const menuManage2 = [
   {
     id: 1,
     text: "Quản lý tin đăng",
-    path: "",
+    path: "/system/manager",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +208,7 @@ export const menuManage2 = [
   {
     id: 2,
     text: "Nạp tiền vào tài khoản ",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -228,7 +228,7 @@ export const menuManage2 = [
   {
     id: 3,
     text: "Lịch sử nạp tiền",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +248,7 @@ export const menuManage2 = [
   {
     id: 4,
     text: "Lịch sử thanh toán",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +270,7 @@ export const menuManage2 = [
   {
     id: 5,
     text: "Sửa thông tin cá nhân",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -290,7 +290,7 @@ export const menuManage2 = [
   {
     id: 6,
     text: "Đổi số điện thoại",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -309,7 +309,7 @@ export const menuManage2 = [
   {
     id: 7,
     text: "Đổi mật khẩu",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -329,7 +329,7 @@ export const menuManage2 = [
   {
     id: 8,
     text: "Liên hệ",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +350,7 @@ export const menuManage2 = [
   {
     id: 8,
     text: "Đăng xuất",
-    path: "",
+    path: "#",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

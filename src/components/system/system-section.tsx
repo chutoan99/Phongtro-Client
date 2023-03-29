@@ -2,13 +2,11 @@ import Link from "next/link";
 import { menuManage2 } from "../../utils/menuUser";
 import Support from "../support";
 
-import SystemBreadcrumb from "./system-breadcrumb";
-
 function SystemSection() {
   return (
     <div className="list-group dashboard_list_menu mt-4">
       {menuManage2.map((ele: any, index: number) => (
-        <Link className="list-group-item" href="" key={index}>
+        <Link className="list-group-item" href={ele?.path} key={index}>
           {ele.icon}
           {ele.text}
           <svg

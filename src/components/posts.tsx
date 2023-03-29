@@ -1,16 +1,11 @@
 import { renderStart } from "../utils/Commom/renderStart";
 import Link from "next/link";
 import { Post as PostInterFace } from "../models/post";
-import { useQueryClient } from "react-query";
-function Post() {
-  const queryClient = useQueryClient();
-  const dataPost =
-    queryClient.getQueriesData<any>(["Post"]).length > 0
-      ? queryClient.getQueriesData<any>(["Post"])[0][1]?.post?.response
-      : null;
+
+function Post({ dataPost }) {
   return (
     <>
-      {dataPost?.map((item: PostInterFace, index: number) => (
+      {dataPost?.response?.map((item: PostInterFace, index: number) => (
         <li
           key={index}
           className="post-item post-id-212446 style-4 clearfix tin-vip vipnoibat"

@@ -1,22 +1,44 @@
 import { Header, NavBarMenu } from "../components/index";
 import { useState } from "react";
-import { apiRegister } from "../services/auth";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
+import { gql, GraphQLClient } from "graphql-request";
+import { useQueryClient } from "react-query";
+import Swal from "sweetalert2";
 
 const RegisterPage: NextPage = () => {
-  const dispatch = useDispatch();
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  const queryClient = useQueryClient();
   const Router = useRouter();
   const [payload, setPayload] = useState({
     name: "",
     phone: "",
     password: "",
   });
+
   const handleRegister = async () => {
-    await apiRegister(payload, dispatch, Router);
+    await queryClient.invalidateQueries("registerMutation");
+    const data = await graphQLClient.request<any>(
+      gql`
+        mutation Register($input: RegisterInput!) {
+          register(input: $input) {
+            err
+            msg
+            token
+          }
+        }
+      `,
+      { input: { ...payload } }
+    );
+    if (data?.register?.token) {
+      Swal.fire("Oop !", data?.register?.msg, "success");
+      Router.push("/login");
+    } else {
+      Swal.fire("Oop !", data?.register?.msg, "error");
+    }
   };
+
   return (
     <div id="webpage">
       <Header />
@@ -89,7 +111,6 @@ const RegisterPage: NextPage = () => {
                   name="wp-submit-register"
                   className="btn btn-submit"
                   onClick={handleRegister}
-                  type="submit"
                 >
                   Tạo tài khoản
                 </button>

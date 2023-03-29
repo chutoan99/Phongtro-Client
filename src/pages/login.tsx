@@ -1,21 +1,56 @@
 import { Header, NavBarMenu } from "../components/index";
 import { useState } from "react";
-import { apiLogin } from "../services/auth";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
+import { useQueryClient } from "react-query";
+import Swal from "sweetalert2";
+import { gql, GraphQLClient } from "graphql-request";
 
 const LoginPage: NextPage = () => {
-  const dispatch = useDispatch();
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  const queryClient = useQueryClient();
   const Router = useRouter();
   const [payload, setPayload] = useState({
     phone: "",
     password: "",
   });
-
   const handleLogin = async () => {
-    await apiLogin(payload, dispatch, Router);
+    await queryClient.invalidateQueries("registerMutation");
+    const data = await graphQLClient.request<any>(
+      gql`
+        mutation Register($input: LoginInput!) {
+          login(input: $input) {
+            err
+            msg
+            token
+            response {
+              updatedAt
+              createdAt
+              id
+              name
+              phone
+              zalo
+            }
+          }
+        }
+      `,
+      { input: { ...payload } }
+    );
+    if (data?.login?.token) {
+      localStorage.setItem(
+        "token",
+        JSON.stringify({
+          isLogin: true,
+          token: data.login.token,
+          id: data.login.response.id,
+        })
+      );
+      Swal.fire("Oop !", data?.login?.msg, "success");
+      Router.push("/");
+    } else {
+      Swal.fire("Oop !", data?.login?.msg, "error");
+    }
   };
 
   return (
