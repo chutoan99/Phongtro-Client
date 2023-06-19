@@ -11,6 +11,10 @@ import InputLogin from "../types/input_login.type";
 
 const LoginPage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  console.log(
+    process.env.NEXT_PUBLIC_API_URL_DEV,
+    "process.env.NEXT_PUBLIC_API_URL_DEV"
+  );
   const queryClient = useQueryClient();
   const Router = useRouter();
   const [payload, setPayload] = useState<InputLogin>({
