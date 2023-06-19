@@ -12,90 +12,20 @@ import {
   Support,
   AsideSubLink,
 } from "../../components/index";
-import { renderStart } from "../../utils/Commom/renderStart";
 import { AreaHcm } from "../../utils/area";
-
+const postIdFilePath = require("../../graphql/postId.graphql");
 import React from "react";
 import Slider from "react-slick";
-import { gql, GraphQLClient } from "graphql-request";
-import { useQuery, useQueryClient } from "react-query";
+import { GraphQLClient } from "graphql-request";
+import { useQuery } from "react-query";
+
 const DetailPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-
   const dataPostId = useQuery<any>(["PostId", id], () =>
-    graphQLClient.request(
-      gql`
-        query ($postId: ID!) {
-          postId(id: $postId) {
-            err
-            msg
-            response {
-              address
-              areaNumber
-              areaNumber
-              attributes {
-                acreage
-                createdAt
-                hashtag
-                id
-                price
-                published
-                updatedAt
-              }
-              attributesId
-              categoryCode
-              createdAt
-              description
-              id
-              imagesId
-              labelCode
-              listImage {
-                createdAt
-                id
-                image
-                postImg
-                total
-                updatedAt
-              }
-              overviewId
-              overviews {
-                area
-                bonus
-                code
-                created
-                createdAt
-                expired
-                id
-                target
-                type
-                updatedAt
-              }
-              priceNumber
-              start
-              priceNumber
-              provinceCode
-              title
-              updatedAt
-              user {
-                avatar
-                createdAt
-                id
-                name
-                password
-                phone
-                updatedAt
-                zalo
-              }
-              userId
-            }
-          }
-        }
-      `,
-      { postId: id }
-    )
+    graphQLClient.request(postIdFilePath, { postId: id })
   )?.data?.postId?.response;
 
   var settings = {
@@ -105,6 +35,7 @@ const DetailPage: NextPage = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   return (
     <div className="webpage">
       <Header />

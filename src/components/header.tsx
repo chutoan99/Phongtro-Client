@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import menuManage from "../utils/menuManage";
-import { useQuery, useQueryClient } from "react-query";
-import { gql, GraphQLClient } from "graphql-request";
+import { useQueryClient } from "react-query";
 interface local {
   id: any;
   isLogin: any;

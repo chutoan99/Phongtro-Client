@@ -1,0 +1,65 @@
+query ($postId: ID!) {
+  postId(id: $postId) {
+    err
+    msg
+    response {
+      address
+      areaNumber
+      areaNumber
+      attributes {
+        acreage
+        createdAt
+        hashtag
+        id
+        price
+        published
+        updatedAt
+      }
+      attributesId
+      categoryCode
+      createdAt
+      description
+      id
+      imagesId
+      labelCode
+      listImage {
+        createdAt
+        id
+        image
+        postImg
+        total
+        updatedAt
+      }
+      overviewId
+      overviews {
+        area
+        bonus
+        code
+        created
+        createdAt
+        expired
+        id
+        target
+        type
+        updatedAt
+      }
+      priceNumber
+      start
+      priceNumber
+      provinceCode
+      title
+      updatedAt
+      user {
+        avatar
+        createdAt
+        id
+        name
+        password
+        phone
+        updatedAt
+        zalo
+      }
+      userId
+    }
+  }
+}

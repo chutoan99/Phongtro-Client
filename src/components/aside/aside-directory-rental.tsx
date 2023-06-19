@@ -1,4 +1,5 @@
 import { directoryRental } from "../../utils/constant";
+
 function AsideDirectoryRental() {
   return (
     <section className="section section-sublink">

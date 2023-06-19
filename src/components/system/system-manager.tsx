@@ -3,7 +3,6 @@ import { useState } from "react";
 function SystemManager({ data }) {
   const [isShowDropDown1, setIsShowDropDown1] = useState(false);
   const [isShowDropDown2, setIsShowDropDown2] = useState(false);
-  console.log(data, "hjj");
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">

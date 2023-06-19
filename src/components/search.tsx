@@ -5,7 +5,7 @@ import { ModalsCategoryAndProvince } from "./index";
 import ModalsPriceAndArea from "./modals/modalsPriceAndArea";
 import { useQueryClient } from "react-query";
 
-function Search() {
+function Search({ setPayload }) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [indexModels, setIndexModals] = useState();
@@ -13,13 +13,14 @@ function Search() {
   const [queries, setQueries] = useState<any>([]);
   const [arrMinMax, setArrMinMax] = useState({});
   const [overPlay, setOverPlay] = useState(false);
+
   const dataProvince =
     queryClient.getQueriesData<any>(["Province"]).length > 0
       ? queryClient.getQueriesData<any>(["Province"])[0][1]?.province?.response
       : null;
   const dataCategory =
-    queryClient.getQueriesData<any>(["Menu"]).length > 0
-      ? queryClient.getQueriesData<any>(["Menu"])[0][1]?.category?.response
+    queryClient.getQueriesData<any>(["Category"]).length > 0
+      ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
       : null;
   const dataPrice =
     queryClient.getQueriesData<any>(["Price"]).length > 0
@@ -58,10 +59,16 @@ function Search() {
     queryCodes.forEach((item) => {
       queryCodesObj[item[0]] = item[1];
     });
+
     router.push({
       pathname: "/",
       search: "?" + querystring.stringify(queryCodesObj),
     });
+
+    setPayload((prev) => ({
+      ...prev,
+      ...queryCodesObj,
+    }));
   };
 
   return (

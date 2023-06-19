@@ -1,0 +1,24 @@
+query newPost($input: InputNewPost!) {
+  newPost(input: $input) {
+    err
+    msg
+    total
+    pageNumber
+    pageSize
+    response {
+      address
+      id
+      attributesId
+      attributes {
+        price
+        acreage
+        published
+      }
+      listImage {
+        postImg
+      }
+      title
+      updatedAt
+    }
+  }
+}

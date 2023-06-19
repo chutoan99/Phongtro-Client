@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
 const path = require("path");
-const nextConfig = {
+
+module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
@@ -9,6 +9,12 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "style")],
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      use: ["graphql-tag/loader"],
+    });
+    return config;
+  },
 };
-
-module.exports = nextConfig;

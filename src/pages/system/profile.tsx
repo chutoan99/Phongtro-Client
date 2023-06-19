@@ -7,43 +7,24 @@ import {
   SystemNavMenu,
   SystemProfile,
 } from "../../components/index";
-import { gql, GraphQLClient } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
 import { useRouter } from "next/router";
-interface local {
-  id: any;
-  isLogin: boolean;
-  token: string;
-}
+import DataInfor from "../../types/dataInfor.type";
+const userIdFilePath = require("../../graphql/userId.graphql");
 const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-const queryUser = gql`
-  query Query($userId: ID!) {
-    userId(id: $userId) {
-      response {
-        avatar
-        createdAt
-        id
-        name
-        phone
-        zalo
-        updatedAt
-      }
-      err
-      msg
-    }
-  }
-`;
+
 const ProfilePage: NextPage = () => {
   const router = useRouter();
   const [dataUser, setDataUser] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const dataLocal: local = JSON.parse(localStorage.getItem("token"));
+    const dataLocal: DataInfor = JSON.parse(localStorage.getItem("token"));
     if (!dataLocal?.token || dataLocal?.token === "undefined") {
       router.push("/login");
     } else {
       const fetchData = async () => {
-        const response = await graphQLClient.request<any>(queryUser, {
+        const response = await graphQLClient.request<any>(userIdFilePath, {
           userId: dataLocal?.id,
         });
         setDataUser(response?.userId?.response);

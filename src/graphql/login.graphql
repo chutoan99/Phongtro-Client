@@ -1,0 +1,15 @@
+mutation login($input: InputLogin!) {
+  login(input: $input) {
+    err
+    msg
+    token
+    response {
+      updatedAt
+      createdAt
+      id
+      name
+      phone
+      zalo
+    }
+  }
+}

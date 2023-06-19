@@ -6,11 +6,8 @@ import SystemManager from "../../components/system/system-manager";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { gql, GraphQLClient } from "graphql-request";
-interface local {
-  id: any;
-  isLogin: boolean;
-  token: string;
-}
+import DataInfor from "../../types/dataInfor.type";
+
 const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
 
 const queryUser = gql`
@@ -67,7 +64,7 @@ const ManagePost: NextPage = () => {
   const [dataUser, setDataUser] = useState<any>();
 
   useEffect(() => {
-    const data: local = JSON.parse(localStorage.getItem("token"));
+    const data: DataInfor = JSON.parse(localStorage.getItem("token"));
     if (!data?.token || data?.token === "undefined") {
       router.push("/login");
     } else {
@@ -75,13 +72,12 @@ const ManagePost: NextPage = () => {
         const response = await graphQLClient.request<any>(queryUser, {
           userId: data?.id,
         });
-        console.log(response);
         setDataUser(response?.userId?.response);
       };
       fetchData();
     }
   }, []);
-  const query = { UserId: dataUser?.id };
+
   const checkStatus = (dateTime) =>
     moment(dateTime, "DD/MM/YYYY").isSameOrAfter(new Date().toDateString());
 

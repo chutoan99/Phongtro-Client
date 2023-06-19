@@ -5,7 +5,7 @@ const Blog = () => {
     <div className="w-[100vw]  bg-[#f5f5f5]">
       <Header />
       <NavBarMenu path="blog" />
-      {/* <Container /> */}
+      <Container path="blog" categoryCode="" />
       <Footer />
     </div>
   );

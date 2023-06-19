@@ -1,13 +1,10 @@
-import { useRouter } from "next/router";
 import ReactPaginate from "react-paginate";
 function Pagination({ setPageNumber, totalPage }) {
-  const router = useRouter();
   const handleClickPage = (e: any) => {
-    setPageNumber(e.selected + 1);
-    router.push({
-      pathname: "/",
-      search: "?page" + (e.selected + 1),
-    });
+    setPageNumber((prev) => ({
+      ...prev,
+      pageNumber: e.selected + 1,
+    }));
   };
 
   return (

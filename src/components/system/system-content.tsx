@@ -101,7 +101,6 @@ function SystemContent() {
         "upload_preset",
         process.env.REACT_APP_UPLOAD_ASSETS_NAME
       );
-      console.log(formData);
       let response = await apiUploadImages(formData);
       if ((response as any).data)
         images = [...images, (response as any).data.secure_url];
@@ -165,7 +164,6 @@ function SystemContent() {
     }));
   };
   const handleDeteleImg = (item: any) => {
-    console.log(item);
   };
 
   return (
@@ -545,7 +543,7 @@ function SystemContent() {
                         />
                       </div>
                     </div>
-                    <div className="list_photos d-lex dropzone-previews">
+                    {/* <div className="list_photos d-lex dropzone-previews">
                       <div className="photo_item col-md-2 col-3 js-photo-manual dz-processing dz-image-preview dz-success dz-complete">
                         <div className="photo">
                           <img
@@ -613,7 +611,7 @@ function SystemContent() {
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div id="tpl" style={{ display: "none" }}>
                       <div className="photo_item col-md-2 col-3 js-photo-manual">
                         <div className="photo">

@@ -1,6 +1,4 @@
-export { default as Main } from "./main";
 export { default as User } from "./user";
-export { default as Aside } from "./aside/aside";
 export { default as SystemAside } from "./system/system-aside";
 export { default as WhyUs } from "./why_us";
 export { default as Footer } from "./footer";
@@ -10,7 +8,6 @@ export { default as Search } from "./search";
 export { default as Support } from "./support";
 export { default as Post } from "./posts";
 export { default as Container } from "./container";
-export { default as ProvinceBtn } from "./provinceBtn";
 export { default as Pagination } from "./pagination";
 export { default as SystemNavMenu } from "./system/system-nav-menu";
 export { default as ModalsPriceAndArea } from "./modals/modalsPriceAndArea";

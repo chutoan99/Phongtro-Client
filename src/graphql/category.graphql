@@ -1,0 +1,16 @@
+query {
+  category {
+    err
+    msg
+    response {
+      code
+      createdAt
+      header
+      path
+      id
+      subHeader
+      value
+      updatedAt
+    }
+  }
+}

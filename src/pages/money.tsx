@@ -5,7 +5,7 @@ const Money = () => {
     <div className="w-[100vw]  bg-[#f5f5f5]">
       <Header />
       <NavBarMenu path="money" />
-      {/* <Container /> */}
+      <Container path="money" categoryCode="" />
       <Footer />
     </div>
   );

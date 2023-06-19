@@ -1,6 +1,4 @@
 import Link from "next/link";
-
-import { GraphQLClient } from "graphql-request";
 import { useQueryClient } from "react-query";
 import { Area } from "../../models/area";
 

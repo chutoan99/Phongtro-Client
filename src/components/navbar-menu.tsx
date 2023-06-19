@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useQueryClient } from "react-query";
 import { Category } from "../models/caterory";
+import { useEffect, useState } from "react";
 
 interface NavBar {
   path: string;
@@ -8,12 +9,10 @@ interface NavBar {
 
 const NavBarMenu = ({ path }: NavBar) => {
   const queryClient = useQueryClient();
-
   const dataCategory =
-    queryClient.getQueriesData<any>(["Menu"]).length > 0
-      ? queryClient.getQueriesData<any>(["Menu"])[0][1]?.category?.response
+    queryClient.getQueriesData<any>(["Category"]).length > 0
+      ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
       : null;
-
   return (
     <nav id="navbar-menu" className="">
       <ul id="menu-main-menu" className="container-menu clearfix level-1">

@@ -3,7 +3,7 @@ import "../styles/style.css";
 import "../styles/system.css";
 import React from "react";
 import { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 function MyApp({ Component, pageProps }: AppProps) {

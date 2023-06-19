@@ -5,38 +5,23 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
-import { gql, GraphQLClient } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
+const loginFilePath = require("../graphql/login.graphql");
+import InputLogin from "../types/input_login.type";
 
 const LoginPage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
   const queryClient = useQueryClient();
   const Router = useRouter();
-  const [payload, setPayload] = useState({
+  const [payload, setPayload] = useState<InputLogin>({
     phone: "",
     password: "",
   });
   const handleLogin = async () => {
     await queryClient.invalidateQueries("registerMutation");
-    const data = await graphQLClient.request<any>(
-      gql`
-        mutation Register($input: LoginInput!) {
-          login(input: $input) {
-            err
-            msg
-            token
-            response {
-              updatedAt
-              createdAt
-              id
-              name
-              phone
-              zalo
-            }
-          }
-        }
-      `,
-      { input: { ...payload } }
-    );
+    const data = await graphQLClient.request<any>(loginFilePath, {
+      input: { ...payload },
+    });
     if (data?.login?.token) {
       localStorage.setItem(
         "token",

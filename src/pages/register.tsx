@@ -3,15 +3,17 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
-import { gql, GraphQLClient } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
+const registerFilePath = require("../graphql/register.graphql");
+import InputRegister from "../types/input_register.type";
 
 const RegisterPage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
   const queryClient = useQueryClient();
   const Router = useRouter();
-  const [payload, setPayload] = useState({
+  const [payload, setPayload] = useState<InputRegister>({
     name: "",
     phone: "",
     password: "",
@@ -19,18 +21,9 @@ const RegisterPage: NextPage = () => {
 
   const handleRegister = async () => {
     await queryClient.invalidateQueries("registerMutation");
-    const data = await graphQLClient.request<any>(
-      gql`
-        mutation Register($input: RegisterInput!) {
-          register(input: $input) {
-            err
-            msg
-            token
-          }
-        }
-      `,
-      { input: { ...payload } }
-    );
+    const data = await graphQLClient.request<any>(registerFilePath, {
+      input: { ...payload },
+    });
     if (data?.register?.token) {
       Swal.fire("Oop !", data?.register?.msg, "success");
       Router.push("/login");

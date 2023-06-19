@@ -1,65 +1,40 @@
 import { Header, Container, Footer, NavBarMenu } from "../components/index";
-import { gql, GraphQLClient } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
+import { useState } from "react";
 import { useQuery } from "react-query";
+const queryFilePath = require("../graphql/post.graphql");
+import InputPost from "../types/input_post.type";
 
 const Roommate = () => {
-  const categoryCode = "TNOG";
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-  const pageSize = 20;
+  const [payloadPost, setPayloadPost] = useState<InputPost>({
+    pageSize: 20,
+    pageNumber: 1,
+    orderBy: "",
+    direction: "",
+    title: "",
+    start: "",
+    address: "",
+    categoryCode: "TNOG",
+    provinceCode: "",
+    areaNumber: [],
+    priceNumber: [],
+  });
 
-  const pageNumber = 1;
-  useQuery<any>(["Post", pageNumber], async () =>
-    graphQLClient.request(
-      gql`
-        query ($pageSize: Int, $pageNumber: Int, $categoryCode: String) {
-          post(
-            pageSize: $pageSize
-            pageNumber: $pageNumber
-            categoryCode: $categoryCode
-          ) {
-            err
-            msg
-            total
-            pageNumber
-            pageSize
-            response {
-              address
-              id
-              attributes {
-                price
-                acreage
-                published
-              }
-              description
-              listImage {
-                postImg
-                total
-              }
-              start
-              title
-              updatedAt
-              user {
-                avatar
-                name
-                phone
-                updatedAt
-                zalo
-              }
-            }
-          }
-        }
-      `,
-      { pageSize, pageNumber, categoryCode }
-    )
+  useQuery<any>(
+    ["Post", payloadPost.pageNumber, payloadPost.categoryCode],
+    async () =>
+      graphQLClient.request(queryFilePath, { input: { ...payloadPost } })
   );
 
   return (
     <div className="w-[100vw]  bg-[#f5f5f5]">
       <Header />
       <NavBarMenu path="roommate" />
-      <Container />
+      <Container path="roommate" categoryCode="TNOG" />
       <Footer />
     </div>
   );
 };
+
 export default Roommate;

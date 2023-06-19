@@ -8,11 +8,7 @@ import {
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { gql, GraphQLClient } from "graphql-request";
-interface local {
-  id: any;
-  isLogin: boolean;
-  token: string;
-}
+import DataInfor from "../../types/dataInfor.type";
 
 const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
 const queryUser = gql`
@@ -37,7 +33,7 @@ const SystemPage: NextPage = () => {
   const [dataUser, setDataUser] = useState<any>();
 
   useEffect(() => {
-    const data: local = JSON.parse(localStorage.getItem("token"));
+    const data: DataInfor = JSON.parse(localStorage.getItem("token"));
     if (!data?.token || data?.token === "undefined") {
       router.push("/login");
     } else {

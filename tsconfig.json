@@ -17,7 +17,8 @@
     "plugins": [
       {
         "name": "next"
-      }
+      },
+      { "name": "typescript-graphql-files-modules" }
     ],
     "incremental": true
   },

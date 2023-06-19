@@ -6,8 +6,9 @@ function AsideNewPost() {
   const queryClient = useQueryClient();
   const dataNewPost =
     queryClient.getQueriesData<any>(["NewPost"]).length > 0
-      ? queryClient.getQueriesData<any>(["NewPost"])[0][1]?.post?.response
+      ? queryClient.getQueriesData<any>(["NewPost"])[0][1]?.newPost?.response
       : null;
+
   return (
     <section className="section section-aside-tinmoidang">
       <div className="section-header">

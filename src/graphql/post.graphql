@@ -1,0 +1,38 @@
+query Post($input: InputPost!) {
+  post(input: $input) {
+    err
+    msg
+    total
+    pageSize
+    pageNumber
+    response {
+      address
+      id
+      priceNumber
+      areaNumber
+      userId
+      description
+      start
+      title
+      categoryCode
+      attributes {
+        price
+        acreage
+        published
+      }
+      listImage {
+        postImg
+        total
+      }
+      user {
+        avatar
+        name
+        phone
+        updatedAt
+        zalo
+      }
+      updatedAt
+      createdAt
+    }
+  }
+}
