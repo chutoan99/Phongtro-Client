@@ -1,7 +1,5 @@
 import { GraphQLClient } from "graphql-request";
 import {
-  Support,
-  WhyUs,
   Search,
   Pagination,
   Post,
@@ -11,7 +9,8 @@ import {
   AsideNewPost,
   AsideNewNews,
   AsideSubLink,
-} from "./index";
+} from "../components/index";
+import { Support, WhyUs } from "./index";
 import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 import { useQuery, useQueryClient } from "react-query";

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useQueryClient } from "react-query";
 import { Category } from "../models/caterory";
-import { useEffect, useState } from "react";
 
 interface NavBar {
   path: string;

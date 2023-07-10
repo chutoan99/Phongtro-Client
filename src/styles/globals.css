@@ -460,3 +460,25 @@ input[type="range"]::-ms-thumb:active {
   vertical-align: top;
   border-top: 1px solid #dee2e6;
 }
+.slick-prev {
+  display: block;
+  left: 5px;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  position: absolute;
+  z-index: 1000;
+}
+.slick-next:before,
+.slick-prev:before {
+  font-size: 45px;
+}
+.slick-next {
+  display: block;
+  right: 5px;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  position: absolute;
+  z-index: 1000;
+}

@@ -1,4 +1,5 @@
-import { Header, NavBarMenu } from "../components/index";
+import { NavBarMenu } from "../containers/index";
+import { Header } from "../containers/index";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";

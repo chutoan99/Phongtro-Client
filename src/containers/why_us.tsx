@@ -76,7 +76,7 @@ function WhyUs() {
           className="btn red"
           style={{ padding: "10px 30px" }}
           rel="nofollow"
-          href="https://phongtro123.com/quan-ly/dang-tin-moi.html"
+          href="#"
         >
           Đăng tin ngay
         </a>

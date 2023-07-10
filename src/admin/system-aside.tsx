@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { menuManage } from "../../utils/menuUser";
+import { menuManage } from "../utils/menuUser";
 function SystemAside({ dataUser }) {
   return (
     <nav className="col-lg-2 d-none d-lg-block bg-light sidebar">

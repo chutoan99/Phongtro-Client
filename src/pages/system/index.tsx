@@ -1,34 +1,31 @@
 import { NextPage } from "next";
-import {
-  SystemAside,
-  SystemMain,
-  SystemNavMenu,
-  SystemSection,
-} from "../../components/index";
+import { Support } from "../../containers/index";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { gql, GraphQLClient } from "graphql-request";
 import DataInfor from "../../types/dataInfor.type";
-
-const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-const queryUser = gql`
-  query Query($userId: ID!) {
-    userId(id: $userId) {
-      response {
-        avatar
-        createdAt
-        id
-        name
-        phone
-        zalo
-        updatedAt
-      }
-      err
-      msg
-    }
-  }
-`;
+import Link from "next/link";
+import { SystemAside, SystemSection, SystemNavMenu } from "../../admin/index";
+import ICONS from "../../../public/assets/icons";
 const SystemPage: NextPage = () => {
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  const queryUser = gql`
+    query Query($userId: ID!) {
+      userId(id: $userId) {
+        response {
+          avatar
+          createdAt
+          id
+          name
+          phone
+          zalo
+          updatedAt
+        }
+        err
+        msg
+      }
+    }
+  `;
   const router = useRouter();
   const [dataUser, setDataUser] = useState<any>();
 
@@ -47,7 +44,7 @@ const SystemPage: NextPage = () => {
     }
   }, []);
   return (
-    <div className="desktop dashboard quan-ly dang-tin dang-tin-moi loaded ready">
+    <div className="desktop dashboard loaded ready">
       <div id="webpage" style={{ position: "relative" }}>
         {dataUser && <SystemNavMenu />}
         <div
@@ -57,9 +54,38 @@ const SystemPage: NextPage = () => {
           <div className="row">
             <div className="d-flex">
               <SystemAside dataUser={dataUser} />
-              <SystemMain>
-                <SystemSection />
-              </SystemMain>
+              <main role="main" className="ml-sm-auto col-lg-10">
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item">
+                      <Link href="/">Phongtro123.com</Link>
+                    </li>
+                    <li className="breadcrumb-item">
+                      <Link href="">Quản lý</Link>
+                    </li>
+                    <li className="breadcrumb-item active" aria-current="page">
+                      Đăng tin mới
+                    </li>
+                  </ol>
+                </nav>
+                <Link
+                  className="btn btn-danger btn-block d-flex align-items-center"
+                  href="/system/create"
+                  style={{
+                    backgroundColor: "#dc3545",
+                    borderColor: "#dc3545",
+                    display: "flex",
+                    gap: "10px",
+                  }}
+                >
+                  {ICONS.ICON_CREATE}
+                  Đăng tin mới
+                </Link>
+                <div>
+                  <SystemSection />
+                </div>
+                <Support />
+              </main>
             </div>
           </div>
         </div>

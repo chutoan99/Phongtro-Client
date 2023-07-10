@@ -1,4 +1,4 @@
-import { note } from "../../utils/menuUser";
+import { note } from "../utils/menuUser";
 
 function SystemNote() {
   return (

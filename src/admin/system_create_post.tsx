@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { optionCategory } from "../../utils/Commom/optionSelect";
-import { apiUploadImages } from "../../services/orther";
-import { getCodesPrice, getCodesArea } from "../../utils/Commom/getCodePrice";
+import { optionCategory } from "../utils/Commom/optionSelect";
+import { apiUploadImages } from "../services/orther";
+import { getCodesPrice, getCodesArea } from "../utils/Commom/getCodePrice";
 import {
   GetAllDistrictVietNam,
   GetAllDistrictWithProvinceCode,
   GetALLProvinceVietNam,
   GetAllWardVietNam,
   GetAllWardWithDistrictCode,
-} from "../../services/orther";
+} from "../services/orther";
 import { useQueryClient } from "react-query";
 interface Payload {
   areaNumber: number;
@@ -26,7 +26,7 @@ interface Payload {
   label: string;
   userId: string;
 }
-function SystemContent() {
+function SystemCreatePost() {
   const [payLoad, setPayload] = useState<Payload>({
     areaNumber: 0,
     priceNumber: 0,
@@ -43,7 +43,6 @@ function SystemContent() {
     label: "",
     userId: "",
   });
-
   const queryClient = useQueryClient();
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -163,8 +162,7 @@ function SystemContent() {
       }`,
     }));
   };
-  const handleDeteleImg = (item: any) => {
-  };
+  const handleDeteleImg = (item: any) => {};
 
   return (
     <>
@@ -633,9 +631,9 @@ function SystemContent() {
                               viewBox="0 0 24 24"
                               fill="none"
                               stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               className="feather feather-trash-2"
                             >
                               <polyline points="3 6 5 6 21 6"></polyline>
@@ -849,4 +847,4 @@ function SystemContent() {
     </>
   );
 }
-export default SystemContent;
+export default SystemCreatePost;

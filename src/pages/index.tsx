@@ -1,4 +1,4 @@
-import { Header, Container, Footer, NavBarMenu } from "../components/index";
+import { Header, Container, Footer, NavBarMenu } from "../containers/index";
 import { GraphQLClient } from "graphql-request";
 import { useQueries, useQuery } from "react-query";
 import { useRouter } from "next/router";
@@ -49,6 +49,7 @@ const HomePage = () => {
 
   if (typeof window !== "undefined") {
     const data: DataInfor = JSON.parse(localStorage.getItem("token"));
+    console.log(data, "data");
     if (!data?.token || data?.token === "undefined") {
       router.push("/login");
     } else {

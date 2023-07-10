@@ -1,17 +1,20 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import {
-  Header,
   AsideArea,
   AuthorAside,
   AsideNewPost,
   AsideNewHot,
-  WhyUs,
-  Footer,
-  NavBarMenu,
-  Support,
   AsideSubLink,
 } from "../../components/index";
+
+import {
+  Header,
+  WhyUs,
+  Footer,
+  Support,
+  NavBarMenu,
+} from "../../containers/index";
 import { AreaHcm } from "../../utils/area";
 const postIdFilePath = require("../../graphql/postId.graphql");
 import React from "react";

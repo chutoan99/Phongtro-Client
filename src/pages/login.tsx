@@ -1,4 +1,5 @@
-import { Header, NavBarMenu } from "../components/index";
+import { NavBarMenu } from "../containers/index";
+import { Header } from "../containers/index";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
@@ -11,10 +12,6 @@ import InputLogin from "../types/input_login.type";
 
 const LoginPage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-  console.log(
-    process.env.NEXT_PUBLIC_API_URL_DEV,
-    "process.env.NEXT_PUBLIC_API_URL_DEV"
-  );
   const queryClient = useQueryClient();
   const Router = useRouter();
   const [payload, setPayload] = useState<InputLogin>({
@@ -102,10 +99,8 @@ const LoginPage: NextPage = () => {
                 </button>
               </div>
               <div className="form-group clearfix">
-                <a href="https://phongtro123.com/quen-mat-khau">
-                  Bạn quên mật khẩu?
-                </a>
-                <Link style={{ float: "right" }} href="">
+                <a href="#">Bạn quên mật khẩu?</a>
+                <Link style={{ float: "right" }} href="/register">
                   Tạo tài khoản mới
                 </Link>
               </div>

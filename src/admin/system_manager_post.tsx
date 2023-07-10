@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-function SystemManager({ data }) {
+function SystemManagerPost({ data }) {
   const [isShowDropDown1, setIsShowDropDown1] = useState(false);
   const [isShowDropDown2, setIsShowDropDown2] = useState(false);
   return (
@@ -144,9 +144,9 @@ function SystemManager({ data }) {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-credit-card"
                       >
                         <rect
@@ -161,10 +161,7 @@ function SystemManager({ data }) {
                       </svg>{" "}
                       Thanh toán tin
                     </a>
-                    <a
-                      href="https://phongtro123.com/quan-ly/sua-tin-dang/620794"
-                      className="btn btn-sm"
-                    >
+                    <a href="#" className="btn btn-sm">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -172,9 +169,9 @@ function SystemManager({ data }) {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="feather feather-edit-2"
                       >
                         <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
@@ -228,4 +225,4 @@ function SystemManager({ data }) {
     </>
   );
 }
-export default SystemManager;
+export default SystemManagerPost;

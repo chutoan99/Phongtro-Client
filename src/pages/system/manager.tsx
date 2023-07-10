@@ -1,76 +1,37 @@
 import { useEffect, useState } from "react";
-import { Support, SystemAside, SystemNavMenu } from "../../components/index";
+import { Support } from "../../containers/index";
 import moment from "moment";
 import { NextPage } from "next";
-import SystemManager from "../../components/system/system-manager";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { gql, GraphQLClient } from "graphql-request";
 import DataInfor from "../../types/dataInfor.type";
+const postWithUserFilePath = require("../../graphql/user_post.graphql");
+const userIdFilePath = require("../../graphql/userId.graphql");
+import { useQuery } from "react-query";
 
-const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-
-const queryUser = gql`
-  query Query($userId: ID!) {
-    userId(id: $userId) {
-      response {
-        avatar
-        createdAt
-        id
-        name
-        phone
-        zalo
-        updatedAt
-        post {
-          address
-          areaCode
-          areaNumber
-          title
-          categoryCode
-          listImage {
-            postImg
-          }
-          attributes {
-            acreage
-            createdAt
-            hashtag
-            id
-            price
-            published
-            updatedAt
-          }
-          overviews {
-            area
-            bonus
-            code
-            created
-            createdAt
-            expired
-            id
-            target
-            type
-            updatedAt
-          }
-        }
-      }
-      err
-      msg
-    }
-  }
-`;
-
+import {
+  SystemNavMenu,
+  SystemAside,
+  SystemManagerPost,
+} from "../../admin/index";
 const ManagePost: NextPage = () => {
   const router = useRouter();
+  const id = "ec962143-c5d5-41ef-b664-6a57b61c7258";
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  const dataPostWithUser = useQuery<any>(["postUser", id], () =>
+    graphQLClient.request(postWithUserFilePath, { userId: id })
+  )?.data?.userId?.response;
   const [dataUser, setDataUser] = useState<any>();
-
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    const data: DataInfor = JSON.parse(localStorage.getItem("token"));
-    if (!data?.token || data?.token === "undefined") {
+    const dataLocal: DataInfor = JSON.parse(localStorage.getItem("token"));
+    if (!dataLocal?.token || dataLocal?.token === "undefined") {
       router.push("/login");
     } else {
       const fetchData = async () => {
-        const response = await graphQLClient.request<any>(queryUser, {
-          userId: data?.id,
+        const response = await graphQLClient.request<any>(userIdFilePath, {
+          userId: dataLocal?.id,
         });
         setDataUser(response?.userId?.response);
       };
@@ -82,7 +43,7 @@ const ManagePost: NextPage = () => {
     moment(dateTime, "DD/MM/YYYY").isSameOrAfter(new Date().toDateString());
 
   return (
-    <div className="desktop dashboard quan-ly dang-tin dang-tin-moi loaded ready">
+    <div className="desktop dashboard  loaded ready">
       <div id="webpage" style={{ position: "relative" }}>
         {dataUser && <SystemNavMenu />}
         <div
@@ -106,7 +67,7 @@ const ManagePost: NextPage = () => {
                     </li>
                   </ol>
                 </nav>
-                <SystemManager data={dataUser?.post} />
+                <SystemManagerPost data={dataUser?.post} />
                 <Support />
               </main>
             </div>

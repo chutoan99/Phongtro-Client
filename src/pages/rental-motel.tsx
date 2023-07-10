@@ -1,4 +1,4 @@
-import { Header, Container, Footer, NavBarMenu } from "../components/index";
+import { Header, Container, Footer, NavBarMenu } from "../containers/index";
 import { GraphQLClient } from "graphql-request";
 import { useState } from "react";
 import { useQuery } from "react-query";

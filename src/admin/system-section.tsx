@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { menuManage2 } from "../../utils/menuUser";
-import Support from "../support";
+import { menuManage2 } from "../utils/menuUser";
 
 function SystemSection() {
   return (

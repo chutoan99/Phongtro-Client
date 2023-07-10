@@ -1,38 +1,37 @@
 import { NextPage } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  SystemAside,
-  SystemNavMenu,
-  SystemContent,
-  Support,
-} from "../../components/index";
+import { Support } from "../../containers/index";
 import { useRouter } from "next/router";
 import { gql, GraphQLClient } from "graphql-request";
 import DataInfor from "../../types/dataInfor.type";
+import {
+  SystemNavMenu,
+  SystemCreatePost,
+  SystemAside,
+} from "../../admin/index";
 
-const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-const queryUser = gql`
-  query Query($userId: ID!) {
-    userId(id: $userId) {
-      response {
-        avatar
-        createdAt
-        id
-        name
-        phone
-        zalo
-        updatedAt
-      }
-      err
-      msg
-    }
-  }
-`;
 const CreatePost: NextPage = () => {
   const router = useRouter();
   const [dataUser, setDataUser] = useState<any>();
-
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  const queryUser = gql`
+    query Query($userId: ID!) {
+      userId(id: $userId) {
+        response {
+          avatar
+          createdAt
+          id
+          name
+          phone
+          zalo
+          updatedAt
+        }
+        err
+        msg
+      }
+    }
+  `;
   useEffect(() => {
     const data: DataInfor = JSON.parse(localStorage.getItem("token"));
     if (!data?.token || data?.token === "undefined") {
@@ -79,7 +78,7 @@ const CreatePost: NextPage = () => {
                   <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 className="h1">Đăng tin mới</h1>
                   </div>
-                  <SystemContent />
+                  <SystemCreatePost />
                   <Support />
                 </main>
               </div>
