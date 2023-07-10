@@ -1,12 +1,14 @@
-import { NextPage } from "next";
+// LIBRARY
 import Link from "next/link";
-import { useState, useEffect, use } from "react";
-import { Support } from "../../containers/index";
-import { GraphQLClient } from "graphql-request";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { GraphQLClient } from "graphql-request";
+import { useState, useEffect } from "react";
+// APP
+const userIdFilePath = require("../../graphql/userId.graphql");
+import { Support } from "../../containers/index";
 import DataInfor from "../../types/dataInfor.type";
 import { SystemNavMenu, SystemAside } from "../../admin/index";
-const userIdFilePath = require("../../graphql/userId.graphql");
 
 const ProfilePage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);

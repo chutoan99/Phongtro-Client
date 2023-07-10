@@ -1,14 +1,15 @@
-import { NavBarMenu } from "../containers/index";
-import { Header } from "../containers/index";
+// LIBRARY
+import Link from "next/link";
+import Swal from "sweetalert2";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import Link from "next/link";
 import { GraphQLClient } from "graphql-request";
 import { useQueryClient } from "react-query";
-import Swal from "sweetalert2";
+// APP
 const registerFilePath = require("../graphql/register.graphql");
 import InputRegister from "../types/input_register.type";
+import { Header, NavBarMenu } from "../containers/index";
 
 const RegisterPage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);

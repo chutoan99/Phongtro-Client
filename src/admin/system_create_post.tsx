@@ -1,6 +1,9 @@
+// LIBRARY
 import { useEffect, useState } from "react";
-import { optionCategory } from "../utils/Commom/optionSelect";
+import { useQueryClient } from "react-query";
+// APP
 import { apiUploadImages } from "../services/orther";
+import { optionCategory } from "../utils/Commom/optionSelect";
 import { getCodesPrice, getCodesArea } from "../utils/Commom/getCodePrice";
 import {
   GetAllDistrictVietNam,
@@ -9,7 +12,6 @@ import {
   GetAllWardVietNam,
   GetAllWardWithDistrictCode,
 } from "../services/orther";
-import { useQueryClient } from "react-query";
 interface Payload {
   areaNumber: number;
   priceNumber: number;

@@ -1,9 +1,11 @@
-import type { NextPage } from "next";
+// LIBRARY
 import Link from "next/link";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import menuManage from "../utils/menuManage";
 import { useQueryClient } from "react-query";
+import { useState, useEffect } from "react";
+// APP
+import menuManage from "../utils/menuManage";
 
 interface local {
   id: any;

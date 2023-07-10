@@ -1,3 +1,4 @@
+// APP
 import { support } from "../utils/support";
 function Support() {
   return (

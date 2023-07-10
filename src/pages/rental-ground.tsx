@@ -1,9 +1,11 @@
-import { Header, Container, Footer, NavBarMenu } from "../containers/index";
-import { gql, GraphQLClient } from "graphql-request";
+// LIBRARY
+import { GraphQLClient } from "graphql-request";
 import { useState } from "react";
 import { useQuery } from "react-query";
+// APP
 const postFilePath = require("../graphql/post.graphql");
 import InputPost from "../types/input_post.type";
+import { Header, Container, Footer, NavBarMenu } from "../containers/index";
 
 const RentalGround = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);

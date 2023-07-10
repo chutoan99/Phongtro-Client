@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
-import { Support } from "../../containers/index";
+// LIBRARY
 import moment from "moment";
-import { NextPage } from "next";
 import Link from "next/link";
+import { NextPage } from "next";
+import { useQuery } from "react-query";
 import { useRouter } from "next/router";
-import { gql, GraphQLClient } from "graphql-request";
+import { useEffect, useState } from "react";
+// APP
+import { Support } from "../../containers/index";
+import { GraphQLClient } from "graphql-request";
 import DataInfor from "../../types/dataInfor.type";
 const postWithUserFilePath = require("../../graphql/user_post.graphql");
 const userIdFilePath = require("../../graphql/userId.graphql");
-import { useQuery } from "react-query";
 
 import {
   SystemNavMenu,

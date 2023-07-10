@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+// LIBRARY
 import querystring from "querystring";
+import { useRouter } from "next/router";
+import { useQueryClient } from "react-query";
+import { useCallback, useEffect, useState } from "react";
+// APP
 import { ModalsCategoryAndProvince } from "./index";
 import ModalsPriceAndArea from "./modals/modalsPriceAndArea";
-import { useQueryClient } from "react-query";
-
 function Search({ setPayload }) {
   const router = useRouter();
   const queryClient = useQueryClient();

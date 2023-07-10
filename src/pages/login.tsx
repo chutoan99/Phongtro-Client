@@ -1,12 +1,13 @@
-import { NavBarMenu } from "../containers/index";
-import { Header } from "../containers/index";
+// LIBRARY
+import Link from "next/link";
+import Swal from "sweetalert2";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import Link from "next/link";
 import { useQueryClient } from "react-query";
-import Swal from "sweetalert2";
 import { GraphQLClient } from "graphql-request";
+// APP
+import { Header, NavBarMenu } from "../containers/index";
 const loginFilePath = require("../graphql/login.graphql");
 import InputLogin from "../types/input_login.type";
 

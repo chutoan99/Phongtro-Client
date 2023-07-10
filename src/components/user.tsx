@@ -1,8 +1,11 @@
 function User({ data }) {
   return (
     <>
-      {data?.map((item) => (
-        <div className="w-full bg-[#febb02] rounded-[10px] p-[15px] grid gap-[10px]">
+      {data?.map((item, index) => (
+        <div
+          className="w-full bg-[#febb02] rounded-[10px] p-[15px] grid gap-[10px]"
+          key={index}
+        >
           <div className="flex justify-center">
             <div className="w-[80px] h-[80px]">
               <img

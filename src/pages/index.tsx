@@ -1,11 +1,12 @@
-import { Header, Container, Footer, NavBarMenu } from "../containers/index";
+// LIBRARY
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { GraphQLClient } from "graphql-request";
 import { useQueries, useQuery } from "react-query";
-import { useRouter } from "next/router";
-import { useState } from "react";
-
+// APP
 import InputNewPost from "../types/input_newPost.type";
 import DataInfor from "../types/dataInfor.type";
+import { Header, Container, Footer, NavBarMenu } from "../containers/index";
 
 const provinceFilePath = require("../graphql/province.graphql");
 const areaFilePath = require("../graphql/area.graphql");

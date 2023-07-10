@@ -1,5 +1,7 @@
+// LIBRARY
 import Link from "next/link";
 import { useQueryClient } from "react-query";
+// APP
 import { Area } from "../../models/area";
 
 function AsideAcreage() {

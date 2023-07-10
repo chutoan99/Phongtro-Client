@@ -1,3 +1,4 @@
+// LIBRARY
 import { newPost } from "../../utils/constant";
 
 function AsideNewNews() {

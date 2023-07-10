@@ -1,6 +1,8 @@
-import { renderStart } from "../utils/Commom/renderStart";
+// LIBRARY
 import Link from "next/link";
+// APP
 import { Post as PostInterFace } from "../models/post";
+import { renderStart } from "../utils/Commom/renderStart";
 
 function Post({ dataPost }) {
   return (

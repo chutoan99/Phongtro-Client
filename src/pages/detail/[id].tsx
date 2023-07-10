@@ -1,5 +1,13 @@
+// LIBRARY
+import React from "react";
+import Slider from "react-slick";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { GraphQLClient } from "graphql-request";
+import { useQuery } from "react-query";
+// APP
+import { AreaHcm } from "../../utils/area";
+const postIdFilePath = require("../../graphql/postId.graphql");
 import {
   AsideArea,
   AuthorAside,
@@ -7,7 +15,6 @@ import {
   AsideNewHot,
   AsideSubLink,
 } from "../../components/index";
-
 import {
   Header,
   WhyUs,
@@ -15,13 +22,6 @@ import {
   Support,
   NavBarMenu,
 } from "../../containers/index";
-import { AreaHcm } from "../../utils/area";
-const postIdFilePath = require("../../graphql/postId.graphql");
-import React from "react";
-import Slider from "react-slick";
-import { GraphQLClient } from "graphql-request";
-import { useQuery } from "react-query";
-
 const DetailPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;

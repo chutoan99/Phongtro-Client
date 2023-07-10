@@ -1,12 +1,15 @@
+// LIBRARY
+import Link from "next/link";
 import { NextPage } from "next";
-import { Support } from "../../containers/index";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { gql, GraphQLClient } from "graphql-request";
+// APP
 import DataInfor from "../../types/dataInfor.type";
-import Link from "next/link";
-import { SystemAside, SystemSection, SystemNavMenu } from "../../admin/index";
 import ICONS from "../../../public/assets/icons";
+import { Support } from "../../containers/index";
+import { SystemAside, SystemSection, SystemNavMenu } from "../../admin/index";
+
 const SystemPage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
   const queryUser = gql`

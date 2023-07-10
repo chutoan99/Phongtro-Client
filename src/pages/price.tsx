@@ -1,3 +1,4 @@
+// APP
 import { Header, Container, Footer, NavBarMenu } from "../containers/index";
 const Price = () => {
   return (

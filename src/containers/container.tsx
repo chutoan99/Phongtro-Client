@@ -1,4 +1,13 @@
+// LIBRARY
+import Link from "next/link";
+import { useQuery } from "react-query";
 import { GraphQLClient } from "graphql-request";
+import { useEffect, useState, useMemo } from "react";
+// APP
+import { locationCity } from "../utils/constant";
+import { Support, WhyUs } from "./index";
+const postFilePath = require("../graphql/post.graphql");
+import InputPost from "../types/input_post.type";
 import {
   Search,
   Pagination,
@@ -10,13 +19,6 @@ import {
   AsideNewNews,
   AsideSubLink,
 } from "../components/index";
-import { Support, WhyUs } from "./index";
-import Link from "next/link";
-import { useEffect, useState, useMemo } from "react";
-import { useQuery, useQueryClient } from "react-query";
-const postFilePath = require("../graphql/post.graphql");
-import InputPost from "../types/input_post.type";
-import { locationCity } from "../utils/constant";
 
 interface NavBar {
   path: string;

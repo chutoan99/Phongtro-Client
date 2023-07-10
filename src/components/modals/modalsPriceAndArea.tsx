@@ -1,11 +1,14 @@
+// LIBRARY
 import { memo, useEffect, useState } from "react";
+// APP
+import { getCodesArea, getCodesPrice } from "../../utils/Commom/getCodePrice";
 import {
   convert100ToTarget,
   convertTo100,
   getNumbersPrice,
   getNumbersArea,
 } from "../../utils/Commom/fomarNumber";
-import { getCodesArea, getCodesPrice } from "../../utils/Commom/getCodePrice";
+
 function ModalsPriceAndArea({
   items,
   modals,
