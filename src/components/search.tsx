@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { useQueryClient } from "react-query";
 import { useCallback, useEffect, useState } from "react";
 // APP
-import { ModalsCategoryAndProvince } from "./index";
-import ModalsPriceAndArea from "./modals/modalsPriceAndArea";
+import { ModalCategory, ModalProvince, ModalPrice, ModalArea } from "./index";
+
 function Search({ setPayload }) {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -55,7 +55,6 @@ function Search({ setPayload }) {
     const queryCodes = Object.entries(queries).filter(
       (item) => item[0].includes("Code") || item[0].includes("Number")
     );
-
     let queryCodesObj = {};
     queryCodes.forEach((item) => {
       queryCodesObj[item[0]] = item[1];
@@ -118,51 +117,43 @@ function Search({ setPayload }) {
               <span>Tìm kiếm</span>
             </div>
             {indexModels === 0 && (
-              <ModalsCategoryAndProvince
+              <ModalCategory
                 handleSubmit={handleSubmit}
                 items={dataCategory}
-                modals={modals}
+                isModals={modals}
                 setModals={setModals}
                 setOverPlay={setOverPlay}
                 queries={queries}
-                text="CHỌN Danh Mục"
-                name="category"
               />
             )}
             {indexModels === 1 && (
-              <ModalsCategoryAndProvince
+              <ModalProvince
                 items={dataProvince}
                 modals={modals}
                 queries={queries}
                 setOverPlay={setOverPlay}
                 setModals={setModals}
                 handleSubmit={handleSubmit}
-                text="CHỌN TỈNh THÀNH"
-                name="province"
               />
             )}
             {indexModels === 2 && (
-              <ModalsPriceAndArea
+              <ModalPrice
                 items={dataPrice}
                 modals={modals}
                 setModals={setModals}
                 setOverPlay={setOverPlay}
                 handleSubmit={handleSubmit}
                 arrMinMax={arrMinMax}
-                text="CHỌN GIÁ"
-                name="price"
               />
             )}
             {indexModels === 3 && (
-              <ModalsPriceAndArea
+              <ModalArea
                 items={dataArea}
                 modals={modals}
                 setModals={setModals}
                 handleSubmit={handleSubmit}
                 setOverPlay={setOverPlay}
                 arrMinMax={arrMinMax}
-                text="CHỌN DIỆN TÍCH"
-                name="area"
               />
             )}
           </div>

@@ -2,15 +2,13 @@
 import moment from "moment";
 import Link from "next/link";
 import { NextPage } from "next";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // APP
 import { Support } from "../../containers/index";
 import { GraphQLClient } from "graphql-request";
-import DataInfor from "../../types/dataInfor.type";
 const postWithUserFilePath = require("../../graphql/user_post.graphql");
-const userIdFilePath = require("../../graphql/userId.graphql");
 
 import {
   SystemNavMenu,
@@ -18,28 +16,18 @@ import {
   SystemManagerPost,
 } from "../../admin/index";
 const ManagePost: NextPage = () => {
-  const router = useRouter();
   const id = "ec962143-c5d5-41ef-b664-6a57b61c7258";
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
   const dataPostWithUser = useQuery<any>(["postUser", id], () =>
     graphQLClient.request(postWithUserFilePath, { userId: id })
   )?.data?.userId?.response;
-  const [dataUser, setDataUser] = useState<any>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  useEffect(() => {
-    const dataLocal: DataInfor = JSON.parse(localStorage.getItem("token"));
-    if (!dataLocal?.token || dataLocal?.token === "undefined") {
-      router.push("/login");
-    } else {
-      const fetchData = async () => {
-        const response = await graphQLClient.request<any>(userIdFilePath, {
-          userId: dataLocal?.id,
-        });
-        setDataUser(response?.userId?.response);
-      };
-      fetchData();
-    }
-  }, []);
+
+  const queryClient = useQueryClient();
+  const dataUser =
+    queryClient.getQueriesData<any>(["User"]).length > 0
+      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
+      : null;
 
   const checkStatus = (dateTime) =>
     moment(dateTime, "DD/MM/YYYY").isSameOrAfter(new Date().toDateString());
@@ -47,7 +35,7 @@ const ManagePost: NextPage = () => {
   return (
     <div className="desktop dashboard  loaded ready">
       <div id="webpage" style={{ position: "relative" }}>
-        {dataUser && <SystemNavMenu />}
+        <SystemNavMenu />
         <div
           className="container-fluid"
           style={{ position: "absolute", top: "45px" }}

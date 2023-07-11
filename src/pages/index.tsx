@@ -1,13 +1,11 @@
 // LIBRARY
-import { useState } from "react";
-import { useRouter } from "next/router";
 import { GraphQLClient } from "graphql-request";
 import { useQueries, useQuery } from "react-query";
+import { useRouter } from "next/router";
 // APP
 import InputNewPost from "../types/input_newPost.type";
 import DataInfor from "../types/dataInfor.type";
 import { Header, Container, Footer, NavBarMenu } from "../containers/index";
-
 const provinceFilePath = require("../graphql/province.graphql");
 const areaFilePath = require("../graphql/area.graphql");
 const priceFilePath = require("../graphql/price.graphql");
@@ -18,10 +16,11 @@ const userIdFilePath = require("../graphql/userId.graphql");
 const HomePage = () => {
   const router = useRouter();
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-  const [payloadNewPost, setPayloadNewPost] = useState<InputNewPost>({
+  const payloadNewPost: InputNewPost = {
     pageSize: 10,
     pageNumber: 1,
-  });
+  };
+
   useQueries([
     {
       queryKey: ["Province"],
@@ -46,20 +45,21 @@ const HomePage = () => {
           input: { ...payloadNewPost },
         }),
     },
+    {
+      queryKey: ["NewPost"],
+      queryFn: () =>
+        graphQLClient.request(newPostFilePath, {
+          input: { ...payloadNewPost },
+        }),
+    },
   ]);
-
   if (typeof window !== "undefined") {
     const data: DataInfor = JSON.parse(localStorage.getItem("token"));
-    console.log(data, "data");
-    if (!data?.token || data?.token === "undefined") {
-      router.push("/login");
-    } else {
-      useQuery<any>(["User", data?.id], async () =>
-        graphQLClient.request(userIdFilePath, {
-          userId: data?.id,
-        })
-      );
-    }
+    useQuery<any>(["User", data?.id], async () =>
+      graphQLClient.request(userIdFilePath, {
+        userId: data?.id,
+      })
+    );
   }
   return (
     <div className="w-[100vw]  bg-[#f5f5f5]">

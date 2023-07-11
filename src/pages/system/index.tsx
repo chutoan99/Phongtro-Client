@@ -1,55 +1,57 @@
 // LIBRARY
 import Link from "next/link";
 import { NextPage } from "next";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { gql, GraphQLClient } from "graphql-request";
+import { useQueryClient, useQueries, useQuery } from "react-query";
+import { GraphQLClient } from "graphql-request";
 // APP
-import DataInfor from "../../types/dataInfor.type";
 import ICONS from "../../../public/assets/icons";
 import { Support } from "../../containers/index";
 import { SystemAside, SystemSection, SystemNavMenu } from "../../admin/index";
-
+import DataInfor from "../../types/dataInfor.type";
+const provinceFilePath = require("../../graphql/province.graphql");
+const areaFilePath = require("../../graphql/area.graphql");
+const priceFilePath = require("../../graphql/price.graphql");
+const categoryFilePath = require("../../graphql/category.graphql");
+const userIdFilePath = require("../../graphql/userId.graphql");
 const SystemPage: NextPage = () => {
-  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-  const queryUser = gql`
-    query Query($userId: ID!) {
-      userId(id: $userId) {
-        response {
-          avatar
-          createdAt
-          id
-          name
-          phone
-          zalo
-          updatedAt
-        }
-        err
-        msg
-      }
-    }
-  `;
-  const router = useRouter();
-  const [dataUser, setDataUser] = useState<any>();
+  const queryClient = useQueryClient();
+  const dataUser =
+    queryClient.getQueriesData<any>(["User"]).length > 0
+      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
+      : null;
 
-  useEffect(() => {
+  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
+  useQueries([
+    {
+      queryKey: ["Province"],
+      queryFn: () => graphQLClient.request(provinceFilePath),
+    },
+    {
+      queryKey: ["Price"],
+      queryFn: () => graphQLClient.request(priceFilePath),
+    },
+    {
+      queryKey: ["Category"],
+      queryFn: () => graphQLClient.request(categoryFilePath),
+    },
+    {
+      queryKey: ["Area"],
+      queryFn: () => graphQLClient.request(areaFilePath),
+    },
+  ]);
+
+  if (typeof window !== "undefined") {
     const data: DataInfor = JSON.parse(localStorage.getItem("token"));
-    if (!data?.token || data?.token === "undefined") {
-      router.push("/login");
-    } else {
-      const fetchData = async () => {
-        const response = await graphQLClient.request<any>(queryUser, {
-          userId: data?.id,
-        });
-        setDataUser(response?.userId?.response);
-      };
-      fetchData();
-    }
-  }, []);
+    useQuery<any>(["User", data?.id], async () =>
+      graphQLClient.request(userIdFilePath, {
+        userId: data?.id,
+      })
+    );
+  }
   return (
     <div className="desktop dashboard loaded ready">
       <div id="webpage" style={{ position: "relative" }}>
-        {dataUser && <SystemNavMenu />}
+        <SystemNavMenu />
         <div
           className="container-fluid"
           style={{ position: "absolute", top: "45px" }}

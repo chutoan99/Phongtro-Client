@@ -43,11 +43,12 @@ export const getCodeArea = (totals, min, max) => {
 
 export const getCodesPrice = (entry, prices, min?, max?) => {
   const pricesWithMinMax = getCodePrice(prices, min, max);
-  return pricesWithMinMax.filter(
+  return pricesWithMinMax?.filter(
     (item) => item.min <= entry && entry < item.max
   );
 };
 export const getCodesArea = (entry, areas, min?, max?) => {
+  console.log(entry, areas, min, max);
   const areasWithMinMax = getCodeArea(areas, min, max);
   return areasWithMinMax?.filter(
     (item) => item.min <= entry && entry < item.max

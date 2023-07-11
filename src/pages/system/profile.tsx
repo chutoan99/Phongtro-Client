@@ -1,34 +1,20 @@
 // LIBRARY
 import Link from "next/link";
+import { useState } from "react";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import { GraphQLClient } from "graphql-request";
-import { useState, useEffect } from "react";
 // APP
-const userIdFilePath = require("../../graphql/userId.graphql");
 import { Support } from "../../containers/index";
-import DataInfor from "../../types/dataInfor.type";
 import { SystemNavMenu, SystemAside } from "../../admin/index";
+import { useQueryClient } from "react-query";
 
 const ProfilePage: NextPage = () => {
-  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-  const router = useRouter();
-  const [dataUser, setDataUser] = useState<any>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  useEffect(() => {
-    const dataLocal: DataInfor = JSON.parse(localStorage.getItem("token"));
-    if (!dataLocal?.token || dataLocal?.token === "undefined") {
-      router.push("/login");
-    } else {
-      const fetchData = async () => {
-        const response = await graphQLClient.request<any>(userIdFilePath, {
-          userId: dataLocal?.id,
-        });
-        setDataUser(response?.userId?.response);
-      };
-      fetchData();
-    }
-  }, []);
+  const queryClient = useQueryClient();
+  const [dataUser, setDataUser] = useState(
+    queryClient.getQueriesData<any>(["User"]).length > 0
+      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
+      : null
+  );
+
   const handeSubmit = (e: any) => {
     e.preventdefault();
   };

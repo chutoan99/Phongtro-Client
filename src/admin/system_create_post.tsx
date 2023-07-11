@@ -3,13 +3,10 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 // APP
 import { apiUploadImages } from "../services/orther";
-import { optionCategory } from "../utils/Commom/optionSelect";
 import { getCodesPrice, getCodesArea } from "../utils/Commom/getCodePrice";
 import {
-  GetAllDistrictVietNam,
   GetAllDistrictWithProvinceCode,
-  GetALLProvinceVietNam,
-  GetAllWardVietNam,
+  GetALLProvince,
   GetAllWardWithDistrictCode,
 } from "../services/orther";
 interface Payload {
@@ -29,6 +26,8 @@ interface Payload {
   userId: string;
 }
 function SystemCreatePost() {
+  //? INIT
+  const queryClient = useQueryClient();
   const [payLoad, setPayload] = useState<Payload>({
     areaNumber: 0,
     priceNumber: 0,
@@ -45,21 +44,9 @@ function SystemCreatePost() {
     label: "",
     userId: "",
   });
-  const queryClient = useQueryClient();
-  const [province, setProvince] = useState([]);
-  const [district, setDistrict] = useState([]);
-  const [provinceCode, setProvinceCode] = useState();
-  const [districtCode, setDistrictCode] = useState();
-  const [ward, setWard] = useState([]);
-  const [wardCode, setWardCode] = useState();
-  const [numberHouse, setNumberHouse] = useState("");
-  const [addressDetail, setAddressDetail] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [imageReview, setImageReview] = useState([]);
-
   const category =
-    queryClient.getQueriesData<any>(["Menu"]).length > 0
-      ? queryClient.getQueriesData<any>(["Menu"])[0][1]?.category?.response
+    queryClient.getQueriesData<any>(["Category"]).length > 0
+      ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
       : null;
   const price =
     queryClient.getQueriesData<any>(["Price"]).length > 0
@@ -69,22 +56,47 @@ function SystemCreatePost() {
     queryClient.getQueriesData<any>(["Area"]).length > 0
       ? queryClient.getQueriesData<any>(["Area"])[0][1]?.area?.response
       : null;
-  const user =
+  const currentUser =
     queryClient.getQueriesData<any>(["User"]).length > 0
       ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
       : null;
-  useEffect(() => {
-    (async () => await GetALLProvinceVietNam(setProvince))();
-  }, []);
 
+  //? HANDLE ADDRESS
+  const [province, setProvince] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [provinceCode, setProvinceCode] = useState();
+  const [districtCode, setDistrictCode] = useState();
+  const [ward, setWard] = useState([]);
+  const [wardCode, setWardCode] = useState();
+  const [numberHouse, setNumberHouse] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+  const fetchALLProvince = () => {
+    GetALLProvince().then((item: []) => setProvince(item));
+  };
+  const fetchDistrictWithProvinceCode = () => {
+    GetAllDistrictWithProvinceCode(provinceCode).then((item: []) =>
+      setDistrict(item)
+    );
+  };
+  const fetchAllWardWithDistrictCode = () => {
+    GetAllWardWithDistrictCode(districtCode).then((item) => setWard(item));
+  };
   useEffect(() => {
-    (async () =>
-      await GetAllDistrictWithProvinceCode(provinceCode, setDistrict))();
+    fetchALLProvince();
+  }, []);
+  useEffect(() => {
+    if (provinceCode === undefined) return;
+    fetchDistrictWithProvinceCode();
   }, [provinceCode]);
 
   useEffect(() => {
-    (async () => await GetAllWardWithDistrictCode(districtCode, setWard))();
+    if (districtCode === undefined) return;
+    fetchAllWardWithDistrictCode();
   }, [districtCode]);
+
+  //? HANDLE UPLOAD IMAGE
+  const [loading, setLoading] = useState(false);
+  const [imageReview, setImageReview] = useState([]);
 
   const handleUploadImg = async (e: any) => {
     setLoading(true);
@@ -113,47 +125,55 @@ function SystemCreatePost() {
       images: images,
     }));
   };
-
+  // / HANDLE CREATE POST
   const handleCreatePost = async () => {
-    let priceCodeArr = getCodesPrice(
-      +payLoad.priceNumber / Math.pow(10, 6),
-      price?.data,
-      1,
-      15
-    );
+    console.log(payLoad, "pa");
+    let userId = currentUser?.id;
+    let priceCodeArr = getCodesPrice(+payLoad.priceNumber, price, 1, 15);
+    let priceCode = priceCodeArr[0]?.code;
+    console.log(+payLoad.areaNumber, area, 0, 90);
+    let areaCodeArr = getCodesArea(+payLoad.areaNumber, area, 0, 90);
+    let areaCode = areaCodeArr[0]?.code;
+    let categoryCode = payLoad.categoryCode;
+    console.log(payLoad.type, "type");
+    console.log(categoryCode, "categoryCode");
+    let address = `${numberHouse ? `${numberHouse},` : ""} ${
+      ward
+        ? `${
+            ward?.filter((item) => item?.code === wardCode)[0]?.name_with_type
+          },`
+        : ""
+    } ${
+      district
+        ? `${
+            district?.filter((item) => item?.code === districtCode)[0]
+              ?.name_with_type
+          },`
+        : ""
+    }${
+      province
+        ? `${
+            province?.filter((item) => item?.code === provinceCode)[0]
+              ?.name_with_type
+          }`
+        : ""
+    }`;
 
-    let areaCodeArr = getCodesArea(+payLoad.areaNumber, area?.data, 0, 90);
-
+    let label = `${
+      category?.find((item) => item.code === categoryCode)?.value
+    }${payLoad?.address?.split(",")[1]}`;
+    console.log(label, "label");
     setPayload((prev) => ({
       ...prev,
-      priceCode: priceCodeArr[0]?.code,
-      userId: user?.data?.id,
-      areaCode: areaCodeArr[0]?.code,
-      label: `${
-        category?.data?.find((item) => item.code === payLoad.categoryCode)
-          ?.value
-      }${payLoad?.address?.split(",")[1]}`,
-      address: `${numberHouse ? `${numberHouse},` : ""} ${
-        ward
-          ? `${
-              ward?.filter((item) => item?.code === wardCode)[0]?.name_with_type
-            },`
-          : ""
-      } ${
-        district
-          ? `${
-              district?.filter((item) => item?.code === districtCode)[0]
-                ?.name_with_type
-            },`
-          : ""
-      }${
-        province
-          ? `${
-              province?.filter((item) => item?.code === provinceCode)[0]
-                ?.name_with_type
-            }`
-          : ""
-      }`,
+      userId: userId,
+      areaNumber: +payLoad.areaNumber,
+      priceNumber: +payLoad.priceNumber,
+      priceCode: priceCode,
+      areaCode: areaCode,
+      categoryCode: categoryCode,
+      title: payLoad.title,
+      images: "",
+      address: address,
       province: `${
         province
           ? `${
@@ -203,7 +223,7 @@ function SystemCreatePost() {
                             className="mt-[10px]"
                             value={item?.code}
                             key={item?._id}
-                            onClick={() => GetAllDistrictVietNam(setDistrict)}
+                            // onClick={fetchAllDistrictVietNam}
                           >
                             {item.name}
                           </option>
@@ -228,7 +248,7 @@ function SystemCreatePost() {
                             className="mt-[10px]"
                             value={item?.code}
                             key={item?._id}
-                            onClick={() => GetAllWardVietNam(setWard)}
+                            // onClick={fetchAllWardVietNam}
                           >
                             {item.name}
                           </option>
@@ -312,21 +332,16 @@ function SystemCreatePost() {
                         id="post_cat"
                         name="loai_chuyen_muc"
                         data-msg-required="Chưa chọn loại chuyên mục"
+                        onChange={(e: any) =>
+                          setPayload((prev) => ({
+                            ...prev,
+                            type: e.target.value,
+                          }))
+                        }
                       >
                         <option value="">-- Chọn loại chuyên mục --</option>
-                        {optionCategory.map((ele: any, index: number) => (
-                          <option
-                            value={ele?.code}
-                            key={index}
-                            onChange={(e: any) =>
-                              setPayload((prev) => ({
-                                ...prev,
-                                type: e.target.value,
-                              }))
-                            }
-                          >
-                            {ele.name}
-                          </option>
+                        {category.map((ele: any, index: number) => (
+                          <option key={index}>{ele.value}</option>
                         ))}
                       </select>
                     </div>

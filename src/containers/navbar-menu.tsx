@@ -14,6 +14,7 @@ const NavBarMenu = ({ path }: NavBar) => {
     queryClient.getQueriesData<any>(["Category"]).length > 0
       ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
       : null;
+
   return (
     <nav id="navbar-menu" className="">
       <ul id="menu-main-menu" className="container-menu clearfix level-1">
