@@ -1,7 +1,7 @@
 // LIBRARY
 import Link from "next/link";
 // APP
-import { footer } from "../utils/constant";
+import { footer } from "../../utils/constant";
 
 function Footer() {
   return (

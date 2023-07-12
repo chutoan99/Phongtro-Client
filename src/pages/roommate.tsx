@@ -5,7 +5,12 @@ import { GraphQLClient } from "graphql-request";
 // APP
 const queryFilePath = require("../graphql/post.graphql");
 import InputPost from "../types/input_post.type";
-import { Header, Container, Footer, NavBarMenu } from "../containers/index";
+import {
+  Header,
+  Container,
+  Footer,
+  NavBarMenu,
+} from "../containers/public/index";
 
 const Roommate = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);

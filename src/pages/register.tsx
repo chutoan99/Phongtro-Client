@@ -9,7 +9,7 @@ import { useQueryClient } from "react-query";
 // APP
 const registerFilePath = require("../graphql/register.graphql");
 import InputRegister from "../types/input_register.type";
-import { Header, NavBarMenu } from "../containers/index";
+import { Header, NavBarMenu } from "../containers/public/index";
 
 const RegisterPage: NextPage = () => {
   const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);

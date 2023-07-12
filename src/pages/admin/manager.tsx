@@ -2,8 +2,9 @@
 import Link from "next/link";
 // APP
 import AdminLayout from "../../layouts/admin.layout";
-import { Support } from "../../containers/index";
-import { AdminManagerPost } from "../../admin/index";
+import { Support } from "../../containers/public/index";
+import { AdminManagerPost } from "../../containers/admin/index";
+
 export default function ManagePage() {
   return (
     <main role="main" className="ml-sm-auto col-lg-10">

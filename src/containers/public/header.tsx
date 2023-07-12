@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useQueryClient } from "react-query";
 import { useState, useEffect } from "react";
 // APP
-import menuManage from "../utils/menuManage";
+import menuManage from "../../utils/menuManage";
 
 interface local {
   id: any;

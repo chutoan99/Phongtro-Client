@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useQueryClient } from "react-query";
 // APP
-import { Category } from "../models/caterory";
+import { Category } from "../../models/caterory";
 
 interface NavBar {
   path: string;

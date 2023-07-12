@@ -1,5 +1,5 @@
 // APP
-import { support } from "../utils/support";
+import { support } from "../../utils/support";
 function Support() {
   return (
     <section className="section section-support">

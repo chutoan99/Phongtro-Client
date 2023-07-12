@@ -5,7 +5,7 @@ import { GraphQLClient } from "graphql-request";
 // APP
 const postFilePath = require("../graphql/post.graphql");
 import InputPost from "../types/input_post.type";
-import { Header, Container, Footer, NavBarMenu } from "../containers/index";
+import { Header, Container, Footer, NavBarMenu } from "../containers/public/index";
 
 const RentalApartment = () => {
   const url = "rental-apartment";

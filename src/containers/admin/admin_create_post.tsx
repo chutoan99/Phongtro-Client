@@ -3,14 +3,14 @@ import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 // APP
-import { apiUploadImages } from "../services/orther";
-import { getCodesPrice, getCodesArea } from "../utils/Commom/getCodePrice";
-import { requiredFieldsCreatePost } from "../utils/validate";
+import { apiUploadImages } from "../../services/orther";
+import { getCodesPrice, getCodesArea } from "../../utils/Commom/getCodePrice";
+import { requiredFieldsCreatePost } from "../../utils/validate";
 import {
   GetAllDistrictWithProvinceCode,
   GetALLProvince,
   GetAllWardWithDistrictCode,
-} from "../services/orther";
+} from "../../services/orther";
 interface Payload {
   areaNumber: number;
   priceNumber: number;

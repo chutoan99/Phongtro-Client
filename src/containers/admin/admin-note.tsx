@@ -1,5 +1,5 @@
 // LIBRARY
-import { note } from "../utils/menuUser";
+import { note } from "../../utils/menuUser";
 
 function AdminNote() {
   return (

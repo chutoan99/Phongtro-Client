@@ -2,7 +2,7 @@
 import { useQueryClient, useQueries, useQuery } from "react-query";
 import { GraphQLClient } from "graphql-request";
 // APP
-import { AdminAside, AdminNav } from "../admin/index";
+import { AdminAside, AdminNav } from "../containers/admin/index";
 import DataInfor from "../types/dataInfor.type";
 
 const provinceFilePath = require("../graphql/province.graphql");

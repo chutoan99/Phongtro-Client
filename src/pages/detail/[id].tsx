@@ -21,7 +21,7 @@ import {
   Footer,
   Support,
   NavBarMenu,
-} from "../../containers/index";
+} from "../../containers/public/index";
 const DetailPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;

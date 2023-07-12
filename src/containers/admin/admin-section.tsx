@@ -1,7 +1,7 @@
 // LIBRARY
 import Link from "next/link";
 // APP
-import { menuManage2 } from "../utils/menuUser";
+import { menuManage2 } from "../../utils/menuUser";
 
 function AdminSection() {
   return (

@@ -7,7 +7,7 @@ import { NextPage } from "next";
 import { useQueryClient } from "react-query";
 import { GraphQLClient } from "graphql-request";
 // APP
-import { Header, NavBarMenu } from "../containers/index";
+import { Header, NavBarMenu } from "../containers/public/index";
 const loginFilePath = require("../graphql/login.graphql");
 import InputLogin from "../types/input_login.type";
 

@@ -5,7 +5,12 @@ import { useRouter } from "next/router";
 // APP
 import InputNewPost from "../types/input_newPost.type";
 import DataInfor from "../types/dataInfor.type";
-import { Header, Container, Footer, NavBarMenu } from "../containers/index";
+import {
+  Header,
+  Container,
+  Footer,
+  NavBarMenu,
+} from "../containers/public/index";
 const provinceFilePath = require("../graphql/province.graphql");
 const areaFilePath = require("../graphql/area.graphql");
 const priceFilePath = require("../graphql/price.graphql");

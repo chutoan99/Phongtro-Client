@@ -8,7 +8,7 @@ export { default as Input } from "./input";
 export { default as UpdatePost } from "./updatePost";
 
 // MODALS
-export { default as ModalArea } from "./modal/modal-Area";
+export { default as ModalArea } from "./modal/modal-area";
 export { default as ModalCategory } from "./modal/modal-category";
 export { default as ModalPrice } from "./modal/modal-price";
 export { default as ModalProvince } from "./modal/modal-province";

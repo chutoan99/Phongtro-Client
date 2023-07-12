@@ -4,10 +4,10 @@ import { useQuery } from "react-query";
 import { GraphQLClient } from "graphql-request";
 import { useEffect, useState, useMemo } from "react";
 // APP
-import { locationCity } from "../utils/constant";
+import { locationCity } from "../../utils/constant";
 import { Support, WhyUs } from "./index";
-const postFilePath = require("../graphql/post.graphql");
-import InputPost from "../types/input_post.type";
+const postFilePath = require("../../graphql/post.graphql");
+import InputPost from "../../types/input_post.type";
 import {
   Search,
   Pagination,
@@ -18,7 +18,7 @@ import {
   AsideNewPost,
   AsideNewNews,
   AsideSubLink,
-} from "../components/index";
+} from "../../components/index";
 
 interface NavBar {
   path: string;
