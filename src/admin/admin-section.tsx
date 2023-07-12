@@ -3,7 +3,7 @@ import Link from "next/link";
 // APP
 import { menuManage2 } from "../utils/menuUser";
 
-function SystemSection() {
+function AdminSection() {
   return (
     <div className="list-group dashboard_list_menu mt-4">
       {menuManage2.map((ele: any, index: number) => (
@@ -35,4 +35,4 @@ function SystemSection() {
     </div>
   );
 }
-export default SystemSection;
+export default AdminSection;

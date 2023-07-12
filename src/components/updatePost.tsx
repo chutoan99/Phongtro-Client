@@ -1,4 +1,3 @@
-// import { ContentSystem } from "../components/index";
 function UpdatePost({ setEdit }) {
   return (
     <div
@@ -13,7 +12,6 @@ function UpdatePost({ setEdit }) {
         <h1 className="text-center text-[1.5rem] font-bold uppercase my-[20px]">
           Chỉnh sửa tin đăng
         </h1>
-        {/* <ContentSystem textBtn="Cập nhật thay đổi" /> */}
       </div>
     </div>
   );

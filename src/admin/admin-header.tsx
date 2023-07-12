@@ -1,6 +1,6 @@
 // LIBRARY
 import { useState } from "react";
-function SystemHeader({ text, alert, type }) {
+function AdminHeader({ text, alert, type }) {
   const [isShowMenu1, setIsShowMenu1] = useState(false);
   const [isShowMenu2, setIsShowMenu2] = useState(false);
   return (
@@ -81,4 +81,4 @@ function SystemHeader({ text, alert, type }) {
     </>
   );
 }
-export default SystemHeader;
+export default AdminHeader;

@@ -1,7 +1,7 @@
 // LIBRARY
 import Link from "next/link";
 
-function SystemNavMenu() {
+function AdminNav() {
   return (
     <nav
       className="navbar navbar-expand-md fixed-top flex-md-nowrap p-0"
@@ -12,12 +12,6 @@ function SystemNavMenu() {
       </Link>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link className="nav-link" target="_blank" href="/">
-              Trang chủ
-            </Link>
-          </li>
-
           <li className="nav-item d-none d-md-block">
             <Link className="nav-link" target="_blank" href="/rental-apartment">
               Cho thuê căn hộ
@@ -73,4 +67,4 @@ function SystemNavMenu() {
     </nav>
   );
 }
-export default SystemNavMenu;
+export default AdminNav;

@@ -1,7 +1,7 @@
 // LIBRARY
 import { note } from "../utils/menuUser";
 
-function SystemNote() {
+function AdminNote() {
   return (
     <div className="gap-[30px] grid">
       <div className="w-full bg-[#fff3cd] rounded-[5px]">
@@ -23,4 +23,4 @@ function SystemNote() {
     </div>
   );
 }
-export default SystemNote;
+export default AdminNote;

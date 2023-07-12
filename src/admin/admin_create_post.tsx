@@ -1,9 +1,11 @@
 // LIBRARY
+import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 // APP
 import { apiUploadImages } from "../services/orther";
 import { getCodesPrice, getCodesArea } from "../utils/Commom/getCodePrice";
+import { requiredFieldsCreatePost } from "../utils/validate";
 import {
   GetAllDistrictWithProvinceCode,
   GetALLProvince,
@@ -25,25 +27,10 @@ interface Payload {
   label: string;
   userId: string;
 }
-function SystemCreatePost() {
+function AdminCreatePost() {
   //? INIT
   const queryClient = useQueryClient();
-  const [payLoad, setPayload] = useState<Payload>({
-    areaNumber: 0,
-    priceNumber: 0,
-    priceCode: "",
-    areaCode: "",
-    categoryCode: "",
-    title: "",
-    images: "",
-    address: "",
-    target: "",
-    type: "",
-    province: "",
-    description: "",
-    label: "",
-    userId: "",
-  });
+
   const category =
     queryClient.getQueriesData<any>(["Category"]).length > 0
       ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
@@ -60,7 +47,6 @@ function SystemCreatePost() {
     queryClient.getQueriesData<any>(["User"]).length > 0
       ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
       : null;
-
   //? HANDLE ADDRESS
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -70,13 +56,33 @@ function SystemCreatePost() {
   const [wardCode, setWardCode] = useState();
   const [numberHouse, setNumberHouse] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
-  const fetchALLProvince = () => {
-    GetALLProvince().then((item: []) => setProvince(item));
+  //? HANDLE PAYLOAD
+  const [loading, setLoading] = useState(false);
+  const [imageReview, setImageReview] = useState([]);
+  const [payLoad, setPayload] = useState<Payload>({
+    areaNumber: 0,
+    priceNumber: 0,
+    priceCode: "",
+    areaCode: "",
+    categoryCode: "",
+    title: "",
+    images: "",
+    address: "",
+    target: "",
+    type: "",
+    province: "",
+    description: "",
+    label: "",
+    userId: "",
+  });
+  //? HANDLE API PROVINCE
+  const fetchALLProvince = async () => {
+    const response = await GetALLProvince();
+    setProvince(response);
   };
-  const fetchDistrictWithProvinceCode = () => {
-    GetAllDistrictWithProvinceCode(provinceCode).then((item: []) =>
-      setDistrict(item)
-    );
+  const fetchDistrictWithProvinceCode = async () => {
+    const response = await GetAllDistrictWithProvinceCode(provinceCode);
+    setDistrict(response);
   };
   const fetchAllWardWithDistrictCode = () => {
     GetAllWardWithDistrictCode(districtCode).then((item) => setWard(item));
@@ -84,20 +90,77 @@ function SystemCreatePost() {
   useEffect(() => {
     fetchALLProvince();
   }, []);
+
   useEffect(() => {
+    setDistrict([]);
     if (provinceCode === undefined) return;
     fetchDistrictWithProvinceCode();
   }, [provinceCode]);
 
   useEffect(() => {
+    setWard([]);
     if (districtCode === undefined) return;
     fetchAllWardWithDistrictCode();
   }, [districtCode]);
 
-  //? HANDLE UPLOAD IMAGE
-  const [loading, setLoading] = useState(false);
-  const [imageReview, setImageReview] = useState([]);
+  //? HANDLE CREATE POST
+  const handleCreatePost = async () => {
+    if (!numberHouse || !ward || !district || !province)
+      return Swal.fire("Oop !", `Vui lòng nhập "Địa chỉ chính xác"`, "error");
+    const missingField = Object.keys(requiredFieldsCreatePost).find(
+      (field) => !payLoad[field]
+    );
+    if (missingField) {
+      return Swal.fire(
+        "Oop!",
+        `Vui lòng nhập "${requiredFieldsCreatePost[missingField]}"`,
+        "error"
+      );
+    }
 
+    let userId = currentUser?.id;
+    let type = payLoad.type || category[0]?.code;
+    const priceCodeArr = getCodesPrice(+payLoad.priceNumber, price, 1, 15);
+    const priceCode = priceCodeArr[0]?.code;
+    const areaCodeArr = getCodesArea(+payLoad.areaNumber, area, 0, 90);
+    const areaCode = areaCodeArr[0]?.code;
+    const wardItem = ward.find((item) => item.code === wardCode);
+    const districtItem = district.find((item) => item.code === districtCode);
+    const provinceItem = province.find((item) => item.code === provinceCode);
+    const address = [
+      numberHouse,
+      wardItem?.name_with_type,
+      districtItem?.name_with_type,
+      provinceItem?.name_with_type,
+    ]
+      .filter(Boolean)
+      .join(",");
+
+    const foundCategoryItem = category.find((item) => item.code === type);
+    const categoryCode = foundCategoryItem?.code;
+    const target = payLoad.target || "Nam";
+    const label = `${foundCategoryItem.value}${payLoad.address?.split(",")[1]}`;
+    const provincePayload = provinceItem?.name_with_type || "";
+
+    setPayload({
+      target,
+      type: type,
+      label: label,
+      userId,
+      address,
+      priceCode,
+      areaCode,
+      categoryCode,
+      areaNumber: payLoad.areaNumber,
+      priceNumber: payLoad.priceNumber,
+      title: payLoad.title,
+      province: provincePayload,
+      description: payLoad.description,
+      images: "",
+    });
+  };
+
+  const handleDeteleImg = (item: any) => {};
   const handleUploadImg = async (e: any) => {
     setLoading(true);
     e.stopPropagation();
@@ -125,67 +188,6 @@ function SystemCreatePost() {
       images: images,
     }));
   };
-  // / HANDLE CREATE POST
-  const handleCreatePost = async () => {
-    console.log(payLoad, "pa");
-    let userId = currentUser?.id;
-    let priceCodeArr = getCodesPrice(+payLoad.priceNumber, price, 1, 15);
-    let priceCode = priceCodeArr[0]?.code;
-    console.log(+payLoad.areaNumber, area, 0, 90);
-    let areaCodeArr = getCodesArea(+payLoad.areaNumber, area, 0, 90);
-    let areaCode = areaCodeArr[0]?.code;
-    let categoryCode = payLoad.categoryCode;
-    console.log(payLoad.type, "type");
-    console.log(categoryCode, "categoryCode");
-    let address = `${numberHouse ? `${numberHouse},` : ""} ${
-      ward
-        ? `${
-            ward?.filter((item) => item?.code === wardCode)[0]?.name_with_type
-          },`
-        : ""
-    } ${
-      district
-        ? `${
-            district?.filter((item) => item?.code === districtCode)[0]
-              ?.name_with_type
-          },`
-        : ""
-    }${
-      province
-        ? `${
-            province?.filter((item) => item?.code === provinceCode)[0]
-              ?.name_with_type
-          }`
-        : ""
-    }`;
-
-    let label = `${
-      category?.find((item) => item.code === categoryCode)?.value
-    }${payLoad?.address?.split(",")[1]}`;
-    console.log(label, "label");
-    setPayload((prev) => ({
-      ...prev,
-      userId: userId,
-      areaNumber: +payLoad.areaNumber,
-      priceNumber: +payLoad.priceNumber,
-      priceCode: priceCode,
-      areaCode: areaCode,
-      categoryCode: categoryCode,
-      title: payLoad.title,
-      images: "",
-      address: address,
-      province: `${
-        province
-          ? `${
-              province?.filter((item) => item?.code === provinceCode)[0]
-                ?.name_with_type
-            }`
-          : ""
-      }`,
-    }));
-  };
-  const handleDeteleImg = (item: any) => {};
-
   return (
     <>
       <div className="alert alert-danger mb-5" role="alert">
@@ -332,7 +334,7 @@ function SystemCreatePost() {
                         id="post_cat"
                         name="loai_chuyen_muc"
                         data-msg-required="Chưa chọn loại chuyên mục"
-                        onChange={(e: any) =>
+                        onChange={(e) =>
                           setPayload((prev) => ({
                             ...prev,
                             type: e.target.value,
@@ -340,8 +342,10 @@ function SystemCreatePost() {
                         }
                       >
                         <option value="">-- Chọn loại chuyên mục --</option>
-                        {category.map((ele: any, index: number) => (
-                          <option key={index}>{ele.value}</option>
+                        {category?.map((ele: any, index: number) => (
+                          <option key={index} value={ele.value}>
+                            {ele.value}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -864,4 +868,4 @@ function SystemCreatePost() {
     </>
   );
 }
-export default SystemCreatePost;
+export default AdminCreatePost;

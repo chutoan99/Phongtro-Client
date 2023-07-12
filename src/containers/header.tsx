@@ -141,7 +141,7 @@ const Header: NextPage = () => {
           </div>
         )}
         {isLogin && (
-          <Link rel="nofollow" className="btn btn-add-post" href="/system/">
+          <Link rel="nofollow" className="btn btn-add-post" href="/admin/">
             Đăng tin mới <i></i>
           </Link>
         )}

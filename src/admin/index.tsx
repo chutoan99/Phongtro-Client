@@ -1,7 +1,8 @@
-export { default as SystemAside } from "./system-aside";
-export { default as SystemHeader } from "./system-header";
-export { default as SystemNavMenu } from "./system-nav-menu";
-export { default as SystemNote } from "./system-note";
-export { default as SystemSection } from "./system-section";
-export { default as SystemCreatePost } from "./system_create_post";
-export { default as SystemManagerPost } from "./system_manager_post";
+export { default as AdminAside } from "./admin-aside";
+export { default as AdminHeader } from "./admin-header";
+export { default as AdminNav } from "./admin-nav";
+export { default as AdminNote } from "./admin-note";
+export { default as AdminSection } from "./admin-section";
+export { default as AdminCreatePost } from "./admin_create_post";
+export { default as AdminManagerPost } from "./admin_manager_post";
+export { default as AdminProfile } from "./admin_profile";

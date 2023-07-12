@@ -2,19 +2,19 @@ const menuManage = [
   {
     id: 1,
     text: "Đăng tin cho thuê",
-    path: "/system/create",
+    path: "/admin/create",
     icon: "https://phongtro123.com/images/dashboard-add-post.svg",
   },
   {
     id: 2,
     text: "Quản lý đăng tin",
-    path: "/system/manager",
+    path: "/admin/manager",
     icon: "https://phongtro123.com/images/dashboard-manage-post.svg",
   },
   {
     id: 3,
     text: "Thông tin tài khoản",
-    path: "/system/profile",
+    path: "/admin/profile",
     icon: "https://phongtro123.com/images/dashboard-user.svg",
   },
   {

@@ -1,7 +1,7 @@
 // LIBRARY
 import Link from "next/link";
 import { menuManage } from "../utils/menuUser";
-function SystemAside({ dataUser }) {
+function AdminAside({ dataUser }) {
   return (
     <nav className="col-lg-2 d-none d-lg-block bg-light sidebar">
       <div className="user_info">
@@ -69,4 +69,4 @@ function SystemAside({ dataUser }) {
     </nav>
   );
 }
-export default SystemAside;
+export default AdminAside;

@@ -1,9 +1,21 @@
 // LIBRARY
+import moment from "moment";
 import Link from "next/link";
 import { useState } from "react";
-function SystemManagerPost({ data }) {
+import { useQueryClient } from "react-query";
+
+function AdminManagerPost() {
+  const queryClient = useQueryClient();
   const [isShowDropDown1, setIsShowDropDown1] = useState(false);
   const [isShowDropDown2, setIsShowDropDown2] = useState(false);
+
+  const dataUser =
+    queryClient.getQueriesData<any>(["User"]).length > 0
+      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
+      : null;
+
+  const checkStatus = (dateTime) =>
+    moment(dateTime, "DD/MM/YYYY").isSameOrAfter(new Date().toDateString());
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
@@ -83,7 +95,7 @@ function SystemManagerPost({ data }) {
           </div>
           <Link
             className="btn btn-danger btn-sm d-none d-md d-flex align-items-center"
-            href="/system/create"
+            href="/admin/create"
             style={{
               color: "#fff",
               backgroundColor: "#dc3545",
@@ -112,26 +124,29 @@ function SystemManagerPost({ data }) {
             </thead>
             <tbody>
               <tr>
-                <td>{data?.overviews?.code}</td>
+                <td>{dataUser?.overviews?.code}</td>
                 <td>
                   <div className="post_thumb">
                     <a href="#" target="_blank">
-                      <img src={data?.listImage?.postImg} alt={data?.title} />
+                      <img
+                        src={dataUser?.listImage?.postImg}
+                        alt={dataUser?.title}
+                      />
                     </a>
                   </div>
                 </td>
                 <td>
-                  {data?.categoryCode === "NCT" && (
+                  {dataUser?.categoryCode === "NCT" && (
                     <span className="badge badge-pill badge-primary ">
                       Nhà cho thuê
                     </span>
                   )}
 
                   <a className="post_title" target="_blank" href="#">
-                    {data?.title}
+                    {dataUser?.title}
                   </a>
                   <p style={{ marginTop: "10px" }}>
-                    <strong>Địa chỉ:</strong> {data?.address}
+                    <strong>Địa chỉ:</strong> {dataUser?.address}
                   </p>
                   <div className="post_btn_toolbar mt-3">
                     <a
@@ -196,14 +211,16 @@ function SystemManagerPost({ data }) {
                       marginTop: "10px",
                     }}
                   >
-                    Cập nhật gần nhất: {data?.attributes?.published}
+                    Cập nhật gần nhất: {dataUser?.attributes?.published}
                   </span>
                 </td>
                 <td>
-                  <div className="post_price">{data?.attributes?.price}</div>
+                  <div className="post_price">
+                    {dataUser?.attributes?.price}
+                  </div>
                 </td>
-                <td>{data?.overviews?.created}</td>
-                <td>{data?.overviews?.expired}</td>
+                <td>{dataUser?.overviews?.created}</td>
+                <td>{dataUser?.overviews?.expired}</td>
                 <td>
                   <span
                     className="text text-warning"
@@ -226,4 +243,4 @@ function SystemManagerPost({ data }) {
     </>
   );
 }
-export default SystemManagerPost;
+export default AdminManagerPost;

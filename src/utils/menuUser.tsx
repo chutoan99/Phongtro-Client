@@ -2,7 +2,7 @@ export const menuManage = [
   {
     id: 1,
     text: "Quản lý tin đăng",
-    path: "/system/manager",
+    path: "/admin/manager",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ export const menuManage = [
   {
     id: 2,
     text: "Sửa thông tin cá nhân",
-    path: "/system/profile",
+    path: "/admin/profile",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,7 @@ export const menuManage2 = [
   {
     id: 1,
     text: "Quản lý tin đăng",
-    path: "/system/manager",
+    path: "/admin/manager",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
