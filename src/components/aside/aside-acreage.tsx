@@ -2,14 +2,11 @@
 import Link from "next/link";
 import { useQueryClient } from "react-query";
 // APP
-import { Area } from "../../models/area";
+import { AreaModel } from "../../services/area/area.model";
 
 function AsideAcreage() {
   const queryClient = useQueryClient();
-  const dataArea =
-    queryClient.getQueriesData<any>(["Area"]).length > 0
-      ? queryClient.getQueriesData<any>(["Area"])[0][1]?.area?.response
-      : null;
+  const dataArea = queryClient.getQueriesData<AreaModel[]>(["Area"])[0][1];
 
   return (
     <section className="section section-sublink">
@@ -17,7 +14,7 @@ function AsideAcreage() {
         <span className="section-title">Xem theo diện tích</span>
       </div>
       <ul className="list-links price clearfix">
-        {dataArea?.map((ele: Area, index: number) => (
+        {dataArea?.map((ele: AreaModel, index: number) => (
           <li key={index}>
             <Link href="#">{ele?.value}</Link>
           </li>

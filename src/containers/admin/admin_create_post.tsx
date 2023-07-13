@@ -3,14 +3,20 @@ import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 // APP
-import { apiUploadImages } from "../../services/orther";
+import { apiUploadImages } from "../../services/orther/orther";
 import { getCodesPrice, getCodesArea } from "../../utils/Commom/getCodePrice";
 import { requiredFieldsCreatePost } from "../../utils/validate";
 import {
   GetAllDistrictWithProvinceCode,
   GetALLProvince,
   GetAllWardWithDistrictCode,
-} from "../../services/orther";
+} from "../../services/orther/orther";
+import { AreaModel } from "../../services/area/area.model";
+import { PriceModel } from "../../services/price/price.model";
+import { CategoryModel } from "../../services/category/category.model";
+import { UserModel } from "../../services/user/user.model";
+import useTokenValidation from "../../hooks/useTokenValidation.hook";
+import InforLocal from "../../models/InforLocal";
 interface Payload {
   areaNumber: number;
   priceNumber: number;
@@ -30,23 +36,16 @@ interface Payload {
 function AdminCreatePost() {
   //? INIT
   const queryClient = useQueryClient();
-
-  const category =
-    queryClient.getQueriesData<any>(["Category"]).length > 0
-      ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
-      : null;
-  const price =
-    queryClient.getQueriesData<any>(["Price"]).length > 0
-      ? queryClient.getQueriesData<any>(["Price"])[0][1]?.price?.response
-      : null;
-  const area =
-    queryClient.getQueriesData<any>(["Area"]).length > 0
-      ? queryClient.getQueriesData<any>(["Area"])[0][1]?.area?.response
-      : null;
-  const currentUser =
-    queryClient.getQueriesData<any>(["User"]).length > 0
-      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
-      : null;
+  const dataLocal: InforLocal = useTokenValidation();
+  const dataPrices = queryClient.getQueriesData<PriceModel[]>(["Price"])[0][1];
+  const dataAreas = queryClient.getQueriesData<AreaModel[]>(["Area"])[0][1];
+  const dataCategories = queryClient.getQueriesData<CategoryModel[]>([
+    "Category",
+  ])[0][1];
+  const dataUser = queryClient.getQueriesData<UserModel>([
+    "User",
+    dataLocal?.id,
+  ])[0][1];
   //? HANDLE ADDRESS
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -118,11 +117,11 @@ function AdminCreatePost() {
       );
     }
 
-    let userId = currentUser?.id;
-    let type = payLoad.type || category[0]?.code;
-    const priceCodeArr = getCodesPrice(+payLoad.priceNumber, price, 1, 15);
+    let userId = dataUser?.id;
+    let type = payLoad.type || dataCategories[0]?.code;
+    const priceCodeArr = getCodesPrice(+payLoad.priceNumber, dataPrices, 1, 15);
     const priceCode = priceCodeArr[0]?.code;
-    const areaCodeArr = getCodesArea(+payLoad.areaNumber, area, 0, 90);
+    const areaCodeArr = getCodesArea(+payLoad.areaNumber, dataAreas, 0, 90);
     const areaCode = areaCodeArr[0]?.code;
     const wardItem = ward.find((item) => item.code === wardCode);
     const districtItem = district.find((item) => item.code === districtCode);
@@ -136,7 +135,7 @@ function AdminCreatePost() {
       .filter(Boolean)
       .join(",");
 
-    const foundCategoryItem = category.find((item) => item.code === type);
+    const foundCategoryItem = dataCategories.find((item) => item.code === type);
     const categoryCode = foundCategoryItem?.code;
     const target = payLoad.target || "Nam";
     const label = `${foundCategoryItem.value}${payLoad.address?.split(",")[1]}`;
@@ -342,11 +341,13 @@ function AdminCreatePost() {
                         }
                       >
                         <option value="">-- Chọn loại chuyên mục --</option>
-                        {category?.map((ele: any, index: number) => (
-                          <option key={index} value={ele.value}>
-                            {ele.value}
-                          </option>
-                        ))}
+                        {dataCategories?.map(
+                          (ele: CategoryModel, index: number) => (
+                            <option key={index} value={ele.value}>
+                              {ele.value}
+                            </option>
+                          )
+                        )}
                       </select>
                     </div>
                   </div>

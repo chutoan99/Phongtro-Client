@@ -2,15 +2,13 @@
 import { useState } from "react";
 // APP
 import { useQueryClient } from "react-query";
+import { UserModel } from "../../services/user/user.model";
 
 function AdminProfile() {
   const queryClient = useQueryClient();
-  const [dataUser, setDataUser] = useState(
-    queryClient.getQueriesData<any>(["User"]).length > 0
-      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
-      : null
+  const [dataUser, setDataUser] = useState<UserModel>(
+    queryClient.getQueriesData<UserModel>(["User"])[0][1]
   );
-
   const handeSubmit = (e: any) => {
     e.preventdefault();
   };

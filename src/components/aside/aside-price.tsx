@@ -1,14 +1,11 @@
 // LIBRARY
 import { useQueryClient } from "react-query";
 // APP
-import { Price } from "../../models/price";
+import { PriceModel } from "../../services/price/price.model";
 
 function AsidePrice() {
   const queryClient = useQueryClient();
-  const dataPrice =
-    queryClient.getQueriesData<any>(["Price"]).length > 0
-      ? queryClient.getQueriesData<any>(["Price"])[0][1]?.price?.response
-      : null;
+  const dataPrices = queryClient.getQueriesData<PriceModel[]>(["Price"])[0][1];
 
   return (
     <section className="section section-sublink">
@@ -16,7 +13,7 @@ function AsidePrice() {
         <span className="section-title">Xem theo giá</span>
       </div>
       <ul className="list-links price clearfix">
-        {dataPrice?.map((ele: Price, index: number) => (
+        {dataPrices?.map((ele: PriceModel, index: number) => (
           <li key={index}>
             <a href="#">{ele?.value}</a>
           </li>

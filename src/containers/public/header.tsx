@@ -3,32 +3,24 @@ import Link from "next/link";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useQueryClient } from "react-query";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // APP
 import menuManage from "../../utils/menuManage";
+import useTokenValidation from "../../hooks/useTokenValidation.hook";
+import InforLocal from "../../models/InforLocal";
+import { UserModel } from "../../services/user/user.model";
 
-interface local {
-  id: any;
-  isLogin: any;
-  token: string;
-}
 const Header: NextPage = () => {
+  const dataLocal: InforLocal = useTokenValidation();
+  const isLogin = dataLocal.isLogin;
   const Router = useRouter();
   const queryClient = useQueryClient();
   const [isDropDown, setIsDropDown] = useState(false);
-  const [isLogin, setIslogin] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const data: local = JSON.parse(localStorage.getItem("token"));
-      if (data?.isLogin || typeof data?.isLogin !== "undefined") {
-        setIslogin(true);
-      }
-    }
-  }, []);
-  const dataUser =
-    queryClient.getQueriesData<any>(["User"]).length > 0
-      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
-      : null;
+  const dataUser = queryClient.getQueriesData<UserModel>([
+    "User",
+    dataLocal?.id,
+  ])[0][1];
+
   const handleMenuManage = (id) => {
     if (id === 1) {
       Router.push(`${menuManage[0].path}`);

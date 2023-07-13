@@ -1,38 +1,38 @@
 // LIBRARY
 import Link from "next/link";
 import { useQueryClient } from "react-query";
+import { CategoryModel } from "../../services/category/category.model";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 // APP
-import { Category } from "../../models/caterory";
 
-interface NavBar {
-  path: string;
-}
-
-const NavBarMenu = ({ path }: NavBar) => {
+const NavBarMenu = () => {
   const queryClient = useQueryClient();
-  const dataCategory =
-    queryClient.getQueriesData<any>(["Category"]).length > 0
-      ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
-      : null;
+  const dataCategories = queryClient.getQueriesData<CategoryModel[]>([
+    "Category",
+  ])[0][1];
+  const router = useRouter();
+  const { pathname } = router;
+  const routeSegment = pathname.split("/")[1];
 
   return (
     <nav id="navbar-menu" className="">
       <ul id="menu-main-menu" className="container-menu clearfix level-1">
         <li
           className={`${
-            path === "index"
+            !routeSegment
               ? "navbar_item clearfix active current-menu-item"
               : "navbar_item clearfix"
           }`}
         >
           <Link href="/">Trang chủ</Link>
         </li>
-        {dataCategory?.map((item: Category, index: number) => {
+        {dataCategories?.map((item: CategoryModel, index: number) => {
           return (
             <li
               key={index}
               className={`${
-                item?.path === path
+                item?.path === routeSegment
                   ? "navbar_item clearfix active current-menu-item"
                   : "navbar_item clearfix"
               }`}

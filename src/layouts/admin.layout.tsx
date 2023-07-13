@@ -1,51 +1,29 @@
 // LIBRARY
-import { useQueryClient, useQueries, useQuery } from "react-query";
-import { GraphQLClient } from "graphql-request";
+import { useQueryClient } from "react-query";
 // APP
 import { AdminAside, AdminNav } from "../containers/admin/index";
-import DataInfor from "../types/dataInfor.type";
-
-const provinceFilePath = require("../graphql/province.graphql");
-const areaFilePath = require("../graphql/area.graphql");
-const priceFilePath = require("../graphql/price.graphql");
-const categoryFilePath = require("../graphql/category.graphql");
-const userIdFilePath = require("../graphql/userId.graphql");
+import { useQueryAreas } from "../hooks/useQueryAreas";
+import { useQueryPrices } from "../hooks/useQueryPrices";
+import { useQueryCategories } from "../hooks/useQueryCategories";
+import { useQueryProvinces } from "../hooks/useQueryProvinces";
+import { UserModel } from "../services/user/user.model";
+import { useQueryPostsOfUser } from "../hooks/useQueryPostsOfUser";
+import { useQueryUserId } from "../hooks/useQueryUserId";
+import InforLocal from "../models/InforLocal";
+import useTokenValidation from "../hooks/useTokenValidation.hook";
 
 export default function AdminLayout({ children }) {
   const queryClient = useQueryClient();
-  const dataUser =
-    queryClient.getQueriesData<any>(["User"]).length > 0
-      ? queryClient.getQueriesData<any>(["User"])[0][1]?.userId?.response
-      : null;
+  const dataUser: InforLocal = useTokenValidation();
+  console.log(queryClient.getQueriesData<UserModel>(["Post_User"]), "user");
+  // const dataUser = queryClient.getQueriesData<UserModel>(["User"])[0][1];
+  useQueryProvinces();
+  useQueryCategories();
+  useQueryPrices();
+  useQueryAreas();
+  useQueryUserId(dataUser?.id);
+  useQueryPostsOfUser(dataUser?.id);
 
-  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-  useQueries([
-    {
-      queryKey: ["Province"],
-      queryFn: () => graphQLClient.request(provinceFilePath),
-    },
-    {
-      queryKey: ["Price"],
-      queryFn: () => graphQLClient.request(priceFilePath),
-    },
-    {
-      queryKey: ["Category"],
-      queryFn: () => graphQLClient.request(categoryFilePath),
-    },
-    {
-      queryKey: ["Area"],
-      queryFn: () => graphQLClient.request(areaFilePath),
-    },
-  ]);
-
-  if (typeof window !== "undefined") {
-    const data: DataInfor = JSON.parse(localStorage.getItem("token"));
-    useQuery<any>(["User", data?.id], async () =>
-      graphQLClient.request(userIdFilePath, {
-        userId: data?.id,
-      })
-    );
-  }
   return (
     <div className="desktop dashboard loaded ready">
       <div id="webpage" style={{ position: "relative" }}>

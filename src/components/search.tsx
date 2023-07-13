@@ -5,6 +5,10 @@ import { useQueryClient } from "react-query";
 import { useCallback, useEffect, useState } from "react";
 // APP
 import { ModalCategory, ModalProvince, ModalPrice, ModalArea } from "./index";
+import { AreaModel } from "../services/area/area.model";
+import { PriceModel } from "../services/price/price.model";
+import { CategoryModel } from "../services/category/category.model";
+import { ProvinceModel } from "../services/province/province.model";
 
 function Search({ setPayload }) {
   const router = useRouter();
@@ -15,22 +19,14 @@ function Search({ setPayload }) {
   const [arrMinMax, setArrMinMax] = useState({});
   const [overPlay, setOverPlay] = useState(false);
 
-  const dataProvince =
-    queryClient.getQueriesData<any>(["Province"]).length > 0
-      ? queryClient.getQueriesData<any>(["Province"])[0][1]?.province?.response
-      : null;
-  const dataCategory =
-    queryClient.getQueriesData<any>(["Category"]).length > 0
-      ? queryClient.getQueriesData<any>(["Category"])[0][1]?.category?.response
-      : null;
-  const dataPrice =
-    queryClient.getQueriesData<any>(["Price"]).length > 0
-      ? queryClient.getQueriesData<any>(["Price"])[0][1]?.price?.response
-      : null;
-  const dataArea =
-    queryClient.getQueriesData<any>(["Area"]).length > 0
-      ? queryClient.getQueriesData<any>(["Area"])[0][1]?.area?.response
-      : null;
+  const dataPrices = queryClient.getQueriesData<PriceModel[]>(["Price"])[0][1];
+  const dataAreas = queryClient.getQueriesData<AreaModel[]>(["Area"])[0][1];
+  const dataCategories = queryClient.getQueriesData<CategoryModel[]>([
+    "Category",
+  ])[0][1];
+  const dataProvinces = queryClient.getQueriesData<ProvinceModel[]>([
+    "Province",
+  ])[0][1];
 
   useEffect(() => {
     if (!modals && overPlay) {
@@ -119,7 +115,7 @@ function Search({ setPayload }) {
             {indexModels === 0 && (
               <ModalCategory
                 handleSubmit={handleSubmit}
-                items={dataCategory}
+                items={dataCategories}
                 isModals={modals}
                 setModals={setModals}
                 setOverPlay={setOverPlay}
@@ -128,7 +124,7 @@ function Search({ setPayload }) {
             )}
             {indexModels === 1 && (
               <ModalProvince
-                items={dataProvince}
+                items={dataProvinces}
                 modals={modals}
                 queries={queries}
                 setOverPlay={setOverPlay}
@@ -138,7 +134,7 @@ function Search({ setPayload }) {
             )}
             {indexModels === 2 && (
               <ModalPrice
-                items={dataPrice}
+                items={dataPrices}
                 modals={modals}
                 setModals={setModals}
                 setOverPlay={setOverPlay}
@@ -148,7 +144,7 @@ function Search({ setPayload }) {
             )}
             {indexModels === 3 && (
               <ModalArea
-                items={dataArea}
+                items={dataAreas}
                 modals={modals}
                 setModals={setModals}
                 handleSubmit={handleSubmit}

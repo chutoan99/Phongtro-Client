@@ -1,13 +1,10 @@
 // LIBRARY
 import Link from "next/link";
-import { useQuery } from "react-query";
-import { GraphQLClient } from "graphql-request";
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 // APP
 import { locationCity } from "../../utils/constant";
 import { Support, WhyUs } from "./index";
-const postFilePath = require("../../graphql/post.graphql");
-import InputPost from "../../types/input_post.type";
+import InputPost from "../../graphql/arguments/input_post.args";
 import {
   Search,
   Pagination,
@@ -19,6 +16,7 @@ import {
   AsideNewNews,
   AsideSubLink,
 } from "../../components/index";
+import { useQueryPosts } from "../../hooks/useQueryPost";
 
 interface NavBar {
   path: string;
@@ -26,7 +24,6 @@ interface NavBar {
 }
 
 const Container = ({ path, categoryCode }: NavBar) => {
-  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
   const [payload, setPayload] = useState<InputPost>({
     pageSize: 15,
     pageNumber: 1,
@@ -40,18 +37,12 @@ const Container = ({ path, categoryCode }: NavBar) => {
     areaNumber: [],
     priceNumber: [],
   });
-  const { data, isFetching, isLoading } = useQuery<any>(
-    ["Post", payload.pageNumber, path],
-    () => graphQLClient.request(postFilePath, { input: { ...payload } })
-  );
-  const dataPost = data?.post;
+  const { responseData, total, isLoading, isFetching, pageSize } =
+    useQueryPosts(payload);
   const TOTAl_PAGE = useMemo(
-    () => Math.ceil(+dataPost?.total / +dataPost?.pageSize),
-    [dataPost]
+    () => Math.ceil(+total / +pageSize),
+    [responseData]
   );
-  useEffect(() => {
-    console.log(payload, "payload");
-  }, [payload]);
 
   return (
     <main id="main">
@@ -91,7 +82,11 @@ const Container = ({ path, categoryCode }: NavBar) => {
               {isLoading ? (
                 <span className="loader"></span>
               ) : (
-                <Post dataPost={dataPost} />
+                <Post
+                  currentPage={payload.pageNumber}
+                  path="path"
+                  categoryCode="categoryCode"
+                />
               )}
             </ul>
           </section>

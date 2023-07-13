@@ -2,22 +2,20 @@
 import Link from "next/link";
 import { useQueryClient } from "react-query";
 // APP
-import { Post } from "../../models/post";
+import { NewPostModel } from "../../services/post/newPost.model";
 
 function AsideNewPost() {
   const queryClient = useQueryClient();
-  const dataNewPost =
-    queryClient.getQueriesData<any>(["NewPost"]).length > 0
-      ? queryClient.getQueriesData<any>(["NewPost"])[0][1]?.newPost?.response
-      : null;
-
+  const dataNewPosts = queryClient.getQueriesData<NewPostModel[]>([
+    "NewPost",
+  ])[0][1];
   return (
     <section className="section section-aside-tinmoidang">
       <div className="section-header">
         <span className="section-title">Tin mới đăng</span>
       </div>
       <ul className="post-listing aside clearfix">
-        {dataNewPost?.map((ele: Post, index: number) => (
+        {dataNewPosts?.map((ele: NewPostModel, index: number) => (
           <li
             className="post-item clearfix tin-vip vip3"
             post-id="617232"
