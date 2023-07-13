@@ -26,7 +26,6 @@ export const queryPostsOfUser = async (userid: string) => {
         userId: userid,
       }
     );
-    console.log(response, "response user post");
     if (response.userId.err === 0) {
       return response.userId.response;
     }

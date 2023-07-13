@@ -97,7 +97,7 @@ const LoginPage = () => {
               </button>
             </div>
             <div className="form-group clearfix">
-              <a href="#">Bạn quên mật khẩu?</a>
+              <Link href="#">Bạn quên mật khẩu?</Link>
               <Link style={{ float: "right" }} href="/register">
                 Tạo tài khoản mới
               </Link>

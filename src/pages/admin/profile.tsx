@@ -2,9 +2,8 @@
 import Link from "next/link";
 // APP
 import { Support } from "../../containers/public/index";
-import { AdminProfile } from "../../containers/admin/index";
+import { Profile } from "../../containers/admin/index";
 import AdminLayout from "../../layouts/admin.layout";
-
 export default function ProfilePage() {
   return (
     <main role="main" className="ml-sm-auto col-lg-10">
@@ -21,7 +20,7 @@ export default function ProfilePage() {
           </li>
         </ol>
       </nav>
-      <AdminProfile />
+      <Profile />
       <Support />
     </main>
   );

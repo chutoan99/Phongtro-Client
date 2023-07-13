@@ -3,7 +3,7 @@ import Link from "next/link";
 // APP
 import AdminLayout from "../../layouts/admin.layout";
 import { Support } from "../../containers/public/index";
-import { AdminManagerPost } from "../../containers/admin/index";
+import { ManagerPost } from "../../containers/admin/index";
 
 export default function ManagePage() {
   return (
@@ -21,7 +21,7 @@ export default function ManagePage() {
           </li>
         </ol>
       </nav>
-      <AdminManagerPost />
+      <ManagerPost />
       <Support />
     </main>
   );

@@ -5,7 +5,7 @@ export default function AuthLayout({ children }) {
   return (
     <div id="webpage">
       <Header />
-      <NavBarMenu path="index" />
+      <NavBarMenu />
       {children}
     </div>
   );

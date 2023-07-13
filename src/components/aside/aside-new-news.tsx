@@ -1,4 +1,5 @@
 // LIBRARY
+import Link from "next/link";
 import { newPost } from "../../utils/constant";
 
 function AsideNewNews() {
@@ -10,9 +11,9 @@ function AsideNewNews() {
       <ul className="list-links clearfix">
         {newPost?.lists.map((ele: any, index: number) => (
           <li key={index}>
-            <a href="# " title={ele}>
+            <Link href="#" title={ele} prefetch={false}>
               {ele}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

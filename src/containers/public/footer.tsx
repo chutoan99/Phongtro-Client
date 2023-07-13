@@ -12,21 +12,24 @@ function Footer() {
             {footer.listsCategory.map((item: any, index: number) => (
               <div className="bottom-links-col js-footer-sublink" key={index}>
                 <div className="bottom-links-col-header">
-                  <a
+                  <Link
                     className="links-col-title"
                     href=""
                     title="Cho thuê phòng trọ, nhà trọ"
                   >
                     {item.header}
-                  </a>
+                  </Link>
                   <span className="btn-show-sublink js-btn-show-sublink"></span>
                 </div>
                 <ul>
                   {item.list.map((ele: any, index: number) => (
                     <li key={index}>
-                      <a href="" title="Cho thuê phòng trọ, nhà trọ tại Tp.HCM">
+                      <Link
+                        href="#"
+                        title="Cho thuê phòng trọ, nhà trọ tại Tp.HCM"
+                      >
                         {ele.value}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -48,35 +51,37 @@ function Footer() {
               <span className="footer-col-title">Về PHONGTRO123.COM</span>
               <ul className="footer-menu">
                 <li>
-                  <a href="/">Trang chủ</a>
+                  <Link href="/">Trang chủ</Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Giới thiệu
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Blog
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Quy chế hoạt động
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Quy định sử dụng
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Chính sách bảo mật
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="">Liên hệ</a>
+                  <Link rel="" href="/">
+                    Liên hệ
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -84,62 +89,67 @@ function Footer() {
               <span className="footer-col-title">Hỗ trợ khách hàng</span>
               <ul className="footer-menu">
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Câu hỏi thường gặp
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Hướng dẫn đăng tin
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Bảng giá dịch vụ
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Quy định đăng tin
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a rel="nofollow" href="">
+                  <Link rel="nofollow" href="">
                     Giải quyết khiếu nại
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
             <div className="footer-col">
               <span className="footer-col-title">Liên hệ với chúng tôi</span>
               <div className="social-links">
-                <a className="social-fb" rel="nofollow" target="_blank" href="">
+                <Link
+                  className="social-fb"
+                  rel="nofollow"
+                  target="_blank"
+                  href=""
+                >
                   <i></i>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="social-youtube"
                   rel="nofollow"
                   target="_blank"
                   href=""
                 >
                   <i></i>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="social-zalo"
                   rel="nofollow"
                   target="_blank"
                   href=""
                 >
                   <i></i>
-                </a>
-                <a
+                </Link>
+                <Link
                   className="social-twitter"
                   rel="nofollow"
                   target="_blank"
                   href=""
                 >
                   <i></i>
-                </a>
+                </Link>
               </div>
               <br />
               <span className="footer-col-title">Phương thức thanh toán</span>
@@ -156,34 +166,34 @@ function Footer() {
           {/* other */}
           <div className="other-brands margin-top-15 d-flex align-items-center clearfix">
             <span className="margin-right-20">Cùng hệ thống:</span>
-            <a href="" target="_blank" rel="nofollow">
+            <Link href="" target="_blank" rel="nofollow">
               <img
                 width="140"
                 height="25"
                 src="https://phongtro123.com/images/logo-bds123.svg"
               />
-            </a>
-            <a href="" target="_blank" rel="nofollow">
+            </Link>
+            <Link href="" target="_blank" rel="nofollow">
               <img
                 width="150"
                 height="25"
                 src="https://phongtro123.com/images/logo-chothuenha.svg"
               />
-            </a>
-            <a href="" target="_blank" rel="nofollow">
+            </Link>
+            <Link href="" target="_blank" rel="nofollow">
               <img
                 width="150"
                 height="25"
                 src="https://phongtro123.com/images/logo-thuecanho.svg"
               />
-            </a>
-            <a href="" target="_blank">
+            </Link>
+            <Link href="" target="_blank">
               <img
                 width="140"
                 height="25"
                 src="https://phongtro123.com/images/logo-phongtro.svg"
               />
-            </a>
+            </Link>
           </div>
           {/* company */}
           <div className="footer-company">
@@ -204,14 +214,14 @@ function Footer() {
                 justifyContent: "center",
               }}
             >
-              <a
+              <Link
                 className="icon-dkbct"
                 style={{ display: "inline-block", margin: "0 5px" }}
                 rel="nofollow"
                 target="_blank"
                 href=""
-              ></a>
-              <a
+              ></Link>
+              <Link
                 rel="nofollow"
                 style={{ display: "inline-block", margin: "0 5px" }}
                 target="_blank"
@@ -224,7 +234,7 @@ function Footer() {
                   src="https://images.dmca.com/Badges/dmca-badge-w250-2x1-04.png?ID=c20c5527-4840-484e-adc5-37179174f55b"
                   alt="DMCA.com Protection Status"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

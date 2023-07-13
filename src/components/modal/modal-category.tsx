@@ -21,7 +21,7 @@ function ModalCategory({
       {isModals ? (
         <div className="filter-popup js-filter-popup js-filter-popup-estate-type show">
           <div className="filter-popup-header">
-            <span className="header-label">"CHỌN Danh Mục"</span>
+            <span className="header-label">CHỌN LOẠI BẤT ĐỘNG SẢN</span>
             <div
               className="popup-close js-filter-popup-close"
               onClick={onClose}
@@ -46,10 +46,8 @@ function ModalCategory({
                       name="category"
                       id={item?.code}
                       value={item?.code}
-                      checked={
+                      defaultChecked={
                         item.code === queries[`${"category"}Code`]
-                          ? true
-                          : false
                       }
                       style={{ marginRight: "10px" }}
                     />

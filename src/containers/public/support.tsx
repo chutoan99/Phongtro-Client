@@ -1,4 +1,5 @@
 // APP
+import Link from "next/link";
 import { support } from "../../utils/support";
 function Support() {
   return (
@@ -12,9 +13,9 @@ function Support() {
           {support.lists.map((item, index) => (
             <div className="support-item" key={index}>
               <span className="support-item-title"> {item.content}</span>
-              <a rel="nofollow" href="tel:0917686101">
+              <Link rel="nofollow" href="tel:0917686101">
                 {item.phone}
-              </a>
+              </Link>
               <a
                 rel="nofollow"
                 target="_blank"
@@ -25,9 +26,9 @@ function Support() {
             </div>
           ))}
 
-          <a className="btn btn-page-contact" rel="nofollow" href="/lien-he">
+          <Link className="btn btn-page-contact" rel="nofollow" href="/lien-he">
             Gửi liên hệ
-          </a>
+          </Link>
         </div>
       </div>
     </section>

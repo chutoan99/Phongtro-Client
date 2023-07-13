@@ -2,7 +2,7 @@
 import Link from "next/link";
 //APP
 import { Support } from "../../containers/public/index";
-import { AdminCreatePost } from "../../containers/admin/index";
+import { CreatePost } from "../../containers/admin/index";
 import AdminLayout from "../../layouts/admin.layout";
 
 export default function CreatePage() {
@@ -24,7 +24,7 @@ export default function CreatePage() {
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 className="h1">Đăng tin mới</h1>
       </div>
-      <AdminCreatePost />
+      <CreatePost />
       <Support />
     </main>
   );

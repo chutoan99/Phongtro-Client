@@ -1,4 +1,5 @@
 // APP
+import Link from "next/link";
 import { subLink } from "../../utils/subLink";
 
 function AsideSubLink() {
@@ -10,12 +11,9 @@ function AsideSubLink() {
       <ul className="list-links clearfix">
         {subLink?.lists?.map((ele: any, index: number) => (
           <li key={index}>
-            <a
-              href="/news/hop-dong-thue-nha-tro-phong-tro"
-              title="Mẫu hợp đồng cho thuê phòng trọ"
-            >
+            <Link href="#" title="Mẫu hợp đồng cho thuê phòng trọ">
               {ele}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

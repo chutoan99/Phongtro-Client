@@ -32,7 +32,7 @@ function AdminAside({ dataUser }) {
           </li>
         </ul>
         <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-          <a
+          <Link
             className="btn btn-warning btn-sm"
             href=""
             style={{
@@ -42,8 +42,8 @@ function AdminAside({ dataUser }) {
             }}
           >
             Nạp tiền
-          </a>
-          <a
+          </Link>
+          <Link
             className="btn btn-danger btn-sm"
             href=""
             style={{
@@ -53,16 +53,16 @@ function AdminAside({ dataUser }) {
             }}
           >
             Đăng tin
-          </a>
+          </Link>
         </div>
       </div>
       <ul className="nav nav-sidebar">
         {menuManage?.map((item: any, index: number) => (
           <li className="nav-item" key={index}>
-            <a className="nav-link " href={item.path}>
+            <Link className="nav-link " href={item.path}>
               {item.icon}
               {item.text}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

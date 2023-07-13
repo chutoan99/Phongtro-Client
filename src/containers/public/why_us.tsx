@@ -1,6 +1,7 @@
 // APP
 import { whyUs } from "../../utils/why_us";
 import { renderStart } from "../../utils/Commom/renderStart";
+import Link from "next/link";
 
 function WhyUs() {
   return (
@@ -9,25 +10,25 @@ function WhyUs() {
         <h4 className="section-title"> {whyUs.header}</h4>
         <p>
           {whyUs.title}
-          <a href="/" title="Cho thuê phòng trọ">
+          <Link href="/" title="Cho thuê phòng trọ">
             <strong>cho thuê phòng trọ</strong>
-          </a>
+          </Link>
           ,<strong>nhà trọ</strong>,{" "}
-          <a href="/" title="Cho thuê nhà nguyên căn">
+          <Link href="/" title="Cho thuê nhà nguyên căn">
             <strong>thuê nhà nguyên căn</strong>
-          </a>
+          </Link>
           ,
-          <a href="/" title="Cho thuê căn hộ">
+          <Link href="/" title="Cho thuê căn hộ">
             <strong>cho thuê căn hộ</strong>
-          </a>
+          </Link>
           ,
-          <a href="/" title="Tìm người ở ghép">
+          <Link href="/" title="Tìm người ở ghép">
             <strong>tìm người ở ghép</strong>
-          </a>
+          </Link>
           ,
-          <a href="/" title="Cho thuê mặt bằng">
+          <Link href="/" title="Cho thuê mặt bằng">
             <strong>cho thuê mặt bằng</strong>
-          </a>
+          </Link>
           ...Vì vậy tin của bạn đăng trên website sẽ tiếp cận được với nhiều
           khách hàng hơn, do đó giao dịch nhanh hơn, tiết kiệm chi phí hơn
         </p>
@@ -73,14 +74,14 @@ function WhyUs() {
         <br />
         <h6 className="section-title">{whyUs.des3}</h6>
         <p>{whyUs.des4}</p>
-        <a
+        <Link
           className="btn red"
           style={{ padding: "10px 30px" }}
           rel="nofollow"
           href="#"
         >
           Đăng tin ngay
-        </a>
+        </Link>
       </div>
     </section>
   );

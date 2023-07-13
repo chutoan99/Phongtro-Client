@@ -1,8 +1,8 @@
-export { default as AdminAside } from "./admin-aside";
-export { default as AdminHeader } from "./admin-header";
-export { default as AdminNav } from "./admin-nav";
-export { default as AdminNote } from "./admin-note";
-export { default as AdminSection } from "./admin-section";
-export { default as AdminCreatePost } from "./admin_create_post";
-export { default as AdminManagerPost } from "./admin_manager_post";
-export { default as AdminProfile } from "./admin_profile";
+export { default as Aside } from "./aside";
+export { default as Header } from "./header";
+export { default as Nav } from "./nav";
+export { default as Note } from "./note";
+export { default as Section } from "./section";
+export { default as CreatePost } from "./create_post";
+export { default as ManagerPost } from "./manager_post";
+export { default as Profile } from "./profile";

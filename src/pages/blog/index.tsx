@@ -10,7 +10,7 @@ const Blog = () => {
     <div className="w-[100vw]  bg-[#f5f5f5]">
       <Header />
       <NavBarMenu />
-      <Container path="blog" categoryCode="" />
+      {/* <Container categoryCode="" /> */}
       <Footer />
     </div>
   );

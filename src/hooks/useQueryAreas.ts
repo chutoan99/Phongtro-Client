@@ -2,5 +2,14 @@ import { useQuery } from "react-query";
 import { queryAreas } from "../services/area/area.service";
 
 export const useQueryAreas = () => {
-  return useQuery("Area", () => queryAreas());
+  const queryKey = ["Areas"];
+
+  const queryFn = async () => {
+    const responseData = await queryAreas();
+    return responseData;
+  };
+
+  const queryResult = useQuery(queryKey, queryFn);
+
+  return { ...queryResult };
 };

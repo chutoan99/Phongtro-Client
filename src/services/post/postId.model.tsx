@@ -1,14 +1,12 @@
-export interface Welcome {
-  data: {
-    postId: {
-      err: number;
-      msg: string;
-      response: PostId;
-    };
+export interface PostIdResponse {
+  postId: {
+    err: number;
+    msg: string;
+    response: PostIdModel;
   };
 }
 
-export interface PostId {
+export interface PostIdModel {
   address: string;
   areaCode: string;
   areaNumber: number;

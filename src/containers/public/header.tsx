@@ -2,25 +2,20 @@
 import Link from "next/link";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useQueryClient } from "react-query";
 import { useState } from "react";
 // APP
 import menuManage from "../../utils/menuManage";
 import useTokenValidation from "../../hooks/useTokenValidation.hook";
 import InforLocal from "../../models/InforLocal";
+import { useQueryUserId } from "../../hooks/useQueryUserId";
 import { UserModel } from "../../services/user/user.model";
 
 const Header: NextPage = () => {
   const dataLocal: InforLocal = useTokenValidation();
   const isLogin = dataLocal.isLogin;
   const Router = useRouter();
-  const queryClient = useQueryClient();
   const [isDropDown, setIsDropDown] = useState(false);
-  const dataUser = queryClient.getQueriesData<UserModel>([
-    "User",
-    dataLocal?.id,
-  ])[0][1];
-
+  const { data: dataUser, isLoading } = useQueryUserId(dataLocal?.id);
   const handleMenuManage = (id) => {
     if (id === 1) {
       Router.push(`${menuManage[0].path}`);
@@ -43,7 +38,7 @@ const Header: NextPage = () => {
       </Link>
       <div className="user-welcome clearfix js-reload-html-header">
         {isLogin && (
-          <Link className="welcome-text" href="" rel="nofollow">
+          <Link className="welcome-text" href="#">
             <img
               src={dataUser?.avatar}
               alt="Avatar"
@@ -78,19 +73,21 @@ const Header: NextPage = () => {
             </div>
           </Link>
         )}
+        {isLogin && (
+          <Link className="btn" href="#">
+            <i className="icon heart size-18"></i> Yêu thích
+            <span className="number-count js-save-post-total">1</span>
+          </Link>
+        )}
 
-        <Link rel="nofollow" className="btn" href="">
-          <i className="icon heart size-18"></i> Yêu thích{" "}
-          <span className="number-count js-save-post-total">1</span>
-        </Link>
         {!isLogin && (
           <>
-            <a rel="nofollow" className="btn" href="/login">
+            <Link className="btn" href="/login">
               <i className="icon register"></i> Đăng nhập
-            </a>
-            <a rel="nofollow" className="btn" href="/register">
+            </Link>
+            <Link className="btn" href="/register">
               <i className="icon login"></i> Đăng ký
-            </a>
+            </Link>
           </>
         )}
         {isLogin && (
@@ -110,7 +107,6 @@ const Header: NextPage = () => {
                     <Link
                       onClick={() => handleMenuManage(item?.id)}
                       className="dropdown-menu-item dang-tin"
-                      rel="nofollow"
                       href={item?.path}
                       title={item?.text}
                       style={{ gap: "5px" }}
@@ -133,7 +129,7 @@ const Header: NextPage = () => {
           </div>
         )}
         {isLogin && (
-          <Link rel="nofollow" className="btn btn-add-post" href="/admin/">
+          <Link className="btn btn-add-post" href="/admin">
             Đăng tin mới <i></i>
           </Link>
         )}

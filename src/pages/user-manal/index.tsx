@@ -10,7 +10,7 @@ const UserManual = () => {
     <div className="w-[100vw]  bg-[#f5f5f5]">
       <Header />
       <NavBarMenu />
-      <Container path="user-manal" categoryCode="" />
+      {/* <Container categoryCode="" /> */}
       <Footer />
     </div>
   );

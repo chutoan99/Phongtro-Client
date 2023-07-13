@@ -4,7 +4,7 @@ import Link from "next/link";
 // APP
 import ICONS from "../../../public/assets/icons";
 import { Support } from "../../containers/public/index";
-import { AdminSection } from "../../containers/admin/index";
+import { Section } from "../../containers/admin/index";
 import AdminLayout from "../../layouts/admin.layout";
 
 export default function AdminPage() {
@@ -37,7 +37,7 @@ export default function AdminPage() {
         Đăng tin mới
       </Link>
       <div>
-        <AdminSection />
+        <Section />
       </div>
       <Support />
     </main>

@@ -9,7 +9,7 @@ function AsideNewHot() {
       </div>
       <ul className="post-listing aside clearfix">
         <li className="post-item clearfix tin-vip vipnoibat" post-id="212446">
-          <Link href="">
+          <Link href="#" prefetch={false}>
             <figure>
               <img
                 className="lazy_done"
@@ -24,7 +24,7 @@ function AsideNewHot() {
             <div className="post-meta">
               <span className="post-title" style={{ color: "#E13427" }}>
                 <span className="star star-5"></span> PHÒNG TRỌ MỚI RẤT ĐẸP SỐ
-                373/1/2A ĐƯỜNG…{" "}
+                373/1/2A ĐƯỜNG…
               </span>
               <span className="post-price">3.9 triệu/tháng</span>
               <time className="post-time" title="Thứ 3, 09:27 21/02/2023">

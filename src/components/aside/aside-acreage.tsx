@@ -1,25 +1,29 @@
 // LIBRARY
 import Link from "next/link";
-import { useQueryClient } from "react-query";
 // APP
 import { AreaModel } from "../../services/area/area.model";
+import { useQueryAreas } from "../../hooks/useQueryAreas";
 
 function AsideAcreage() {
-  const queryClient = useQueryClient();
-  const dataArea = queryClient.getQueriesData<AreaModel[]>(["Area"])[0][1];
-
+  const { data, isFetching, isLoading } = useQueryAreas();
   return (
     <section className="section section-sublink">
       <div className="section-header">
         <span className="section-title">Xem theo diện tích</span>
       </div>
-      <ul className="list-links price clearfix">
-        {dataArea?.map((ele: AreaModel, index: number) => (
-          <li key={index}>
-            <Link href="#">{ele?.value}</Link>
-          </li>
-        ))}
-      </ul>
+      {!isLoading ? (
+        <ul className="list-links price clearfix">
+          {data?.map((ele: AreaModel, index: number) => (
+            <li key={index}>
+              <Link href="#" prefetch={false}>
+                {ele?.value}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <span className="loader"></span>
+      )}
     </section>
   );
 }

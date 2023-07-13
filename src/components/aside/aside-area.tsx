@@ -10,7 +10,7 @@ function AsideArea({ item }) {
       <ul className="list-links clearfix">
         {item?.lists?.map((ele: any, index: number) => (
           <li key={index}>
-            <Link className="" title={ele.value} href="# ">
+            <Link className="" title={ele.value} href="#" prefetch={false}>
               {ele.value}
             </Link>
             <span className="count">({ele.total})</span>

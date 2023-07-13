@@ -3,28 +3,22 @@ import Link from "next/link";
 // APP
 import { PostModel } from "../services/post/post.model";
 import { renderStart } from "../utils/Commom/renderStart";
-import { useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 
-function Post({ currentPage, path, categoryCode }) {
-  const queryClient = useQueryClient();
+function Post({ data }) {
   const router = useRouter();
   const { pathname } = router;
   const routeSegment = pathname.split("/")[1];
-  const dataPosts = queryClient.getQueriesData<any>([
-    "Post",
-    currentPage,
-  ])[0][1];
   return (
     <>
-      {dataPosts?.map((item: PostModel, index: number) => (
+      {data?.map((item: PostModel, index: number) => (
         <li
           key={index}
           className="post-item post-id-212446 style-4 clearfix tin-vip vipnoibat"
           style={{ borderColor: "#311f1e" }}
         >
           <figure className="post-thumb">
-            <Link href={`/${routeSegment}/${item?.id}`} className="clearfix">
+            <Link href={`${routeSegment}/${item?.id}`} className="clearfix">
               <img
                 className="lazy_done"
                 src={item?.listImage?.postImg}
@@ -35,7 +29,6 @@ function Post({ currentPage, path, categoryCode }) {
                 data-loaded="true"
               />
             </Link>
-
             <span className="images-number">{item?.listImage?.total} ảnh</span>
             <span
               className="post-save js-btn-save"

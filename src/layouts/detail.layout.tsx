@@ -5,13 +5,6 @@ import { GraphQLClient } from "graphql-request";
 import { useQuery } from "react-query";
 // APP
 import { AreaHcm } from "../utils/area";
-import InforLocal from "../models/InforLocal";
-import { useQueryAreas } from "../hooks/useQueryAreas";
-import { useQueryUserId } from "../hooks/useQueryUserId";
-import { useQueryPrices } from "../hooks/useQueryPrices";
-import { useQueryCategories } from "../hooks/useQueryCategories";
-import { useQueryProvinces } from "../hooks/useQueryProvinces";
-import { useQueryNewPosts } from "../hooks/useQueryNewPosts";
 const postIdFilePath = require("../graphql/queries/postId.graphql");
 import {
   AsideArea,
@@ -27,30 +20,13 @@ import {
   Support,
   NavBarMenu,
 } from "../containers/public/index";
-import useTokenValidation from "../hooks/useTokenValidation.hook";
-import InputNewPost from "../graphql/arguments/input_new_post.args";
+import { useQueryPostId } from "../hooks/useQueryPostId";
 
 export default function DetailLayout({ children }) {
   const router = useRouter();
   const { id } = router.query;
-
-  const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
-  const dataPostId = useQuery<any>(["PostId", id], () =>
-    graphQLClient.request(postIdFilePath, { postId: id })
-  )?.data?.postId?.response;
-  const dataUser: InforLocal = useTokenValidation();
-  const payloadNewPost: InputNewPost = {
-    pageSize: 10,
-    pageNumber: 1,
-  };
-
-  useQueryNewPosts(payloadNewPost);
-  useQueryProvinces();
-  useQueryCategories();
-  useQueryPrices();
-  useQueryAreas();
-  useQueryUserId(dataUser?.id);
-
+  const { data, isLoading, isFetching } = useQueryPostId(id);
+  console.log(data, "datadatadata");
   return (
     <div className="webpage">
       <Header />
@@ -83,7 +59,7 @@ export default function DetailLayout({ children }) {
           </div>
           {children}
           <aside id="aside">
-            <AuthorAside item={dataPostId?.user} />
+            <AuthorAside item={data?.user} />
             <AsideNewPost />
             <AsideNewHot />
             <AsideArea item={AreaHcm} />

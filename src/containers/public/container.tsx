@@ -1,12 +1,15 @@
 // LIBRARY
 import Link from "next/link";
+import { useQuery, useQueryClient } from "react-query";
 import { useState, useMemo, useEffect } from "react";
 // APP
-import { locationCity } from "../../utils/constant";
+import { Search } from "./index";
 import { Support, WhyUs } from "./index";
+import { locationCity } from "../../utils/constant";
 import InputPost from "../../graphql/arguments/input_post.args";
+import { useQueryPosts } from "../../hooks/useQueryPost";
+import { queryPosts } from "../../services/post/post.service";
 import {
-  Search,
   Pagination,
   Post,
   AsideDirectoryRental,
@@ -16,14 +19,12 @@ import {
   AsideNewNews,
   AsideSubLink,
 } from "../../components/index";
-import { useQueryPosts } from "../../hooks/useQueryPost";
 
 interface NavBar {
-  path: string;
   categoryCode: string;
 }
 
-const Container = ({ path, categoryCode }: NavBar) => {
+const Container = ({ categoryCode }: NavBar) => {
   const [payload, setPayload] = useState<InputPost>({
     pageSize: 15,
     pageNumber: 1,
@@ -37,16 +38,25 @@ const Container = ({ path, categoryCode }: NavBar) => {
     areaNumber: [],
     priceNumber: [],
   });
-  const { responseData, total, isLoading, isFetching, pageSize } =
-    useQueryPosts(payload);
-  const TOTAl_PAGE = useMemo(
-    () => Math.ceil(+total / +pageSize),
-    [responseData]
-  );
+  const queryClient = useQueryClient();
 
+  const queryKey = ["Posts", { ...payload }];
+  const queryFn = async () => {
+    const responseData = await queryPosts(payload);
+    return responseData;
+  };
+  const { data, isLoading, isFetching } = useQuery(queryKey, queryFn);
+  const {} = useQueryPosts(payload);
+
+  const TOTAl_PAGE = 30;
+  // useMemo(() => Math.ceil(+data?.length / +payload.pageSize), [data]);
+  const onSearch = () => {
+    queryClient.invalidateQueries(queryKey);
+    queryClient.refetchQueries(queryKey);
+  };
   return (
     <main id="main">
-      <Search setPayload={setPayload} />
+      <Search setPayload={setPayload} onSearch={onSearch} />
       <section className="section section-top-location">
         <div className="location-city clearfix">
           {locationCity.map((ele: any, index: number) => (
@@ -67,13 +77,13 @@ const Container = ({ path, categoryCode }: NavBar) => {
             </div>
             <div className="post-sort">
               <span>Sắp xếp: </span>
-              <Link className="active" href="">
+              <Link className="active" href="#">
                 Mặc định
               </Link>
-              <Link className="" href="">
+              <Link className="" href="#">
                 Mới nhất
               </Link>
-              <Link className="" href="">
+              <Link className="" href="#">
                 Có video
               </Link>
             </div>
@@ -82,11 +92,7 @@ const Container = ({ path, categoryCode }: NavBar) => {
               {isLoading ? (
                 <span className="loader"></span>
               ) : (
-                <Post
-                  currentPage={payload.pageNumber}
-                  path="path"
-                  categoryCode="categoryCode"
-                />
+                <Post data={data} />
               )}
             </ul>
           </section>

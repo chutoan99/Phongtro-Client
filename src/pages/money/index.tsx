@@ -10,7 +10,7 @@ const Money = () => {
     <div className="w-[100vw]  bg-[#f5f5f5]">
       <Header />
       <NavBarMenu />
-      <Container path="money" categoryCode="" />
+      {/* <Container categoryCode="" /> */}
       <Footer />
     </div>
   );

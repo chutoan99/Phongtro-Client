@@ -14,9 +14,12 @@ import {
 import { AreaModel } from "../../services/area/area.model";
 import { PriceModel } from "../../services/price/price.model";
 import { CategoryModel } from "../../services/category/category.model";
-import { UserModel } from "../../services/user/user.model";
 import useTokenValidation from "../../hooks/useTokenValidation.hook";
 import InforLocal from "../../models/InforLocal";
+import { useQueryUserId } from "../../hooks/useQueryUserId";
+import { useQueryPrices } from "../../hooks/useQueryPrices";
+import { useQueryAreas } from "../../hooks/useQueryAreas";
+import { useQueryCategories } from "../../hooks/useQueryCategories";
 interface Payload {
   areaNumber: number;
   priceNumber: number;
@@ -35,17 +38,11 @@ interface Payload {
 }
 function AdminCreatePost() {
   //? INIT
-  const queryClient = useQueryClient();
   const dataLocal: InforLocal = useTokenValidation();
-  const dataPrices = queryClient.getQueriesData<PriceModel[]>(["Price"])[0][1];
-  const dataAreas = queryClient.getQueriesData<AreaModel[]>(["Area"])[0][1];
-  const dataCategories = queryClient.getQueriesData<CategoryModel[]>([
-    "Category",
-  ])[0][1];
-  const dataUser = queryClient.getQueriesData<UserModel>([
-    "User",
-    dataLocal?.id,
-  ])[0][1];
+  const { data: dataUser } = useQueryUserId(dataLocal?.id);
+  const { data: dataPrices } = useQueryPrices();
+  const { data: dataAreas } = useQueryAreas();
+  const { data: dataCategories } = useQueryCategories();
   //? HANDLE ADDRESS
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);

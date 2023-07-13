@@ -1,5 +1,4 @@
 export { default as User } from "./user";
-export { default as Search } from "./search";
 export { default as Post } from "./posts";
 export { default as Pagination } from "./pagination";
 

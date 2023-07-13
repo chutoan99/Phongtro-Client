@@ -12,8 +12,8 @@ function ModalProvince({
   };
   const onSubmit = (item: any) => {
     handleSubmit({
-      ["price"]: item.value,
-      [`${"price"}Code`]: item.code,
+      ["province"]: item.value,
+      [`${"province"}Code`]: item.code,
     });
   };
 
@@ -22,7 +22,7 @@ function ModalProvince({
       {modals ? (
         <div className="filter-popup js-filter-popup js-filter-popup-estate-type show">
           <div className="filter-popup-header">
-            <span className="header-label">CHỌN GIÁ</span>
+            <span className="header-label">CHỌN TỈNH THÀNH</span>
             <div
               className="popup-close js-filter-popup-close"
               onClick={onClose}
@@ -47,9 +47,7 @@ function ModalProvince({
                       name="price"
                       id={item?.code}
                       value={item?.code}
-                      checked={
-                        item.code === queries[`${"price"}Code`] ? true : false
-                      }
+                      defaultChecked={item.code === queries[`${"price"}Code`]}
                       style={{ marginRight: "10px" }}
                     />
                     <label

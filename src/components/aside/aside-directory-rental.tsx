@@ -1,4 +1,5 @@
 // APP
+import Link from "next/link";
 import { directoryRental } from "../../utils/constant";
 
 function AsideDirectoryRental() {
@@ -11,9 +12,9 @@ function AsideDirectoryRental() {
         {directoryRental?.lists.map((ele: any, index: number) => (
           <li key={index}>
             <h2>
-              <a href="" title="Cho thuê phòng trọ">
+              <Link href="#" title="Cho thuê phòng trọ" prefetch={false}>
                 {ele.content}
-              </a>
+              </Link>
             </h2>
             <span className="count">({ele.amount})</span>
           </li>
