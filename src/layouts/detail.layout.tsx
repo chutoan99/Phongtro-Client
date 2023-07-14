@@ -1,32 +1,17 @@
 // LIBRARY
 import React from "react";
-import { useRouter } from "next/router";
-import { GraphQLClient } from "graphql-request";
-import { useQuery } from "react-query";
 // APP
-import { AreaHcm } from "../utils/area";
-const postIdFilePath = require("../graphql/queries/postId.graphql");
-import {
-  AsideArea,
-  AuthorAside,
-  AsideNewPost,
-  AsideNewHot,
-  AsideSubLink,
-} from "../components/index";
 import {
   Header,
   WhyUs,
   Footer,
   Support,
   NavBarMenu,
-} from "../containers/public/index";
-import { useQueryPostId } from "../hooks/useQueryPostId";
+  AsideDetail,
+} from "../containers/public";
+import Link from "next/link";
 
 export default function DetailLayout({ children }) {
-  const router = useRouter();
-  const { id } = router.query;
-  const { data, isLoading, isFetching } = useQueryPostId(id);
-  console.log(data, "datadatadata");
   return (
     <div className="webpage">
       <Header />
@@ -36,35 +21,29 @@ export default function DetailLayout({ children }) {
           <div id="breadcrumb">
             <ol className="clearfix">
               <li className="first link">
-                <a href="" title="Cho thuê phòng trọ">
+                <Link href="#" title="Cho thuê phòng trọ">
                   <span>Cho thuê phòng trọ</span>
-                </a>
+                </Link>
               </li>
               <li className="link link">
-                <a href="" title="Cho thuê phòng trọ Hồ Chí Minh">
+                <Link href="#" title="Cho thuê phòng trọ Hồ Chí Minh">
                   <span>Hồ Chí Minh</span>
-                </a>
+                </Link>
               </li>
               <li className="link link">
-                <a href="" title="Cho thuê phòng trọ Quận Tân Phú">
+                <Link href="#" title="Cho thuê phòng trọ Quận Tân Phú">
                   <span>Quận Tân Phú</span>
-                </a>
+                </Link>
               </li>
               <li className="link last">
-                <a href="" title="Cho thuê phòng trọ Phường Sơn Kỳ">
+                <Link href="#" title="Cho thuê phòng trọ Phường Sơn Kỳ">
                   <span>Phường Sơn Kỳ</span>
-                </a>
+                </Link>
               </li>
             </ol>
           </div>
           {children}
-          <aside id="aside">
-            <AuthorAside item={data?.user} />
-            <AsideNewPost />
-            <AsideNewHot />
-            <AsideArea item={AreaHcm} />
-            <AsideSubLink />
-          </aside>
+          <AsideDetail />
         </div>
         <WhyUs />
         <Support />

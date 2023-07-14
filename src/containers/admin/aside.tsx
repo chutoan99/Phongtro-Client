@@ -1,5 +1,6 @@
 // LIBRARY
 import Link from "next/link";
+// APP
 import { menuManage } from "../../utils/menuUser";
 function AdminAside({ dataUser }) {
   return (
@@ -34,7 +35,7 @@ function AdminAside({ dataUser }) {
         <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
           <Link
             className="btn btn-warning btn-sm"
-            href=""
+            href="#"
             style={{
               color: "#212529",
               backgroundColor: "#ffc107",
@@ -45,7 +46,7 @@ function AdminAside({ dataUser }) {
           </Link>
           <Link
             className="btn btn-danger btn-sm"
-            href=""
+            href="#"
             style={{
               color: "#fff",
               backgroundColor: "#dc3545",

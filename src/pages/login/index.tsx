@@ -3,12 +3,12 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { useRouter } from "next/router";
-
 import { useQueryClient } from "react-query";
 import { GraphQLClient } from "graphql-request";
+//  ARGUMENTS
+import InputLogin from "../../graphql/arguments/login.args";
 // APP
-const loginFilePath = require("../../graphql/mutation/login.graphql");
-import InputLogin from "../../graphql/arguments/input_login.args";
+const loginFilePath = require("../../graphql/mutations/login.graphql");
 import AuthLayout from "../../layouts/auth.layout";
 
 const LoginPage = () => {

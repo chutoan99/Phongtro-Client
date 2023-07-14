@@ -1,5 +1,5 @@
 // APP
-import { Container } from "../../containers/public/index";
+import { Container } from "../../containers/public";
 import DefaultLayout from "../../layouts/default.layout";
 
 export default function RentalApartment() {

@@ -122,7 +122,7 @@ function Footer() {
                   className="social-fb"
                   rel="nofollow"
                   target="_blank"
-                  href=""
+                  href="#"
                 >
                   <i></i>
                 </Link>
@@ -130,7 +130,7 @@ function Footer() {
                   className="social-youtube"
                   rel="nofollow"
                   target="_blank"
-                  href=""
+                  href="#"
                 >
                   <i></i>
                 </Link>
@@ -138,7 +138,7 @@ function Footer() {
                   className="social-zalo"
                   rel="nofollow"
                   target="_blank"
-                  href=""
+                  href="#"
                 >
                   <i></i>
                 </Link>
@@ -146,7 +146,7 @@ function Footer() {
                   className="social-twitter"
                   rel="nofollow"
                   target="_blank"
-                  href=""
+                  href="#"
                 >
                   <i></i>
                 </Link>
@@ -166,28 +166,28 @@ function Footer() {
           {/* other */}
           <div className="other-brands margin-top-15 d-flex align-items-center clearfix">
             <span className="margin-right-20">Cùng hệ thống:</span>
-            <Link href="" target="_blank" rel="nofollow">
+            <Link href="#" target="_blank" rel="nofollow">
               <img
                 width="140"
                 height="25"
                 src="https://phongtro123.com/images/logo-bds123.svg"
               />
             </Link>
-            <Link href="" target="_blank" rel="nofollow">
+            <Link href="#" target="_blank" rel="nofollow">
               <img
                 width="150"
                 height="25"
                 src="https://phongtro123.com/images/logo-chothuenha.svg"
               />
             </Link>
-            <Link href="" target="_blank" rel="nofollow">
+            <Link href="#" target="_blank" rel="nofollow">
               <img
                 width="150"
                 height="25"
                 src="https://phongtro123.com/images/logo-thuecanho.svg"
               />
             </Link>
-            <Link href="" target="_blank">
+            <Link href="#" target="_blank" rel="nofollow">
               <img
                 width="140"
                 height="25"
@@ -219,13 +219,13 @@ function Footer() {
                 style={{ display: "inline-block", margin: "0 5px" }}
                 rel="nofollow"
                 target="_blank"
-                href=""
+                href="#"
               ></Link>
               <Link
                 rel="nofollow"
                 style={{ display: "inline-block", margin: "0 5px" }}
                 target="_blank"
-                href=""
+                href="#"
                 title="DMCA.com Protection Status"
                 className="dmca-badge"
               >

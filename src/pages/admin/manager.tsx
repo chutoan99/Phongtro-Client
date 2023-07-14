@@ -2,12 +2,16 @@
 import Link from "next/link";
 // APP
 import AdminLayout from "../../layouts/admin.layout";
-import { Support } from "../../containers/public/index";
-import { ManagerPost } from "../../containers/admin/index";
+import { Support } from "../../containers/public";
+import { ManagerPost } from "../../containers/admin";
 
 export default function ManagePage() {
   return (
-    <main role="main" className="ml-sm-auto col-lg-10">
+    <main
+      role="main"
+      className="ml-sm-auto col-lg-10"
+      style={{ background: "white" }}
+    >
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">

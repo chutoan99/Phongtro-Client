@@ -2,8 +2,10 @@
 import React from "react";
 import Slider from "react-slick";
 import { useRouter } from "next/router";
-// APP
+// HOOKS
 import { useQueryPostId } from "../../hooks/useQueryPostId";
+import Link from "next/link";
+
 const PostDetail = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -119,14 +121,14 @@ const PostDetail = () => {
           </h1>
           <div className="clearfix"></div>
           <p className="margin-bottom: 10px;">
-            Chuyên mục:{" "}
-            <a
+            Chuyên mục:
+            <Link
               style={{ textDecoration: "underline" }}
               title="Phòng trọ Quận Tân Phú"
               href=""
             >
               <strong>{data?.overviews?.area}</strong>
-            </a>
+            </Link>
           </p>
           <address className="post-address">Địa chỉ:{data?.address}</address>
           <div className="post-attributes">
@@ -295,6 +297,7 @@ const PostDetail = () => {
             </a>
           </div>
         </section>
+
         <div className="post-fix-bar">
           <div className="inner clearfix">
             <div className="left-bar">

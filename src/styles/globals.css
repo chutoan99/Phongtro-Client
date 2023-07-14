@@ -482,3 +482,27 @@ input[type="range"]::-ms-thumb:active {
   position: absolute;
   z-index: 1000;
 }
+.disabled-button {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.btn-custom {
+  height: 27px !important;
+  color: #6c757d !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: #6c757d !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  border-radius: 0.2rem !important;
+  display: inline-block !important;
+  font-weight: 400 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  user-select: none;
+}

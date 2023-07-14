@@ -1,25 +1,29 @@
 // LIBRARY
-import { note } from "../../utils/menuUser";
-
 function AdminNote() {
   return (
-    <div className="gap-[30px] grid">
-      <div className="w-full bg-[#fff3cd] rounded-[5px]">
-        <div className="p-[9px]  grid gap-[15px]">
-          <h2 className="text-[#856404] text-[1.5rem]">Lưu ý khi đăng tin</h2>
-          <ul className="gap-[10px] grid">
-            {note?.map((item, index) => (
-              <li
-                key={index}
-                className="text-[#856404] ml-[20px] text-[1.1rem] leading-[25px]"
-                style={{ listStyleType: "square" }}
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+    <div className="card-body">
+      <h4 className="card-title">Lưu ý khi đăng tin</h4>
+      <ul>
+        <li style={{ listStyleType: "square", marginLeft: "15px" }}>
+          Nội dung phải viết bằng tiếng Việt có dấu
+        </li>
+        <li style={{ listStyleType: "square", marginLeft: "15px" }}>
+          Tiêu đề tin không dài quá 100 kí tự
+        </li>
+        <li style={{ listStyleType: "square", marginLeft: "15px" }}>
+          Các bạn nên điền đầy đủ thông tin vào các mục để tin đăng có hiệu quả
+          hơn.
+        </li>
+        <li style={{ listStyleType: "square", marginLeft: "15px" }}>
+          Để tăng độ tin cậy và tin rao được nhiều người quan tâm hơn, hãy sửa
+          vị trí tin rao của bạn trên bản đồ bằng cách kéo icon tới đúng vị trí
+          của tin rao.
+        </li>
+        <li style={{ listStyleType: "square", marginLeft: "15px" }}>
+          Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều lần so với
+          tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng!
+        </li>
+      </ul>
     </div>
   );
 }

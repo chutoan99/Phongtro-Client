@@ -3,13 +3,17 @@ import Link from "next/link";
 
 // APP
 import ICONS from "../../../public/assets/icons";
-import { Support } from "../../containers/public/index";
-import { Section } from "../../containers/admin/index";
+import { Support } from "../../containers/public";
+import { Section } from "../../containers/admin";
 import AdminLayout from "../../layouts/admin.layout";
-
+import { menuManage2 } from "../../utils/menuUser";
 export default function AdminPage() {
   return (
-    <main role="main" className="ml-sm-auto col-lg-10">
+    <main
+      role="main"
+      className="ml-sm-auto col-lg-10"
+      style={{ background: "white" }}
+    >
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -31,13 +35,14 @@ export default function AdminPage() {
           borderColor: "#dc3545",
           display: "flex",
           gap: "10px",
+          height: "40px",
         }}
       >
         {ICONS.ICON_CREATE}
         Đăng tin mới
       </Link>
       <div>
-        <Section />
+        <Section data={menuManage2} />
       </div>
       <Support />
     </main>

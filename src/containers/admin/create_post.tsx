@@ -1,48 +1,37 @@
 // LIBRARY
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+// ARGUMENTS
+import { InputCreatePost } from "../../graphql/arguments/post.args";
+//MODELS
+import InfoLocal from "../../models/infoLocal";
+import { CategoryModel } from "../../models/category.model";
+// HOOKS
+import useTokenValidation from "../../hooks/useTokenValidation.hook";
+import { useQueryUserId } from "../../hooks/useQueryUserId";
+import { useQueryPrices } from "../../hooks/useQueryPrices";
+import { useQueryAreas } from "../../hooks/useQueryAreas";
+import { useQueryCategories } from "../../hooks/useQueryCategories";
+import { useMutationCreatePost } from "../../hooks/useMutationCreatePost";
 // APP
-import { apiUploadImages } from "../../services/orther/orther";
+import { Note } from "./index";
 import { getCodesPrice, getCodesArea } from "../../utils/Commom/getCodePrice";
 import { requiredFieldsCreatePost } from "../../utils/validate";
 import {
   GetAllDistrictWithProvinceCode,
   GetALLProvince,
   GetAllWardWithDistrictCode,
-} from "../../services/orther/orther";
-import { AreaModel } from "../../services/area/area.model";
-import { PriceModel } from "../../services/price/price.model";
-import { CategoryModel } from "../../services/category/category.model";
-import useTokenValidation from "../../hooks/useTokenValidation.hook";
-import InforLocal from "../../models/InforLocal";
-import { useQueryUserId } from "../../hooks/useQueryUserId";
-import { useQueryPrices } from "../../hooks/useQueryPrices";
-import { useQueryAreas } from "../../hooks/useQueryAreas";
-import { useQueryCategories } from "../../hooks/useQueryCategories";
-interface Payload {
-  areaNumber: number;
-  priceNumber: number;
-  priceCode: string;
-  areaCode: string;
-  categoryCode: string;
-  title: string;
-  images: string;
-  address: string;
-  target: string;
-  type: string;
-  province: string;
-  description: string;
-  label: string;
-  userId: string;
-}
+  apiUploadImages,
+} from "../../services/orther/index";
+
 function AdminCreatePost() {
-  //? INIT
-  const dataLocal: InforLocal = useTokenValidation();
+  // INIT
+  const dataLocal: InfoLocal = useTokenValidation();
   const { data: dataUser } = useQueryUserId(dataLocal?.id);
   const { data: dataPrices } = useQueryPrices();
   const { data: dataAreas } = useQueryAreas();
   const { data: dataCategories } = useQueryCategories();
+
   //? HANDLE ADDRESS
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -52,74 +41,83 @@ function AdminCreatePost() {
   const [wardCode, setWardCode] = useState();
   const [numberHouse, setNumberHouse] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+
   //? HANDLE PAYLOAD
   const [loading, setLoading] = useState(false);
   const [imageReview, setImageReview] = useState([]);
-  const [payLoad, setPayload] = useState<Payload>({
+  const [payLoad, setPayload] = useState<InputCreatePost>({
     areaNumber: 0,
     priceNumber: 0,
     priceCode: "",
     areaCode: "",
     categoryCode: "",
     title: "",
-    images: "",
+    images: ["https://phongtro123.com/img/thumb_default.jpg"],
     address: "",
     target: "",
     type: "",
     province: "",
     description: "",
     label: "",
-    userId: "",
+    userid: "",
+    start: 5,
   });
   //? HANDLE API PROVINCE
-  const fetchALLProvince = async () => {
-    const response = await GetALLProvince();
-    setProvince(response);
-  };
-  const fetchDistrictWithProvinceCode = async () => {
-    const response = await GetAllDistrictWithProvinceCode(provinceCode);
-    setDistrict(response);
-  };
-  const fetchAllWardWithDistrictCode = () => {
-    GetAllWardWithDistrictCode(districtCode).then((item) => setWard(item));
-  };
   useEffect(() => {
+    const fetchALLProvince = async () => {
+      const response = await GetALLProvince();
+      setProvince(response);
+    };
     fetchALLProvince();
   }, []);
 
   useEffect(() => {
-    setDistrict([]);
-    if (provinceCode === undefined) return;
+    const fetchDistrictWithProvinceCode = async () => {
+      if (provinceCode) {
+        const response = await GetAllDistrictWithProvinceCode(provinceCode);
+        setDistrict(response);
+      }
+    };
     fetchDistrictWithProvinceCode();
   }, [provinceCode]);
 
   useEffect(() => {
-    setWard([]);
-    if (districtCode === undefined) return;
+    const fetchAllWardWithDistrictCode = () => {
+      if (districtCode) {
+        GetAllWardWithDistrictCode(districtCode).then((item) => setWard(item));
+      }
+    };
     fetchAllWardWithDistrictCode();
   }, [districtCode]);
 
   //? HANDLE CREATE POST
+  const { mutate, isLoading, isSuccess } = useMutationCreatePost(payLoad);
+  // API CALLS
+
   const handleCreatePost = async () => {
-    if (!numberHouse || !ward || !district || !province)
-      return Swal.fire("Oop !", `Vui lòng nhập "Địa chỉ chính xác"`, "error");
+    if (!numberHouse || !ward || !district || !province) {
+      Swal.fire("Oop!", 'Vui lòng nhập "Địa chỉ chính xác"', "error");
+      return;
+    }
     const missingField = Object.keys(requiredFieldsCreatePost).find(
       (field) => !payLoad[field]
     );
     if (missingField) {
-      return Swal.fire(
+      Swal.fire(
         "Oop!",
         `Vui lòng nhập "${requiredFieldsCreatePost[missingField]}"`,
         "error"
       );
+      return;
     }
-
-    let userId = dataUser?.id;
-    let type = payLoad.type || dataCategories[0]?.code;
+    const userId = dataUser?.id;
+    const type =
+      payLoad.type || (dataCategories.length > 0 && dataCategories[0]?.code);
     const priceCodeArr = getCodesPrice(+payLoad.priceNumber, dataPrices, 1, 15);
     const priceCode = priceCodeArr[0]?.code;
     const areaCodeArr = getCodesArea(+payLoad.areaNumber, dataAreas, 0, 90);
     const areaCode = areaCodeArr[0]?.code;
+
     const wardItem = ward.find((item) => item.code === wardCode);
     const districtItem = district.find((item) => item.code === districtCode);
     const provinceItem = province.find((item) => item.code === provinceCode);
@@ -132,28 +130,36 @@ function AdminCreatePost() {
       .filter(Boolean)
       .join(",");
 
-    const foundCategoryItem = dataCategories.find((item) => item.code === type);
+    const foundCategoryItem =
+      dataCategories.find((item) => item.code === type) ??
+      (dataCategories.length > 0 && dataCategories[0]);
+
     const categoryCode = foundCategoryItem?.code;
     const target = payLoad.target || "Nam";
-    const label = `${foundCategoryItem.value}${payLoad.address?.split(",")[1]}`;
-    const provincePayload = provinceItem?.name_with_type || "";
+    const label = `${foundCategoryItem?.value}${
+      payLoad.address?.split(",")[1]
+    }`;
 
-    setPayload({
-      target,
+    const provincePayload = provinceItem?.name_with_type || "";
+    const onPayLoad: InputCreatePost = {
+      target: target,
       type: type,
       label: label,
-      userId,
-      address,
-      priceCode,
-      areaCode,
-      categoryCode,
+      userid: userId,
+      address: address,
+      priceCode: priceCode,
+      areaCode: areaCode,
+      categoryCode: categoryCode,
       areaNumber: payLoad.areaNumber,
       priceNumber: payLoad.priceNumber,
       title: payLoad.title,
       province: provincePayload,
       description: payLoad.description,
-      images: "",
-    });
+      start: 5,
+      images: ["c"],
+    };
+    setPayload(onPayLoad);
+    mutate(onPayLoad);
   };
 
   const handleDeteleImg = (item: any) => {};
@@ -825,31 +831,7 @@ function AdminCreatePost() {
                 borderColor: "#ffeeba",
               }}
             >
-              <div className="card-body">
-                <h4 className="card-title">Lưu ý khi đăng tin</h4>
-                <ul>
-                  <li style={{ listStyleType: "square", marginLeft: "15px" }}>
-                    Nội dung phải viết bằng tiếng Việt có dấu
-                  </li>
-                  <li style={{ listStyleType: "square", marginLeft: "15px" }}>
-                    Tiêu đề tin không dài quá 100 kí tự
-                  </li>
-                  <li style={{ listStyleType: "square", marginLeft: "15px" }}>
-                    Các bạn nên điền đầy đủ thông tin vào các mục để tin đăng có
-                    hiệu quả hơn.
-                  </li>
-                  <li style={{ listStyleType: "square", marginLeft: "15px" }}>
-                    Để tăng độ tin cậy và tin rao được nhiều người quan tâm hơn,
-                    hãy sửa vị trí tin rao của bạn trên bản đồ bằng cách kéo
-                    icon tới đúng vị trí của tin rao.
-                  </li>
-                  <li style={{ listStyleType: "square", marginLeft: "15px" }}>
-                    Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều
-                    lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao
-                    dịch nhanh chóng!
-                  </li>
-                </ul>
-              </div>
+              <Note />
             </div>
           </div>
         </div>

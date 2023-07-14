@@ -13,38 +13,38 @@ function AdminNav() {
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item d-none d-md-block">
-            <Link className="nav-link" target="_blank" href="/rental-apartment">
+            <Link className="nav-link" target="_blank" href="rental-apartment">
               Cho thuê căn hộ
             </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <Link className="nav-link" target="_blank" href="/rental-house">
+            <Link className="nav-link" target="_blank" href="rental-house">
               Nhà cho thuê
             </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <Link className="nav-link" target="_blank" href="/rental-motel">
+            <Link className="nav-link" target="_blank" href="rental-motel">
               Cho thuê phòng trọ
             </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <Link className="nav-link" target="_blank" href="/rental-ground">
+            <Link className="nav-link" target="_blank" href="rental-ground">
               Cho thuê mặt bằng
             </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <Link className="nav-link" target="_blank" href="/roommate">
+            <Link className="nav-link" target="_blank" href="roommate">
               Tìm người Ở ghép
             </Link>
           </li>
 
           <li className="nav-item d-none d-md-block">
-            <Link className="nav-link" target="_blank" href="/blog">
+            <Link className="nav-link" target="_blank" href="blog">
               Blog
             </Link>
           </li>
           <li className="nav-item d-none d-md-block">
-            <Link className="nav-link" target="_blank" href="/user-manal">
+            <Link className="nav-link" target="_blank" href="user-manal">
               Hướng dẫn
             </Link>
           </li>

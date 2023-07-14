@@ -2,6 +2,7 @@
 import "../styles/globals.css";
 import "../styles/style.css";
 import "../styles/system.css";
+
 // LIBRARY
 import React, { ReactNode } from "react";
 import { AppProps } from "next/app";

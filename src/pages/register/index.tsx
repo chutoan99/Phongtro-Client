@@ -5,9 +5,10 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { GraphQLClient } from "graphql-request";
 import { useQueryClient } from "react-query";
+//  ARGUMENTS
+import InputRegister from "../../graphql/arguments/register.args";
 // APP
-const registerFilePath = require("../../graphql/mutation/register.graphql");
-import InputRegister from "../../graphql/arguments/input_register.args";
+const registerFilePath = require("../../graphql/mutations/register.graphql");
 import AuthLayout from "../../layouts/auth.layout";
 
 export default function RegisterPage() {

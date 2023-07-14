@@ -1,7 +1,7 @@
 function User({ data }) {
   return (
     <>
-      {data?.map((item, index) => (
+      {data?.map((item, index: number) => (
         <div
           className="w-full bg-[#febb02] rounded-[10px] p-[15px] grid gap-[10px]"
           key={index}

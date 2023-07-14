@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { queryNewPosts } from "../services/post/post.service";
-import InputNewPost from "../graphql/arguments/input_new_post.args";
+import { queryNewPosts } from "../services/post/index.service";
+import InputNewPost from "../graphql/arguments/new_post.args";
 
 export const useQueryNewPosts = (payloadNewPost: InputNewPost) => {
   const queryKey = ["NewPosts"];

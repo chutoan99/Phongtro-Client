@@ -2,15 +2,27 @@
 import moment from "moment";
 import Link from "next/link";
 import { useState } from "react";
+// HOOKS
 import useTokenValidation from "../../hooks/useTokenValidation.hook";
-import InforLocal from "../../models/InforLocal";
 import { useQueryPostsOfUser } from "../../hooks/useQueryPostsOfUser";
+// APPS
+import InfoLocal from "../../models/infoLocal";
+import { useMutationDeletePost } from "../../hooks/useMutationDeletePost";
 
 function AdminManagerPost() {
-  const dataLocal: InforLocal = useTokenValidation();
+  const dataLocal: InfoLocal = useTokenValidation();
   const [isShowDropDown1, setIsShowDropDown1] = useState(false);
   const [isShowDropDown2, setIsShowDropDown2] = useState(false);
-  const { data: dataUser, isLoading } = useQueryPostsOfUser(dataLocal?.id);
+  const [postId, setPostId] = useState();
+  const { data: dataPosts, isLoading } = useQueryPostsOfUser(dataLocal?.id);
+
+  const { mutate } = useMutationDeletePost(postId);
+  const onDeletePOst = (item: any) => {
+    console.log(item, "item");
+    setPostId(item.id);
+    mutate(postId);
+  };
+
   const checkStatus = (dateTime) =>
     moment(dateTime, "DD/MM/YYYY").isSameOrAfter(new Date().toDateString());
   return (
@@ -23,7 +35,7 @@ function AdminManagerPost() {
         >
           <div className="dropdown mr-1">
             <button
-              className="btn btn-outline-secondary dropdown-toggle btn-sm"
+              className="btn-custom  btn btn-outline-secondary dropdown-toggle btn-sm "
               type="button"
               id="dropdownMenuButton"
               data-toggle="dropdown"
@@ -40,19 +52,19 @@ function AdminManagerPost() {
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
               >
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin Hot
                 </Link>
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin VIP 30
                 </Link>
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin VIP 20
                 </Link>
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin VIP 10
                 </Link>
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin thường
                 </Link>
               </div>
@@ -60,7 +72,7 @@ function AdminManagerPost() {
           </div>
           <div className="dropdown mr-1">
             <button
-              className="btn btn-outline-secondary dropdown-toggle btn-sm"
+              className="btn-custom btn btn-outline-secondary dropdown-toggle btn-sm"
               type="button"
               id="dropdownMenuButton"
               data-toggle="dropdown"
@@ -77,13 +89,13 @@ function AdminManagerPost() {
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
               >
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin đang hiển thị
                 </Link>
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin hết hạn
                 </Link>
-                <Link className="dropdown-item" href="">
+                <Link className="dropdown-item" href="#">
                   Tin đang ẩn
                 </Link>
               </div>
@@ -93,6 +105,7 @@ function AdminManagerPost() {
             className="btn btn-danger btn-sm d-none d-md d-flex align-items-center"
             href="/admin/create"
             style={{
+              height: "27px",
               color: "#fff",
               backgroundColor: "#dc3545",
               borderColor: "#dc3545",
@@ -102,6 +115,7 @@ function AdminManagerPost() {
           </Link>
         </div>
       </div>
+
       <div className="d-none d-md-block">
         <div className="table-responsive">
           <table className="table table_post_listing table-bordered _table-hover">
@@ -120,119 +134,170 @@ function AdminManagerPost() {
             </thead>
             {!isLoading ? (
               <tbody>
-                <tr>
-                  <td>{dataUser?.overviews?.code}</td>
-                  <td>
-                    <div className="post_thumb">
-                      <Link href="#" target="_blank">
-                        <img
-                          src={dataUser?.listImage?.postImg}
-                          alt={dataUser?.title}
-                        />
-                      </Link>
-                    </div>
-                  </td>
-                  <td>
-                    {dataUser?.categoryCode === "NCT" && (
-                      <span className="badge badge-pill badge-primary ">
-                        Nhà cho thuê
-                      </span>
-                    )}
+                {dataPosts.post.map((item: any, index: number) => (
+                  <tr key={index}>
+                    <td
+                      style={{
+                        textAlign: "center",
+                      }}
+                    >
+                      {item?.overviews?.code}
+                    </td>
+                    <td>
+                      <div className="post_thumb">
+                        <Link href="#" target="_blank">
+                          <img
+                            src={item?.listImage?.postImg}
+                            alt={item?.title}
+                          />
+                        </Link>
+                      </div>
+                    </td>
+                    <td>
+                      {item?.categoryCode === "NCT" && (
+                        <span className="badge badge-pill badge-primary ">
+                          Nhà cho thuê
+                        </span>
+                      )}
 
-                    <Link className="post_title" target="_blank" href="#">
-                      {dataUser?.title}
-                    </Link>
-                    <p style={{ marginTop: "10px" }}>
-                      <strong>Địa chỉ:</strong> {dataUser?.address}
-                    </p>
-                    <div className="post_btn_toolbar mt-3">
-                      <Link
-                        href=""
-                        className="btn btn-sm btn_danglai text-danger btn-warning"
+                      <Link className="post_title" target="_blank" href="#">
+                        {item?.title}
+                      </Link>
+                      <p style={{ marginTop: "10px" }}>
+                        <strong>Địa chỉ:</strong> {item?.address}
+                      </p>
+                      <div className="post_btn_toolbar mt-3 ">
+                        <Link
+                          href="#"
+                          className="btn btn-sm btn_danglai text-danger btn-warning disabled-button"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="feather feather-credit-card"
+                          >
+                            <rect
+                              x="1"
+                              y="4"
+                              width="22"
+                              height="16"
+                              rx="2"
+                              ry="2"
+                            ></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                          </svg>
+                          Thanh toán tin
+                        </Link>
+                        <button className="btn btn-sm">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="feather feather-edit-2"
+                          >
+                            <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
+                          </svg>
+                          Sửa tin
+                        </button>
+                        <button
+                          className="btn btn-sm"
+                          onClick={() => onDeletePOst(item)}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            className="feather feather-eye-off"
+                          >
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                          </svg>{" "}
+                          Ẩn tin
+                        </button>
+                      </div>
+                      <span
+                        style={{
+                          display: "block",
+                          color: "#333",
+                          marginTop: "10px",
+                        }}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="feather feather-credit-card"
-                        >
-                          <rect
-                            x="1"
-                            y="4"
-                            width="22"
-                            height="16"
-                            rx="2"
-                            ry="2"
-                          ></rect>
-                          <line x1="1" y1="10" x2="23" y2="10"></line>
-                        </svg>{" "}
-                        Thanh toán tin
-                      </Link>
-                      <Link href="#" className="btn btn-sm">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="feather feather-edit-2"
-                        >
-                          <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
-                        </svg>{" "}
-                        Sửa tin
-                      </Link>
-                    </div>
-                    <span
+                        <em>Lượt hiển thị: 0</em>
+                      </span>
+                      <span
+                        style={{
+                          display: "block",
+                          color: "#999",
+                          marginTop: "10px",
+                        }}
+                      >
+                        Cập nhật gần nhất: {item?.attributes?.published}
+                      </span>
+                    </td>
+                    <td
                       style={{
-                        display: "block",
-                        color: "#333",
-                        marginTop: "10px",
+                        textAlign: "center",
                       }}
                     >
-                      <em>Lượt hiển thị: 0</em>
-                    </span>
-                    <span
+                      <div className="post_price">
+                        {item?.attributes?.price}
+                      </div>
+                    </td>
+                    <td
                       style={{
-                        display: "block",
-                        color: "#999",
-                        marginTop: "10px",
+                        textAlign: "center",
                       }}
                     >
-                      Cập nhật gần nhất: {dataUser?.attributes?.published}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="post_price">
-                      {dataUser?.attributes?.price}
-                    </div>
-                  </td>
-                  <td>{dataUser?.overviews?.created}</td>
-                  <td>{dataUser?.overviews?.expired}</td>
-                  <td>
-                    <span
-                      className="text text-warning"
-                      style={{ whiteSpace: "nowrap" }}
+                      {item?.overviews?.created}
+                    </td>
+                    <td
+                      style={{
+                        textAlign: "center",
+                      }}
                     >
-                      Chưa thanh toán
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Bạn chưa có tin đăng nào. Bấm<Link href="#">vào đây</Link>
-                    để bắt đầu đăng tin
-                  </td>
-                </tr>
+                      {item?.overviews?.expired}
+                    </td>
+                    <td
+                      style={{
+                        textAlign: "center",
+                      }}
+                    >
+                      <span
+                        className="text text-warning"
+                        style={{ whiteSpace: "nowrap" }}
+                      >
+                        Chưa thanh toán
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+                {dataPosts.post.length === 0 && (
+                  <tr>
+                    <td>
+                      Bạn chưa có tin đăng nào. Bấm<Link href="#">vào đây</Link>
+                      để bắt đầu đăng tin
+                    </td>
+                  </tr>
+                )}
               </tbody>
             ) : (
               <span className="loader"></span>

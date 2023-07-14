@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { queryPostId } from "../services/post/post.service";
+import { queryPostId } from "../services/post/index.service";
 
 export const useQueryPostId = (postId: any) => {
   const queryKey = ["PostId", postId];
@@ -8,7 +8,6 @@ export const useQueryPostId = (postId: any) => {
     const responseData = await queryPostId(postId);
     return responseData;
   };
-
   const queryResult = useQuery(queryKey, queryFn);
 
   return { ...queryResult };

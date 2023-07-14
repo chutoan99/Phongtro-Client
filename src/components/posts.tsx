@@ -1,9 +1,9 @@
 // LIBRARY
 import Link from "next/link";
 // APP
-import { PostModel } from "../services/post/post.model";
 import { renderStart } from "../utils/Commom/renderStart";
 import { useRouter } from "next/router";
+import { PostModel } from "../models/post.model";
 
 function Post({ data }) {
   const router = useRouter();
@@ -18,7 +18,10 @@ function Post({ data }) {
           style={{ borderColor: "#311f1e" }}
         >
           <figure className="post-thumb">
-            <Link href={`${routeSegment}/${item?.id}`} className="clearfix">
+            <Link
+              href={`${routeSegment}/${item?.id}` || ""}
+              className="clearfix"
+            >
               <img
                 className="lazy_done"
                 src={item?.listImage?.postImg}
@@ -40,20 +43,20 @@ function Post({ data }) {
           </figure>
           <div className="post-meta">
             <h3 className="post-title">
-              <a style={{ color: "#E13427" }} href="">
+              <Link style={{ color: "#E13427" }} href="#">
                 {renderStart(item?.start).length > 0 &&
                   renderStart(item?.start).map((start, index) => {
                     return <span key={index}>{start}</span>;
                   })}
                 {item?.title}
-              </a>
+              </Link>
             </h3>
 
             <div className="meta-row clearfix">
               <span className="post-price">{item?.attributes?.price}</span>
               <span className="post-acreage">{item?.attributes?.acreage}</span>
               <span className="post-location">
-                <a href="" title={item?.title}>
+                <Link href="#" title={item?.title}>
                   {`${
                     item?.address.split(",")[
                       item?.address.split(",").length - 2
@@ -63,7 +66,7 @@ function Post({ data }) {
                       item?.address.split(",").length - 1
                     ]
                   }`}
-                </a>
+                </Link>
               </span>
               <time className="post-time" title="Thứ 3, 09:27 21/02/2023">
                 {item?.attributes.published}
@@ -77,14 +80,14 @@ function Post({ data }) {
                 <img src={item?.user?.avatar} alt="avatar" />
                 <span className="author-name">{item.user?.name}</span>
               </div>
-              <a
+              <Link
                 rel="nofollow"
                 target="_blank"
                 href={`https://zalo.me/${item?.user?.zalo}`}
                 className="btn-quick-zalo"
               >
                 Nhắn Zalo: {item?.user?.zalo}
-              </a>
+              </Link>
               <a
                 rel="nofollow"
                 target="_blank"

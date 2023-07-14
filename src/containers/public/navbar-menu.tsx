@@ -1,17 +1,16 @@
 // LIBRARY
 import Link from "next/link";
-import { useQueryClient } from "react-query";
-import { CategoryModel } from "../../services/category/category.model";
 import { useRouter } from "next/router";
+// HOOKS
 import { useQueryCategories } from "../../hooks/useQueryCategories";
-
+import { CategoryModel } from "../../models/category.model";
 // APP
 
 const NavBarMenu = () => {
   const router = useRouter();
   const { pathname } = router;
   const routeSegment = pathname.split("/")[1];
-  const { data: dataCategories, isLoading } = useQueryCategories("Category");
+  const { data: dataCategories, isLoading } = useQueryCategories();
 
   return (
     <nav id="navbar-menu" className="">

@@ -1,24 +1,14 @@
 // LIBRARY
 import Link from "next/link";
 import { useQuery, useQueryClient } from "react-query";
-import { useState, useMemo, useEffect } from "react";
+import { useState } from "react";
+//  ARGUMENTS
+import { InputPost } from "../../graphql/arguments/post.args";
 // APP
-import { Search } from "./index";
-import { Support, WhyUs } from "./index";
+import { Post } from "../../components";
 import { locationCity } from "../../utils/constant";
-import InputPost from "../../graphql/arguments/input_post.args";
-import { useQueryPosts } from "../../hooks/useQueryPost";
-import { queryPosts } from "../../services/post/post.service";
-import {
-  Pagination,
-  Post,
-  AsideDirectoryRental,
-  AsidePrice,
-  AsideAcreage,
-  AsideNewPost,
-  AsideNewNews,
-  AsideSubLink,
-} from "../../components/index";
+import { Support, WhyUs, Pagination, Aside, Search } from "./index";
+import { queryPosts } from "../../services/post/index.service";
 
 interface NavBar {
   categoryCode: string;
@@ -46,12 +36,11 @@ const Container = ({ categoryCode }: NavBar) => {
     return responseData;
   };
   const { data, isLoading, isFetching } = useQuery(queryKey, queryFn);
-  const {} = useQueryPosts(payload);
 
   const TOTAl_PAGE = 30;
   // useMemo(() => Math.ceil(+data?.length / +payload.pageSize), [data]);
+
   const onSearch = () => {
-    queryClient.invalidateQueries(queryKey);
     queryClient.refetchQueries(queryKey);
   };
   return (
@@ -77,17 +66,16 @@ const Container = ({ categoryCode }: NavBar) => {
             </div>
             <div className="post-sort">
               <span>Sắp xếp: </span>
-              <Link className="active" href="#">
+              <Link className="active " href="#">
                 Mặc định
               </Link>
-              <Link className="" href="#">
+              <Link className="disabled-button" href="#">
                 Mới nhất
               </Link>
-              <Link className="" href="#">
+              <Link className="disabled-button" href="#">
                 Có video
               </Link>
             </div>
-
             <ul className="post-listing clearfix">
               {isLoading ? (
                 <span className="loader"></span>
@@ -100,14 +88,7 @@ const Container = ({ categoryCode }: NavBar) => {
             <Pagination setPageNumber={setPayload} totalPage={TOTAl_PAGE} />
           </div>
         </div>
-        <div id="aside">
-          <AsideDirectoryRental />
-          <AsidePrice />
-          <AsideAcreage />
-          <AsideNewPost />
-          <AsideNewNews />
-          <AsideSubLink />
-        </div>
+        <Aside />
       </div>
       <WhyUs />
       <Support />

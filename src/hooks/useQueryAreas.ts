@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { queryAreas } from "../services/area/area.service";
+import { queryAreas } from "../services/area/index.service";
 
 export const useQueryAreas = () => {
   const queryKey = ["Areas"];

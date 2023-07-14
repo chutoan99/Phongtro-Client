@@ -3,15 +3,15 @@ import Link from "next/link";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
+// HOOKS
+import { useQueryUserId } from "../../hooks/useQueryUserId";
+import useTokenValidation from "../../hooks/useTokenValidation.hook";
 // APP
 import menuManage from "../../utils/menuManage";
-import useTokenValidation from "../../hooks/useTokenValidation.hook";
-import InforLocal from "../../models/InforLocal";
-import { useQueryUserId } from "../../hooks/useQueryUserId";
-import { UserModel } from "../../services/user/user.model";
+import InfoLocal from "../../models/infoLocal";
 
 const Header: NextPage = () => {
-  const dataLocal: InforLocal = useTokenValidation();
+  const dataLocal: InfoLocal = useTokenValidation();
   const isLogin = dataLocal.isLogin;
   const Router = useRouter();
   const [isDropDown, setIsDropDown] = useState(false);
@@ -129,7 +129,11 @@ const Header: NextPage = () => {
           </div>
         )}
         {isLogin && (
-          <Link className="btn btn-add-post" href="/admin">
+          <Link
+            className="btn btn-add-post"
+            href="/admin"
+            style={{ height: "40px" }}
+          >
             Đăng tin mới <i></i>
           </Link>
         )}

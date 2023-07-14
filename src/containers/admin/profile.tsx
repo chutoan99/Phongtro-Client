@@ -1,14 +1,15 @@
 // LIBRARY
-// APP
 import Link from "next/link";
-import useTokenValidation from "../../hooks/useTokenValidation.hook";
-import InforLocal from "../../models/InforLocal";
-import { useQueryUserId } from "../../hooks/useQueryUserId";
 import { useState } from "react";
+// HOOKS
+import { useQueryUserId } from "../../hooks/useQueryUserId";
+import useTokenValidation from "../../hooks/useTokenValidation.hook";
+// APP
+import InfoLocal from "../../models/infoLocal";
 
 function AdminProfile() {
-  const dataLocal: InforLocal = useTokenValidation();
-  const { data, isLoading } = useQueryUserId("User", dataLocal?.id);
+  const dataLocal: InfoLocal = useTokenValidation();
+  const { data, isLoading } = useQueryUserId(dataLocal?.id);
   const [dataUser, setDataUser] = useState(data);
   const handeSubmit = (e: any) => {
     e.preventdefault();
@@ -62,12 +63,12 @@ function AdminProfile() {
                   }
                 />
                 <div className="form-text text-muted">
-                  <a
+                  <Link
                     style={{ display: "inline-block", marginTop: "5px" }}
-                    href=""
+                    href="/"
                   >
                     Đổi số điện thoại
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -163,9 +164,9 @@ function AdminProfile() {
                 Mật khẩu
               </label>
               <div className="col-md-6">
-                <a className="" href="">
+                <link className="" href="">
                   Đổi mật khẩu
-                </a>
+                </link>
               </div>
             </div>
 

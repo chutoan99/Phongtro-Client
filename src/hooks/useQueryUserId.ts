@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { queryUserId } from "../services/user/user.service";
+import { queryUserId } from "../services/user/index.service";
 
 export const useQueryUserId = (userid: any) => {
   const queryKey = ["UserId", userid];

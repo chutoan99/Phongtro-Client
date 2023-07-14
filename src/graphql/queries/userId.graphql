@@ -1,5 +1,5 @@
 query Query($userId: ID!) {
-  userId(id: $userId) {
+  userId(userId: $userId) {
     err
     msg
     response {

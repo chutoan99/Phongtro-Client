@@ -1,5 +1,5 @@
 query ($postId: ID!) {
-  postId(id: $postId) {
+  postId(postId: $postId) {
     err
     msg
     response {

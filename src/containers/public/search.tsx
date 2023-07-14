@@ -2,18 +2,18 @@
 import querystring from "querystring";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-// APP
+// HOOKS
 import { useQueryPrices } from "../../hooks/useQueryPrices";
 import { useQueryAreas } from "../../hooks/useQueryAreas";
 import { useQueryCategories } from "../../hooks/useQueryCategories";
 import { useQueryProvinces } from "../../hooks/useQueryProvinces";
+// APP
 import {
   ModalCategory,
   ModalProvince,
   ModalPrice,
   ModalArea,
-} from "../../components/index";
-import { useQueryPosts } from "../../hooks/useQueryPost";
+} from "../../components";
 
 function Search({ setPayload, onSearch }) {
   const router = useRouter();

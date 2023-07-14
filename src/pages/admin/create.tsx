@@ -1,13 +1,17 @@
 // LIBRARY
 import Link from "next/link";
 //APP
-import { Support } from "../../containers/public/index";
-import { CreatePost } from "../../containers/admin/index";
+import { Support } from "../../containers/public";
+import { CreatePost } from "../../containers/admin";
 import AdminLayout from "../../layouts/admin.layout";
 
 export default function CreatePage() {
   return (
-    <main role="main" className="ml-sm-auto col-lg-10">
+    <main
+      role="main"
+      className="ml-sm-auto col-lg-10"
+      style={{ background: "white" }}
+    >
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">

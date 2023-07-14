@@ -1,13 +1,13 @@
-// LIBRARY
-import { useQueryClient } from "react-query";
 // APP
-import { Aside, Nav } from "../containers/admin/index";
+// HOOKS
 import { useQueryUserId } from "../hooks/useQueryUserId";
-import InforLocal from "../models/InforLocal";
 import useTokenValidation from "../hooks/useTokenValidation.hook";
+// APP
+import { Aside, Nav } from "../containers/admin";
+import InfoLocal from "../models/infoLocal";
 
 export default function AdminLayout({ children }) {
-  const dataUser: InforLocal = useTokenValidation();
+  const dataUser: InfoLocal = useTokenValidation();
   const { data, isLoading, isFetching } = useQueryUserId(dataUser?.id);
 
   return (

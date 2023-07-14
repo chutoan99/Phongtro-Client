@@ -1,0 +1,603 @@
+<main role="main" class="ml-sm-auto col-lg-10">
+
+            <div class="user_quick_info js-mobile-user-quick-info">
+                <p style="margin-top: 0; margin-bottom: 5px;">Xin chào <strong>Trương Văn Chu Toàn</strong>. Mã tài khoản: <strong>123004</strong></p>
+                <p style="margin-bottom: 0;">Số dư TK của bạn là: <strong>0</strong></p>
+            </div>
+            				
+				
+    
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="https://phongtro123.com">Phongtro123.com</a></li>
+            <li class="breadcrumb-item"><a href="https://phongtro123.com/quan-ly/index.html">Quản lý</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sửa tin đăng</li>
+        </ol>
+    </nav>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-5 border-bottom">
+        <h1 class="h1">Sửa tin đăng <span>(Mã tin: 630382)</span></h1>
+    </div>
+
+    <form class="form-horizontal js-form-submit-data js-frm-manage-post" id="form_dangtin" data-action-url="https://phongtro123.com/api/post/create" novalidate="novalidate">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Địa chỉ cho thuê</h3>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="province_id" class="col-form-label">Tỉnh/Thành phố</label>
+                            <select id="province_id" name="province_id" class="form-control js-select-tinhthanhpho select2-hidden-accessible" required="" data-msg-required="Chưa chọn Tỉnh/TP" tabindex="-1" aria-hidden="true">
+                                <option value="">-- Chọn Tỉnh/TP --</option>
+                                                                <option value="90" selected="&quot;selected&quot;">Hồ Chí Minh</option>
+                                                                <option value="41">Hà Nội</option>
+                                                                <option value="72">Đà Nẵng</option>
+                                                                <option value="87">Bình Dương</option>
+                                                                <option value="88">Đồng Nai</option>
+                                                                <option value="89">Bà Rịa - Vũng Tàu</option>
+                                                                <option value="99">Cần Thơ</option>
+                                                                <option value="77">Khánh Hòa</option>
+                                                                <option value="60">Hải Phòng</option>
+                                                                <option value="97">An Giang</option>
+                                                                <option value="55">Bắc Giang</option>
+                                                                <option value="44">Bắc Kạn</option>
+                                                                <option value="102">Bạc Liêu</option>
+                                                                <option value="58">Bắc Ninh</option>
+                                                                <option value="93">Bến Tre</option>
+                                                                <option value="85">Bình Phước</option>
+                                                                <option value="79">Bình Thuận</option>
+                                                                <option value="75">Bình Định</option>
+                                                                <option value="103">Cà Mau</option>
+                                                                <option value="43">Cao Bằng</option>
+                                                                <option value="81">Gia Lai</option>
+                                                                <option value="42">Hà Giang</option>
+                                                                <option value="63">Hà Nam</option>
+                                                                <option value="68">Hà Tĩnh</option>
+                                                                <option value="59">Hải Dương</option>
+                                                                <option value="100">Hậu Giang</option>
+                                                                <option value="51">Hòa Bình</option>
+                                                                <option value="61">Hưng Yên</option>
+                                                                <option value="98">Kiên Giang</option>
+                                                                <option value="80">Kon Tum</option>
+                                                                <option value="48">Lai Châu</option>
+                                                                <option value="84">Lâm Đồng</option>
+                                                                <option value="53">Lạng Sơn</option>
+                                                                <option value="46">Lào Cai</option>
+                                                                <option value="91">Long An</option>
+                                                                <option value="64">Nam Định</option>
+                                                                <option value="67">Nghệ An</option>
+                                                                <option value="65">Ninh Bình</option>
+                                                                <option value="78">Ninh Thuận</option>
+                                                                <option value="56">Phú Thọ</option>
+                                                                <option value="76">Phú Yên</option>
+                                                                <option value="69">Quảng Bình</option>
+                                                                <option value="73">Quảng Nam</option>
+                                                                <option value="74">Quảng Ngãi</option>
+                                                                <option value="54">Quảng Ninh</option>
+                                                                <option value="70">Quảng Trị</option>
+                                                                <option value="101">Sóc Trăng</option>
+                                                                <option value="49">Sơn La</option>
+                                                                <option value="86">Tây Ninh</option>
+                                                                <option value="62">Thái Bình</option>
+                                                                <option value="52">Thái Nguyên</option>
+                                                                <option value="66">Thanh Hóa</option>
+                                                                <option value="71">Thừa Thiên Huế</option>
+                                                                <option value="92">Tiền Giang</option>
+                                                                <option value="94">Trà Vinh</option>
+                                                                <option value="45">Tuyên Quang</option>
+                                                                <option value="95">Vĩnh Long</option>
+                                                                <option value="57">Vĩnh Phúc</option>
+                                                                <option value="50">Yên Bái</option>
+                                                                <option value="82">Đắk Lắk</option>
+                                                                <option value="83">Đắk Nông</option>
+                                                                <option value="47">Điện Biên</option>
+                                                                <option value="96">Đồng Tháp</option>
+                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 148.359px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-province_id-container"><span class="select2-selection__rendered" id="select2-province_id-container" title="Hồ Chí Minh">Hồ Chí Minh</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="col-form-label" for="district_id">Quận/Huyện</label>
+                            <select name="district_id" id="district_id" class="form-control js-select-quanhuyen select2-hidden-accessible" required="" data-msg-required="Chưa chọn Quận/Huyện" tabindex="-1" aria-hidden="true">
+                                <option value="">chọn quận huyện</option>
+                                                                <option value="619">Quận 1</option>
+                                                                <option value="628">Quận 2</option>
+                                                                <option value="629">Quận 3</option>
+                                                                <option value="632">Quận 4</option>
+                                                                <option value="633">Quận 5</option>
+                                                                <option value="634">Quận 6</option>
+                                                                <option value="637">Quận 7</option>
+                                                                <option value="635">Quận 8</option>
+                                                                <option value="622">Quận 9</option>
+                                                                <option value="630">Quận 10</option>
+                                                                <option value="631">Quận 11</option>
+                                                                <option value="620">Quận 12</option>
+                                                                <option value="624" selected="&quot;selected&quot;">Quận Bình Thạnh</option>
+                                                                <option value="636">Quận Bình Tân</option>
+                                                                <option value="623">Quận Gò Vấp</option>
+                                                                <option value="627">Quận Phú Nhuận</option>
+                                                                <option value="625">Quận Tân Bình</option>
+                                                                <option value="626">Quận Tân Phú</option>
+                                                                <option value="621">Quận Thủ Đức</option>
+                                                                <option value="640">Huyện Bình Chánh</option>
+                                                                <option value="642">Huyện Cần Giờ</option>
+                                                                <option value="638">Huyện Củ Chi</option>
+                                                                <option value="639">Huyện Hóc Môn</option>
+                                                                <option value="641">Huyện Nhà Bè</option>
+                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 148.359px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-district_id-container"><span class="select2-selection__rendered" id="select2-district_id-container" title="Quận Bình Thạnh">Quận Bình Thạnh</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="col-form-label" for="phuongxa">Phường/Xã</label>
+                            <select class="form-control js-select-phuongxa select2-hidden-accessible" name="phuongxa" id="phuongxa" tabindex="-1" aria-hidden="true">
+                                <option value="">chọn phường xã</option>
+                                                                <option value="27">Phường 1</option>
+                                                                <option value="35">Phường 2</option>
+                                                                <option value="43">Phường 3</option>
+                                                                <option value="44">Phường 5</option>
+                                                                <option value="45">Phường 6</option>
+                                                                <option value="46">Phường 7</option>
+                                                                <option value="28">Phường 11</option>
+                                                                <option value="29">Phường 12</option>
+                                                                <option value="30">Phường 13</option>
+                                                                <option value="31">Phường 14</option>
+                                                                <option value="32" selected="&quot;selected&quot;">Phường 15</option>
+                                                                <option value="33">Phường 17</option>
+                                                                <option value="34">Phường 19</option>
+                                                                <option value="36">Phường 21</option>
+                                                                <option value="37">Phường 22</option>
+                                                                <option value="38">Phường 24</option>
+                                                                <option value="39">Phường 25</option>
+                                                                <option value="40">Phường 26</option>
+                                                                <option value="41">Phường 27</option>
+                                                                <option value="42">Phường 28</option>
+                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 148.359px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-phuongxa-container"><span class="select2-selection__rendered" id="select2-phuongxa-container" title="Phường 15">Phường 15</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="col-form-label" for="duong">Đường/Phố</label>
+                            <select class="form-control js-select-duong select2-hidden-accessible" name="duong" id="duong" tabindex="-1" aria-hidden="true">
+                                <option value="">-- Chọn đường phố --</option>
+                                                                <option value="434">Đường số 1</option>
+                                                                <option value="435">Đường số 11</option>
+                                                                <option value="436">Đường số 13</option>
+                                                                <option value="437">Đường số 16</option>
+                                                                <option value="438">Đường số 17</option>
+                                                                <option value="439">Đường số 2</option>
+                                                                <option value="440">Đường số 20</option>
+                                                                <option value="441">Đường số 3</option>
+                                                                <option value="442">Đường số 30</option>
+                                                                <option value="443">Đường số 30/4</option>
+                                                                <option value="444">Đường số 304</option>
+                                                                <option value="445">Đường số 4</option>
+                                                                <option value="446">Đường số 5</option>
+                                                                <option value="447">Đường số 6</option>
+                                                                <option value="448">Đường số 7</option>
+                                                                <option value="449">Đường số 82</option>
+                                                                <option value="450">Đường An Thượng 6</option>
+                                                                <option value="451">Đường Bạch Đằng</option>
+                                                                <option value="452">Đường Bình Hòa</option>
+                                                                <option value="453">Đường Bình Lãnh</option>
+                                                                <option value="454">Đường Bình Lợi</option>
+                                                                <option value="455">Đường Bình Quới</option>
+                                                                <option value="457">Đường Bùi Hữu Nghĩa</option>
+                                                                <option value="456">Đường Bùi Đình Túy</option>
+                                                                <option value="458">Đường Cách Mạng Tháng Tám</option>
+                                                                <option value="459">Đường Cầu Ván</option>
+                                                                <option value="460">Đường Chu Văn An</option>
+                                                                <option value="461">Đường Công Trường Tự Do</option>
+                                                                <option value="462">Đường Cửu Long</option>
+                                                                <option value="463">Đường D1</option>
+                                                                <option value="464">Đường D2</option>
+                                                                <option value="465">Đường D3</option>
+                                                                <option value="466">Đường D5</option>
+                                                                <option value="468">Đường Diên Hồng</option>
+                                                                <option value="474">Đường Dương Vũ Tùng</option>
+                                                                <option value="475">Đường Hàng Xanh</option>
+                                                                <option value="476">Đường Hồ Xuân Hương</option>
+                                                                <option value="477">Đường Hoàng Hoa Thám</option>
+                                                                <option value="478">Đường Hoàng Văn Thụ</option>
+                                                                <option value="479">Đường Hồng Bàng</option>
+                                                                <option value="481">Đường Huỳnh Mẫn Đạt</option>
+                                                                <option value="482">Đường Huỳnh Tịnh Của</option>
+                                                                <option value="480">Đường Huỳnh Đình Hai</option>
+                                                                <option value="483">Đường Lam Sơn</option>
+                                                                <option value="484">Đường Lê Quang Định</option>
+                                                                <option value="485">Đường Lê Trực</option>
+                                                                <option value="18835">Đường Lê Văn Duyệt</option>
+                                                                <option value="486">Đường Lê Văn Sỹ</option>
+                                                                <option value="18858">Đường Lương Ngọc Quyến</option>
+                                                                <option value="487">Phố Lương Sử C</option>
+                                                                <option value="488">Đường Mai Xuân Thưởng</option>
+                                                                <option value="489">Đường Mê Linh</option>
+                                                                <option value="490">Đường Miếu Nổi</option>
+                                                                <option value="492">Đường Ngô Nhơn Tịnh</option>
+                                                                <option value="493">Đường Ngô Tất Tố</option>
+                                                                <option value="491">Đường Ngô Đức Kế</option>
+                                                                <option value="494">Đường Nguyễn An Ninh</option>
+                                                                <option value="495">Đường Nguyễn Bỉnh Khiêm</option>
+                                                                <option value="496">Đường Nguyễn Công Hoan</option>
+                                                                <option value="497">Đường Nguyễn Công Trứ</option>
+                                                                <option value="498">Đường Nguyễn Cư Trinh</option>
+                                                                <option value="499">Đường Nguyễn Cửu Vân</option>
+                                                                <option value="500">Đường Nguyễn Duy</option>
+                                                                <option value="18879">Đường Nguyễn Gia Trí</option>
+                                                                <option value="501">Đường Nguyễn Hành</option>
+                                                                <option value="502">Đường Nguyên Hồng</option>
+                                                                <option value="503">Đường Nguyễn Hữu Cảnh</option>
+                                                                <option value="504">Đường Nguyễn Hữu Cầu</option>
+                                                                <option value="505">Đường Nguyễn Hữu Thoại</option>
+                                                                <option value="506">Đường Nguyễn Huy Lượng</option>
+                                                                <option value="507">Đường Nguyễn Huy Tưởng</option>
+                                                                <option value="508">Đường Nguyễn Khuyến</option>
+                                                                <option value="509">Đường Nguyễn Lâm</option>
+                                                                <option value="510">Đường Nguyễn Ngọc Phương</option>
+                                                                <option value="511">Đường Nguyễn Thái Học</option>
+                                                                <option value="512">Đường Nguyễn Thị Minh Khai</option>
+                                                                <option value="513">Phố Nguyễn Thiện Thuật</option>
+                                                                <option value="514">Đường Nguyễn Thượng Hiền</option>
+                                                                <option value="515">Đường Nguyễn Trung Trực</option>
+                                                                <option value="517">Đường Nguyễn Văn Lạc</option>
+                                                                <option value="18626">Đường Nguyễn Văn Thương</option>
+                                                                <option value="516">Đường Nguyễn Văn Đậu</option>
+                                                                <option value="518">Phố Nguyễn Xí</option>
+                                                                <option value="519">Đường Nguyễn Xuân Ôn</option>
+                                                                <option value="520">Đường Nơ Trang Long</option>
+                                                                <option value="521">Đường Phạm Ngũ Lão</option>
+                                                                <option value="522">Đường Phạm Văn Đồng</option>
+                                                                <option value="523">Đường Phạm Viết Chánh</option>
+                                                                <option value="524">Đường Phan Anh</option>
+                                                                <option value="525">Đường Phan Bội Châu</option>
+                                                                <option value="526">Đường Phan Chu Trinh</option>
+                                                                <option value="528">Đường Phan Huy Ôn</option>
+                                                                <option value="529">Đường Phan Văn Hân</option>
+                                                                <option value="530">Đường Phan Văn Trị</option>
+                                                                <option value="531">Đường Phan Xích Long</option>
+                                                                <option value="527">Phố Phan Đăng Lưu</option>
+                                                                <option value="532">Phố Phó Đức Chính</option>
+                                                                <option value="533">Đường Phú Mỹ</option>
+                                                                <option value="534">Đường Quách Văn Tuấn</option>
+                                                                <option value="535">Đường Quốc Lộ 13</option>
+                                                                <option value="536">Đường Tầm Vu</option>
+                                                                <option value="18750">Đường Tân Cảng</option>
+                                                                <option value="537">Đường Tăng Bạt Hổ</option>
+                                                                <option value="538">Đường Thanh Đa</option>
+                                                                <option value="539">Đường Thích Quảng Đức</option>
+                                                                <option value="540">Đường Tiền Đức</option>
+                                                                <option value="541">Đường Trần Bình Trọng</option>
+                                                                <option value="542">Đường Trần Hưng Đạo</option>
+                                                                <option value="543">Đường Trần Kế Xương</option>
+                                                                <option value="544">Đường Trần Quang Định</option>
+                                                                <option value="545">Đường Trần Quý Cáp</option>
+                                                                <option value="546">Đường Trần Văn Kỷ</option>
+                                                                <option value="18834">Đường Trịnh Hoài Đức</option>
+                                                                <option value="547">Đường Trục</option>
+                                                                <option value="548">Đường Trục 13</option>
+                                                                <option value="549">Đường Trục 20</option>
+                                                                <option value="550">Đường Trục 30</option>
+                                                                <option value="552">Đường Trường Sa</option>
+                                                                <option value="551">Đường Trương Đăng Quế</option>
+                                                                <option value="553">Đường Ung Văn Khiêm</option>
+                                                                <option value="554">Phố Vạn Kiếp</option>
+                                                                <option value="555">Đường Võ Duy Ninh</option>
+                                                                <option value="556">Đường Võ Trường Toản</option>
+                                                                <option value="557">Đường Vũ Huy Tấn</option>
+                                                                <option value="558">Phố Vũ Ngọc Phan</option>
+                                                                <option value="559">Đường Vũ Tùng</option>
+                                                                <option value="560">Đường Xô Viết Nghệ Tĩnh</option>
+                                                                <option value="561">Đường Xuân Hồng</option>
+                                                                <option value="562">Đường Yên Đỗ</option>
+                                                                <option value="18637">Đường Đặng Thuỳ Trâm</option>
+                                                                <option value="467">Đường Điện Biên Phủ</option>
+                                                                <option value="469">Đường Đinh Bộ Lĩnh</option>
+                                                                <option value="471" selected="&quot;selected&quot;">Đường Đinh Tiên Hoàng</option>
+                                                                <option value="470">Đường Đình Đông</option>
+                                                                <option value="472">Đường Đống Đa</option>
+                                                                <option value="473">Đường Đống Đa 1</option>
+                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 148.359px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-duong-container"><span class="select2-selection__rendered" id="select2-duong-container" title="Đường Đinh Tiên Hoàng">Đường Đinh Tiên Hoàng</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="street_number" class="col-form-label">Số nhà</label>
+                            <input type="text" class="form-control js-input-street-number" name="street_number" id="street_number" value="71">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="diachi" class="col-form-label">Địa chỉ chính xác</label>
+                            <input type="text" readonly="" class="form-control" name="dia_chi" id="diachi" required="" data-msg-required="Chưa chọn khu vực đăng tin" value="71 Đường Đinh Tiên Hoàng, Phường 15, Quận Bình Thạnh, Hồ Chí Minh">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-form-label">Bản đồ <span class="red_require">(*)</span></label>
+                            <p>Sửa vị trí tin rao của bạn trên bản đồ bằng cách kéo icon <img src="/images/google-map-pointer.png"> tới đúng vị trí của tin rao.</p>
+                            <div id="maps" style="width:100%; height:300px;">
+                                <iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen="" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;q=71 Đường Đinh Tiên Hoàng, Phường 15, Quận Bình Thạnh, Hồ Chí Minh">
+                                    </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mt-5">
+                    <div class="col-md-12">
+                        <h3>Thông tin mô tả</h3>
+                    </div>
+                </div>
+                <div class="form-group row mt-3">
+                    <label for="post_cat" class="col-md-12 col-form-label">Loại chuyên mục</label>
+                    <div class="col-md-6">
+                        <select class="form-control" disabled="disabled" id="post_cat" name="loai_chuyen_muc" required="" data-msg-required="Chưa chọn loại chuyên mục">
+                            <option value="">-- Chọn loại chuyên mục --</option>
+                            
+                            <option value="1">Phòng trọ, nhà trọ</option>
+                            <option value="2" selected="&quot;selected&quot;">Nhà thuê nguyên căn</option>
+                            <optgroup label="Căn hộ">
+                                <option value="3">Cho thuê căn hộ</option>
+                                <option value="6">Cho thuê căn hộ mini</option>
+                                <option value="7">Cho thuê căn hộ dịch vụ</option>
+                            </optgroup>
+                            <option value="4">Tìm người ở ghép</option>
+                            <option value="5">Cho thuê mặt bằng</option>
+                        </select>
+                                                    <input type="hidden" name="loai_chuyen_muc" value="2">
+                                            </div>
+                </div>
+                <div class="form-group row">
+                    <label for="post_title" class="col-md-12 col-form-label">Tiêu đề</label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="tieu_de" id="post_title" value="Cho thuê mặt bằng diện tích 4x5m" minlength="30" maxlength="120" required="" data-msg-required="Tiêu đề không được để trống" data-msg-minlength="Tiêu đề quá ngắn" data-msg-maxlength="Tiêu đề quá dài">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="post_content" class="col-md-12 col-form-label">Nội dung mô tả</label>
+                    <div class="col-md-12">
+                         
+                            <textarea class="form-control" name="noi_dung" id="post_content" rows="10" required="" minlength="100" data-msg-required="Bạn chưa nhập nội dung" data-msg-minlength="Nội dung tối thiểu 100 kí tự">Cho thuê mặt bằng diện tích 4x5mCho thuê mặt bằng diện tích 4x5mCho thuê mặt bằng diện tích 4x5mCho thuê mặt bằng diện tích 4x5mCho thuê mặt bằng diện tích 4x5m</textarea>
+                                            </div>
+                </div>
+                                <div class="form-group row">
+                    <label for="phone" class="col-md-12 col-form-label">Họ Tên</label>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                                                            <input id="ten_lien_he" type="text" name="ten_lien_he" class="form-control" readonly="readonly" required="" data-msg-required="Tên liên hệ" value="Trương Văn Chu Toàn">
+                                                    </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phone" class="col-md-12 col-form-label">Số điện thoại</label>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                                                            <input id="phone" type="number" name="phone" class="form-control" readonly="readonly" required="" data-msg-required="Số điện thoại" value="0972712621">
+                                                    </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="giachothue" class="col-md-12 col-form-label">Giá cho thuê</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input id="giachothue" name="gia" pattern="[0-9.]+" type="text" value="2000000" class="form-control" required="" data-msg-required="Bạn chưa nhập giá phòng" data-msg-min="Giá phòng chưa đúng">
+                            <div class="input-group-append">
+                                <span class="input-group-text">đồng</span>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">Nhập đầy đủ số, ví dụ 1 triệu thì nhập là 1000000</small>
+                    </div>
+                    <label for="text_giachothue" id="text_giachothue" class="col-sm-12 control-label js-number-text" style="color: #0d9832;"> hai triệu đồng/tháng</label>
+                </div>
+                <div class="form-group row">
+                    <label for="post_acreage" class="col-md-12 col-form-label">Diện tích</label>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input id="post_acreage" type="number" attern="[0-9.]+" name="dien_tich" max="1000" value="49" class="form-control" required="" data-msg-required="Bạn chưa nhập diện tích">
+                            <div class="input-group-append">
+                                <span class="input-group-text">m<sup>2</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="post_acreage" class="col-md-12 col-form-label">Đối tượng</label>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <select class="form-control" id="post_cat" name="doi_tuong">
+                                <option value="Tất cả">-- Tất cả --</option>
+                                <option value="Nam" selected="&quot;selected&quot;">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mt-5">
+                    <div class="col-md-12">
+                        <h3>Hình ảnh</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <p>Cập nhật hình ảnh rõ ràng sẽ cho thuê nhanh hơn</p>
+                        <div class="form-group">
+                            <div for="browse_photos" class="browse_photos js-dropzone dz-clickable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload" style="width: 50px; height: 50px; display: block; margin: 0 auto; pointer-events: none;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg><span class="js-btn-chon-anh">Thêm Ảnh</span></div>
+                        </div>
+                        <div class="list_photos row dropzone-previews" id="list-photos-dropzone-previews">
+                                                    </div>
+                        <div id="tpl" style="display:none">
+                            <div class="photo_item col-md-2 col-3 js-photo-manual">
+                                <div class="photo"><img data-dz-thumbnail=""></div>
+                                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                                <div class="bottom clearfix">
+                                    <span class="photo_delete" data-dz-remove=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> Xóa</span>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mt-5">
+                    <div class="col-md-12">
+                        <h3>Video</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="youtube_url" class="col-md-12 col-form-label">Video Link (Youtube)</label>
+                    <div class="col-md-12">
+                        <input class="form-control" name="youtube_url" id="youtube_url" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <p>Hoặc upload Video từ máy của bạn</p>
+                        <div class="form-group">
+                            <div for="browse_photos" class="browse_photos js-dropzone-video dz-clickable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload" style="width: 50px; height: 50px; display: block; margin: 0 auto; pointer-events: none;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg><span class="js-btn-chon-video">Thêm Video</span></div>
+                        </div>
+                        <div class="list_photos row dropzone-previews" id="list-videos-dropzone-previews">
+                                                    </div>
+                        <div id="tpl-video" style="display:none">
+                            <div class="photo_item col-md-2 col-3 js-video-manual">
+                                <div class="photo">
+                                    <video width="100%" height="100%" controls="" id="video">
+                                        <source src="">
+                                    </video>
+                                </div>
+                                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                                <div class="bottom clearfix">
+                                    <span class="photo_name" data-dz-name=""></span>
+                                    <span class="photo_delete" data-dz-remove=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> Xóa</span>
+                                </div> 
+                            </div>
+                        </div>
+                                
+                    </div>
+                </div>
+                
+                <div class="form-group row mt-5">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success mb-2 btn-lg btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg> Cập nhật</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="action" name="action" value="edit_post">
+        <input type="hidden" id="map_lat" name="map_lat" value="">
+        <input type="hidden" id="map_long" name="map_long" value="">
+        <input type="hidden" id="post_id" name="post_id" value="630382">
+    </form>
+
+
+<br><br>
+                    <section class="section section-support">
+    <div class="section-content clearfix">
+        <div class="support-bg"></div>
+        <div class="list-support clearfix">
+            <div class="list-support-title">Liên hệ với chúng tôi nếu bạn cần hỗ trợ:</div>
+            <div class="support-item">
+                <span class="support-item-title">Hỗ trợ đăng tin</span>
+                <a rel="nofollow" href="tel:0902657123">Điện thoại: 0902657123</a>
+                <a rel="nofollow" target="_blank" href="https://zalo.me/0902657123">Zalo: 0902657123</a>
+            </div>
+            <div class="support-item">
+                <span class="support-item-title">Hỗ trợ đăng tin</span>
+                <a rel="nofollow" href="tel:0901424123">Điện thoại: 0901424123</a>
+                <a rel="nofollow" target="_blank" href="https://zalo.me/0901424123">Zalo: 0901424123</a>
+            </div>
+            <div class="support-item">
+                <span class="support-item-title">Hỗ trợ đăng tin</span>
+                <a rel="nofollow" href="tel:0903007123">Điện thoại: 0903007123</a>
+                <a rel="nofollow" target="_blank" href="https://zalo.me/0903007123">Zalo: 0903007123</a>
+            </div>
+            <div class="support-item">
+                <span class="support-item-title">Phản ánh/khiếu nại</span>
+                <a rel="nofollow" href="tel:0917686101">Điện thoại: 0917686101</a>
+                <a rel="nofollow" target="_blank" href="https://zalo.me/0917686101">Zalo: 0917686101</a>
+            </div>
+            <a class="btn btn-page-contact" rel="nofollow" href="/lien-he">Gửi liên hệ</a>
+        </div> 
+    </div>
+</section>
+
+                    <footer>
+                			<div id="footer">
+                				<div class="container">
+                					<div class="footer_row clearfix">
+                						<div class="footer_col">
+                							<div class="footer_col_header">
+                								<a class="logo" href="https://phongtro123.com">Thuê phòng trọ</a>
+                							</div>
+                							<div class="footer_col_body">
+                								<p style="line-height: 1.3;">Đứng đầu các từ khóa liên quan đến <a href="https://phongtro123.com/cho-thue-phong-tro" title="phòng trọ cho thuê"><strong>phòng trọ cho thuê</strong></a>, <a href="https://phongtro123.com/nha-cho-thue" title="nhà cho thuê"><strong>nhà cho thuê</strong></a>, <a href="https://phongtro123.com/tim-nguoi-o-ghep" title="tìm người ở ghép"><strong>tìm người ở ghép</strong></a></p><p style="line-height: 1.3;"><strong>70.000+</strong> tin bài trên hệ thống, và tiếp tục tăng</p><p style="line-height: 1.3;"><strong>300.000+</strong> khách truy cập và <strong>hơn 2 triệu</strong> lượt xem mỗi tháng</p>
+                							</div>
+                						</div>
+                						<div class="footer_col">
+                							<div class="footer_col_header">Về PHONGTRO123.COM</div>
+                							<div class="footer_col_body">
+                								<ul class="footer_menu">
+                									<li><a href="https://phongtro123.com">Trang chủ</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/gioi-thieu">Giới thiệu</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/quy-che-hoat-dong">Quy chế hoạt động</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/quy-dinh-su-dung">Quy định sử dụng</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/chinh-sach-bao-mat">Chính sách bảo mật</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/lien-he">Liên hệ</a></li>
+                								</ul>
+                							</div>
+                						</div>
+                						<div class="footer_col">
+                							<div class="footer_col_header">Hỗ trợ khách hàng</div>
+                							<div class="footer_col_body">
+                								<ul class="footer_menu">
+                									<li><a rel="nofollow" href="https://phongtro123.com/cau-hoi-thuong-gap">Câu hỏi thường gặp</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/huong-dan-su-dung">Hướng dẫn đăng tin</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/bang-gia-dich-vu">Bảng giá dịch vụ</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/quy-dinh-dang-tin">Quy định đăng tin</a></li>
+                									<li><a rel="nofollow" href="https://phongtro123.com/chinh-sach-giai-quyet-khieu-nai">Chính sách giải quyết khiếu nại</a></li>
+                								</ul>
+                							</div>
+                						</div>
+                						<div class="footer_col">
+                							<div class="footer_col_header">Liên hệ với chúng tôi</div>
+                							<div class="footer_col_body mb30">
+                								<a target="_blank" style="display: inline-block; margin-right: 5px;" href="https://www.facebook.com/phongtro123.com.vn/"><img style="border: 1px solid #32599d; border-radius: 50%;" src="https://phongtro123.com/images/icon_facebook.svg" width="30"></a>
+                								<a target="_blank" style="display: inline-block; margin-right: 5px;" href="https://plus.google.com/+Phongtro123chothuenhatro"><img style="border: 1px solid #df3f31; border-radius: 50%;" src="https://phongtro123.com/images/icon_google.svg" width="30"></a>
+                								<a target="_blank" style="display: inline-block; margin-right: 5px;" href="https://zalo.me/phongtro123"><img style="border: 1px solid #00a1dc; border-radius: 50%;" src="https://phongtro123.com/images/icon_zalo.svg" width="30"></a>
+                								<a target="_blank" style="display: inline-block;" href="https://twitter.com/phongtro123"><img style="border: 1px solid #54a3de; border-radius: 50%;" src="https://phongtro123.com/images/icon_twitter.svg" width="30"></a>
+                							</div>
+                							<div class="footer_col_header">Phương thức thanh toán</div>
+                							<div class="footer_col_body">
+                								<span class="bds_icon icon_visa"></span>
+                								<span class="bds_icon icon_mastercard"></span>
+                								<span class="bds_icon icon_jcb"></span>
+                								<span class="bds_icon icon_internet_banking"></span>
+                								<span class="bds_icon icon_momo"></span>
+                								<span class="bds_icon icon_tienmat"></span>
+                							</div>
+                						</div>
+                					</div>
+                					<div class="footer_bottom">
+                						<div class="w980">
+                							<p class="company_name"><strong>CÔNG TY TNHH LBKCORP</strong></p>
+                							<p><strong>Tổng đài CSKH: 0917.686.101</strong></p>
+                							<p>Copyright © 2015 - 2023 Phongtro123.com</p>
+                							<p>Email: cskh.phongtro123@gmail.com | lienhe.phongtro123@gmail.com</p>
+                							<p>Địa chỉ: LD-06.04, Toà nhà Lexington Residence, Số 67 Mai Chí Thọ, Phường An Phú, Quận 2, Tp. Hồ Chí Minh.</p>
+                							<p>Giấy phép đăng ký kinh doanh số 0313588502 do Sở kế hoạch và Đầu tư thành phố Hồ Chí Minh cấp ngày 30 tháng 3 năm 2017.</p>
+                							<center style="display: flex; align-items: center; justify-content: center;">
+                								<a class="bds_icon dkbct" style="display: inline-block; margin: 0 5px;" rel="nofollow" target="_blank" href="http://online.gov.vn/HomePage/WebsiteDisplay.aspx?DocId=43297"></a>
+                								<a style="display: inline-block; margin: 0 5px;" rel="nofollow" target="_blank" href="https://www.dmca.com/Protection/Status.aspx?ID=92715b33-c457-422d-95c4-a5453e80e9bf&amp;refurl=https://phongtro123.com/" title="DMCA.com Protection Status" class="dmca-badge"><img src="/images/dmca-badge-w250-2x1-04.png" width="100" alt="DMCA.com Protection Status"></a>
+                								<script async="" defer="" src="//images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+                							</center>
+                						</div>
+                					</div>
+                				</div>
+                			</div>
+                		</footer>
+                    </main>
