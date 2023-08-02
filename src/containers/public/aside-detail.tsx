@@ -1,13 +1,15 @@
-// LIBRARY
+//? LIBRARY
 import { useRouter } from "next/router";
 
-//  ARGUMENTS
+//?  ARGUMENTS
 import { InputNewPost } from "../../graphql/arguments/post.args";
 
-// HOOKS
-import { useQueryNewPosts } from "../../hooks/useQueryNewPosts";
-import { useQueryPostId } from "../../hooks/useQueryPostId";
-// APP
+//? HOOKS
+import {
+  useQueryNewPosts,
+  useQueryPostId,
+} from "../../services/post/index.hook";
+//? APP
 import { AreaHcm } from "../../utils/area";
 import { subLink } from "../../utils/subLink";
 import {

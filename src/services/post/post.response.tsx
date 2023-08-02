@@ -5,6 +5,7 @@ export interface PostResponse {
     total: number;
     pageNumber: number;
     pageSize: number;
+    totalPage: number;
     err: number;
     msg: string;
     response: PostModel[];

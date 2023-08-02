@@ -1,17 +1,15 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 import { useState } from "react";
-// HOOKS
-import { useQueryUserId } from "../../hooks/useQueryUserId";
-import useTokenValidation from "../../hooks/useTokenValidation.hook";
-// APP
-import InfoLocal from "../../models/infoLocal";
+//? HOOKS
+import useAuth from "../../hooks/useAuth.hook";
+//? APP
+import { UserIdModel } from "../../models/user";
 
 function AdminProfile() {
-  const dataLocal: InfoLocal = useTokenValidation();
-  const { data, isLoading } = useQueryUserId(dataLocal?.id);
-  const [dataUser, setDataUser] = useState(data);
-  const handeSubmit = (e: any) => {
+  const { dataUser, isLoading } = useAuth();
+  const [dataUpdate, setDataUpdate] = useState<UserIdModel>(dataUser);
+  const onSubmit = (e: any) => {
     e.preventdefault();
   };
   return (
@@ -24,7 +22,7 @@ function AdminProfile() {
           <form
             className="js-form-submit-data"
             action="#"
-            onClick={(e) => handeSubmit(e)}
+            onClick={(e) => onSubmit(e)}
           >
             <div className="form-group row mt-5">
               <label
@@ -56,7 +54,7 @@ function AdminProfile() {
                   id="user_phone"
                   value={dataUser?.phone}
                   onChange={(e: any) =>
-                    setDataUser((prev) => ({
+                    setDataUpdate((prev) => ({
                       ...prev,
                       phone: e.target.value,
                     }))
@@ -88,7 +86,7 @@ function AdminProfile() {
                   value={dataUser?.name}
                   placeholder="Ex: Nguyễn Văn A"
                   onChange={(e: any) =>
-                    setDataUser((prev) => ({
+                    setDataUpdate((prev) => ({
                       ...prev,
                       name: e.target.value,
                     }))
@@ -129,7 +127,7 @@ function AdminProfile() {
                   name="user_zalo"
                   value={dataUser?.zalo}
                   onChange={(e: any) =>
-                    setDataUser((prev) => ({
+                    setDataUpdate((prev) => ({
                       ...prev,
                       zalo: e.target.value,
                     }))

@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import { GraphQLClient } from "graphql-request";
 
 import { UserPostResponse, UserResponse } from "./user.response";
-import InputUpdateUser from "../../graphql/arguments/user.args";
+import { InputUpdateUser } from "../../graphql/arguments/user.args";
 
 const userIdFilePath = require("../../graphql/queries/userId.graphql");
 const userPostsFilePath = require("../../graphql/queries/user_post.graphql");
@@ -11,11 +11,13 @@ const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
 
 export const queryUserId = async (userid: string) => {
   try {
-    const response: UserResponse = await graphQLClient.request(userIdFilePath, {
-      userId: userid,
-    });
+    const response: UserPostResponse = await graphQLClient.request(
+      userIdFilePath,
+      {
+        userId: userid,
+      }
+    );
     if (response.userId && response.userId.err === 0) {
-      // Swal.fire("Oop !", response.userId.msg, "success");
       return response.userId.response;
     } else {
       Swal.fire("Oop !", response.userId.msg, "error");
@@ -35,7 +37,6 @@ export const queryPostsOfUser = async (userid: string) => {
       }
     );
     if (response.userId.err === 0) {
-      // Swal.fire("Oop !", response.userId.msg, "success");
       return response.userId.response;
     } else {
       Swal.fire("Oop !", response.userId.msg, "error");

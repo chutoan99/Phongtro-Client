@@ -1,14 +1,12 @@
-// APP
-// HOOKS
-import { useQueryUserId } from "../hooks/useQueryUserId";
-import useTokenValidation from "../hooks/useTokenValidation.hook";
-// APP
+//? HOOK
+import useAuth from "../hooks/useAuth.hook";
+import { useQueryUserId } from "../services/user/index.hook";
+//? APP
 import { Aside, Nav } from "../containers/admin";
-import InfoLocal from "../models/infoLocal";
 
 export default function AdminLayout({ children }) {
-  const dataUser: InfoLocal = useTokenValidation();
-  const { data, isLoading, isFetching } = useQueryUserId(dataUser?.id);
+  const { dataUser } = useAuth();
+  const { data, isLoading } = useQueryUserId(dataUser?.id);
 
   return (
     <div className="desktop dashboard loaded ready">

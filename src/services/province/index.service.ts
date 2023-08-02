@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { GraphQLClient } from "graphql-request";
-import { ProvinceResponse } from "./province.response";
+import { ProvinceResponse } from "./index.response";
 
 const provinceFilePath = require("../../graphql/queries/province.graphql");
 const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);

@@ -1,14 +1,15 @@
-// LIBRARY
+//? LIBRARY
 import { useRouter } from "next/router";
-//  ARGUMENTS
+//?  ARGUMENTS
 import { InputNewPost } from "../../graphql/arguments/post.args";
-// APP
-import { useQueryAreas } from "../../hooks/useQueryAreas";
-import { useQueryPrices } from "../../hooks/useQueryPrices";
-import { useQueryNewPosts } from "../../hooks/useQueryNewPosts";
-import { directoryRental, newPost } from "../../utils/constant";
-// HOOKS
+//? HOOKS
+import { useQueryAreas } from "../../services/area/index.hook";
+import { useQueryPrices } from "../../services/price/index.hook";
+import { useQueryNewPosts } from "../../services/post/index.hook";
+//? APP
 import { subLink } from "../../utils/subLink";
+import { directoryRental, newPost } from "../../utils/constant";
+
 import {
   AsideDirectoryRental,
   AsidePrice,

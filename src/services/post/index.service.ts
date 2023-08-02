@@ -25,25 +25,7 @@ const deletePostFilePath = require("../../graphql/mutations/delete_post.graphql"
 
 const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV);
 
-export const queryNewPosts = async (payloadNewPost: InputNewPost) => {
-  try {
-    const response: NewPostResponse = await graphQLClient.request(
-      newPostFilePath,
-      {
-        input: { ...payloadNewPost },
-      }
-    );
-    if (response.newPost.err === 0) {
-      // Swal.fire("Oop !", response.newPost.msg, "success");
-      return response.newPost.response;
-    } else {
-      Swal.fire("Oop !", response.newPost.msg, "error");
-      return;
-    }
-  } catch (error) {
-    throw new Error("Failed to fetch new posts");
-  }
-};
+//? QUERY
 
 export const queryPosts = async (payloadPost: InputPost) => {
   try {
@@ -51,8 +33,7 @@ export const queryPosts = async (payloadPost: InputPost) => {
       input: { ...payloadPost },
     });
     if (response.post.err === 0) {
-      // Swal.fire("Oop !", response.post.msg, "success");
-      return response.post.response;
+      return response.post;
     } else {
       Swal.fire("Oop !", response.post.msg, "error");
       return;
@@ -73,7 +54,6 @@ export const queryPostId = async (postId: string) => {
     );
 
     if (response.postId.err === 0) {
-      // Swal.fire("Oop !", response.postId.msg, "success");
       return response.postId.response;
     } else {
       Swal.fire("Oop !", response.postId.msg, "error");
@@ -83,6 +63,43 @@ export const queryPostId = async (postId: string) => {
     throw new Error("Failed to fetch postid");
   }
 };
+
+export const querySearchPosts = async (payloadPost: InputPost) => {
+  try {
+    const response: PostResponse = await graphQLClient.request(postFilePath, {
+      input: { ...payloadPost },
+    });
+    if (response.post.err === 0) {
+      return response.post;
+    } else {
+      Swal.fire("Oop !", response.post.msg, "error");
+      return;
+    }
+  } catch (error) {
+    throw new Error("Failed to fetch  posts");
+  }
+};
+
+export const queryNewPosts = async (payloadNewPost: InputNewPost) => {
+  try {
+    const response: NewPostResponse = await graphQLClient.request(
+      newPostFilePath,
+      {
+        input: { ...payloadNewPost },
+      }
+    );
+    if (response.newPost.err === 0) {
+      return response.newPost.response;
+    } else {
+      Swal.fire("Oop !", response.newPost.msg, "error");
+      return;
+    }
+  } catch (error) {
+    throw new Error("Failed to fetch new posts");
+  }
+};
+
+//? MUTATION
 
 export const mutationCreatePost = async (
   payloadCreatePost: InputCreatePost
@@ -96,10 +113,8 @@ export const mutationCreatePost = async (
     );
     if (response.createPost.err === 0) {
       Swal.fire("Oop !", response.createPost.msg, "success");
-      return;
     } else {
       Swal.fire("Oop !", response.createPost.msg, "error");
-      return;
     }
   } catch (error) {
     throw new Error("Failed to fetch create post");

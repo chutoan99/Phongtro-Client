@@ -1,8 +1,8 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
-// APP
+//? APP
 import AdminLayout from "../../layouts/admin.layout";
-import { Support } from "../../containers/public";
+import { Support } from "../../components";
 import { ManagerPost } from "../../containers/admin";
 
 export default function ManagePage() {

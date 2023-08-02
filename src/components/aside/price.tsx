@@ -1,7 +1,7 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 import { PriceModel } from "../../models/price.model";
-// APP
+//? APP
 
 function AsidePrice({ data, isLoading }) {
   return (

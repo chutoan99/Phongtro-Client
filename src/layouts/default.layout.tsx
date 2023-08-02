@@ -1,7 +1,6 @@
-// LIBRARY
-
-// APP
-import { Header, Footer, NavBarMenu } from "../containers/public";
+//? APP
+import { Footer } from "../components";
+import { Header, NavBarMenu } from "../containers/public";
 
 export default function DefaultLayout({ children }) {
   return (

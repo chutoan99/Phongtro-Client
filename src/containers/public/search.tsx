@@ -1,19 +1,14 @@
-// LIBRARY
+//? LIBRARY
 import querystring from "querystring";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-// HOOKS
-import { useQueryPrices } from "../../hooks/useQueryPrices";
-import { useQueryAreas } from "../../hooks/useQueryAreas";
-import { useQueryCategories } from "../../hooks/useQueryCategories";
-import { useQueryProvinces } from "../../hooks/useQueryProvinces";
-// APP
-import {
-  ModalCategory,
-  ModalProvince,
-  ModalPrice,
-  ModalArea,
-} from "../../components";
+//? HOOKS
+import { useQueryPrices } from "../../services/price/index.hook";
+import { useQueryAreas } from "../../services/area/index.hook";
+import { useQueryCategories } from "../../services/category/index.hook";
+import { useQueryProvinces } from "../../services/province/index.hook";
+//? APP
+import { ModalCategory, ModalProvince, ModalPrice, ModalArea } from "./index";
 
 function Search({ setPayload, onSearch }) {
   const router = useRouter();

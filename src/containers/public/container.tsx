@@ -1,20 +1,26 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
-import { useQuery, useQueryClient } from "react-query";
-import { useState } from "react";
-//  ARGUMENTS
+import { useEffect, useState } from "react";
+//?  ARGUMENTS
 import { InputPost } from "../../graphql/arguments/post.args";
-// APP
-import { Post } from "../../components";
+//? HOOKS
+import {
+  useQueryPosts,
+  useQuerySearchPosts,
+} from "../../services/post/index.hook";
+//? APP
+import { Post, Support, WhyUs } from "../../components";
 import { locationCity } from "../../utils/constant";
-import { Support, WhyUs, Pagination, Aside, Search } from "./index";
-import { queryPosts } from "../../services/post/index.service";
+import { Pagination, Aside, Search } from "./index";
+import { PostModel } from "../../models/post.model";
 
 interface NavBar {
   categoryCode: string;
 }
 
 const Container = ({ categoryCode }: NavBar) => {
+  const [totalPage, setTotalPage] = useState(0);
+  const [data, setData] = useState<PostModel[] | []>([]);
   const [payload, setPayload] = useState<InputPost>({
     pageSize: 15,
     pageNumber: 1,
@@ -28,20 +34,20 @@ const Container = ({ categoryCode }: NavBar) => {
     areaNumber: [],
     priceNumber: [],
   });
-  const queryClient = useQueryClient();
 
-  const queryKey = ["Posts", { ...payload }];
-  const queryFn = async () => {
-    const responseData = await queryPosts(payload);
-    return responseData;
-  };
-  const { data, isLoading, isFetching } = useQuery(queryKey, queryFn);
+  const { data: dataPost, isLoading } = useQueryPosts(payload);
+  const { data: dataSearch, refetch: onRefetch } = useQuerySearchPosts(payload);
 
-  const TOTAl_PAGE = 30;
-  // useMemo(() => Math.ceil(+data?.length / +payload.pageSize), [data]);
+  useEffect(() => {
+    if (!dataPost) return;
+    setData(dataPost.response);
+    setTotalPage(dataPost?.totalPage);
+  }, [dataPost]);
 
   const onSearch = () => {
-    queryClient.refetchQueries(queryKey);
+    onRefetch();
+    setTotalPage(dataSearch?.totalPage);
+    setData(dataSearch?.response);
   };
   return (
     <main id="main">
@@ -85,7 +91,7 @@ const Container = ({ categoryCode }: NavBar) => {
             </ul>
           </section>
           <div className="flex items-center justify-center">
-            <Pagination setPageNumber={setPayload} totalPage={TOTAl_PAGE} />
+            <Pagination setPageNumber={setPayload} totalPage={totalPage} />
           </div>
         </div>
         <Aside />

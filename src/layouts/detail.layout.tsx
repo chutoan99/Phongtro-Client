@@ -1,15 +1,9 @@
-// LIBRARY
+//? LIBRARY
 import React from "react";
-// APP
-import {
-  Header,
-  WhyUs,
-  Footer,
-  Support,
-  NavBarMenu,
-  AsideDetail,
-} from "../containers/public";
 import Link from "next/link";
+//? APP
+import { WhyUs, Support, Footer } from "../components";
+import { Header, NavBarMenu, AsideDetail } from "../containers/public";
 
 export default function DetailLayout({ children }) {
   return (

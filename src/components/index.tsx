@@ -2,17 +2,14 @@ export { default as User } from "./user";
 export { default as Post } from "./posts";
 
 export { default as Loading } from "./loading";
+export { default as Loading2 } from "./loading2";
 export { default as Input } from "./input";
 export { default as UpdatePost } from "./updatePost";
 export { default as Author } from "./author";
-
-// MODALS
-export { default as ModalArea } from "./modal/area";
-export { default as ModalCategory } from "./modal/category";
-export { default as ModalPrice } from "./modal/price";
-export { default as ModalProvince } from "./modal/province";
-
-// ASIDES
+export { default as Support } from "./support";
+export { default as WhyUs } from "./why_us";
+export { default as Footer } from "./footer";
+//? ASIDES
 export { default as AsideNewPost } from "./aside/new-post";
 export { default as AsideNewHot } from "./aside/new-hot";
 export { default as AsideArea } from "./aside/area";

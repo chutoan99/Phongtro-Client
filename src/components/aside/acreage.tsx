@@ -1,4 +1,4 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 
 function AsideAcreage({ data }) {

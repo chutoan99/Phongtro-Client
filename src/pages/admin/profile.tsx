@@ -1,7 +1,7 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
-// APP
-import { Support } from "../../containers/public";
+//? APP
+import { Support } from "../../components";
 import { Profile } from "../../containers/admin";
 import AdminLayout from "../../layouts/admin.layout";
 export default function ProfilePage() {

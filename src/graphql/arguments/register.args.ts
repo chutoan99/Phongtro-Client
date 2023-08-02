@@ -1,4 +1,4 @@
-export default interface InputRegister {
+export interface InputRegister {
   name: string;
   phone: string;
   password: string;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { promises } from "dns";
 import Swal from "sweetalert2";
 
 export const GetALLProvince = async () => {
@@ -81,15 +82,42 @@ export const GetAllWardWithDistrictCode = async (districtCode: any) => {
   }
 };
 
-export const apiUploadImages = async (formData) => {
+export const apiUploadImages = async (fileImages: File[]) => {
   try {
-    const response = await axios({
-      method: "post",
-      url: `https://api.cloudinary.com/v1_1/dxcershra/image/upload/`,
-      data: formData,
+    const uploadPromises = fileImages.map(async (file) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append(
+        "upload_preset",
+        process.env.NEXT_PUBLIC_UPLOAD_ASSETS_NAME
+      );
+
+      try {
+        const response = await axios({
+          method: "post",
+          url: `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload/`,
+          data: formData,
+        });
+
+        if (response.status === 200) {
+          return response?.data?.url;
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        throw error; // Re-throw the error to be caught by Promise.all
+      }
     });
-    return response;
+
+    const images = await Promise.all(uploadPromises);
+
+    if (images.every((url) => url)) {
+      return images;
+    } else {
+      Swal.fire("Error!", "Some images failed to upload.", "error");
+      return null;
+    }
   } catch (error) {
-    Swal.fire("Oop !", error, "error");
+    Swal.fire("Oop!", error, "error");
+    return null;
   }
 };

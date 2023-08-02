@@ -1,6 +1,5 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
-// APP
 
 function AdminSection({ data }) {
   return (

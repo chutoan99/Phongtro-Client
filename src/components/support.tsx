@@ -1,6 +1,6 @@
-// APP
+//? APP
 import Link from "next/link";
-import { support } from "../../utils/support";
+import { support } from "../utils/support";
 function Support() {
   return (
     <section className="section section-support">

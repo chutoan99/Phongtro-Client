@@ -1,4 +1,4 @@
-export default interface InputUpdateUser {
+export interface InputUpdateUser {
   name: string;
   avatar: string;
   phone: string;

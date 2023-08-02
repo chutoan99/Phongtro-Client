@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { queryPrices } from "../services/price/index.service";
+import { queryPrices } from "./index.service";
 
 export const useQueryPrices = () => {
   const queryKey = ["Prices"];

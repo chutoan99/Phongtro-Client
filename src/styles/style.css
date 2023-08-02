@@ -117,6 +117,26 @@ figure img:hover {
   padding: 0 10px;
   margin: 0;
 }
+.break {
+  margin: 0 3px 0 0;
+  padding: 15px 18px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+  list-style-type: none;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  position: relative;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 .btn:hover {
   text-decoration: underline;
   color: #fff;

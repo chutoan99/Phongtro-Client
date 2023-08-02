@@ -1,13 +1,13 @@
-// LIBRARY
+//? LIBRARY
 import { memo, useEffect, useState } from "react";
-// APP
+//? APP
 import {
   convert100ToTarget,
   convertTo100,
-  getNumbersArea,
-} from "../../utils/Commom/fomarNumber";
+  getNumbersPrice,
+} from "../../../utils/Commom/fomarNumber";
 
-function ModalArea({
+function ModalPrice({
   items,
   modals,
   setOverPlay,
@@ -15,12 +15,12 @@ function ModalArea({
   handleSubmit,
   arrMinMax,
 }) {
-  let number = +90;
+  let number = +15;
   const [perSent1, setPerSent1] = useState(
-    arrMinMax?.areaArr?.length > 0 ? arrMinMax?.areaArr[0] : 0
+    arrMinMax?.priceArr?.length > 0 ? arrMinMax?.priceArr[0] : 0
   );
   const [perSent2, setPerSent2] = useState(
-    arrMinMax?.areaArr?.length > 0 ? arrMinMax?.areaArr[1] : 100
+    arrMinMax?.priceArr?.length > 0 ? arrMinMax?.priceArr[1] : 100
   );
   const [number1, setNumber1] = useState(0);
   const [number2, setNumber2] = useState(number);
@@ -38,13 +38,13 @@ function ModalArea({
     if (perSent1 <= perSent2) {
       activeTrackId.style.left = `${perSent1}%`;
       activeTrackId.style.right = `${100 - perSent2}%`;
-      setNumber1(convert100ToTarget(perSent1, "area"));
-      setNumber2(convert100ToTarget(perSent2, "area"));
+      setNumber1(convert100ToTarget(perSent1, "price"));
+      setNumber2(convert100ToTarget(perSent2, "price"));
     } else {
       activeTrackId.style.left = `${perSent2}%`;
       activeTrackId.style.right = `${100 - perSent1}%`;
-      setNumber1(convert100ToTarget(perSent2, "area"));
-      setNumber2(convert100ToTarget(perSent1, "area"));
+      setNumber1(convert100ToTarget(perSent2, "price"));
+      setNumber2(convert100ToTarget(perSent1, "price"));
     }
   }, [perSent2, perSent1]);
   // lấy vị trí click
@@ -55,52 +55,52 @@ function ModalArea({
       Math.round((e.clientX - stackRect.left) * 100) / stackRect.width;
     if (Math.abs(perSent - perSent1) <= Math.abs(perSent - perSent2)) {
       setPerSent1(perSent);
-      setNumber1(convert100ToTarget(perSent, "area"));
+      setNumber1(convert100ToTarget(perSent, "price"));
     } else {
       setPerSent2(perSent);
-      setNumber2(convert100ToTarget(perSent, "area"));
+      setNumber2(convert100ToTarget(perSent, "price"));
     }
   };
   const handleChangeRange = (value) => {
     let arrMaxMin;
-    arrMaxMin = getNumbersArea(value);
+    arrMaxMin = getNumbersPrice(value);
     if (arrMaxMin.length === 1) {
       if (arrMaxMin[0] === 1) {
         setPerSent1(0);
-        setPerSent2(convertTo100(1, "area"));
+        setPerSent2(convertTo100(1, "price"));
       }
       if (arrMaxMin[0] === 20) {
         setPerSent1(0);
-        setPerSent2(convertTo100(20, "area"));
+        setPerSent2(convertTo100(20, "price"));
       }
       if (arrMaxMin[0] === number) {
         setPerSent1(100);
         setPerSent2(100);
       }
     } else {
-      setPerSent1(convertTo100(arrMaxMin[0], "area"));
-      setPerSent2(convertTo100(arrMaxMin[1], "area"));
+      setPerSent1(convertTo100(arrMaxMin[0], "price"));
+      setPerSent2(convertTo100(arrMaxMin[1], "price"));
     }
   };
 
   const handleBeforeSubmit = () => {
     let min =
       perSent1 <= perSent2
-        ? convert100ToTarget(perSent1, "area")
-        : convert100ToTarget(perSent2, "area");
+        ? convert100ToTarget(perSent1, "price")
+        : convert100ToTarget(perSent2, "price");
     let max =
       perSent1 <= perSent2
-        ? convert100ToTarget(perSent2, "area")
-        : convert100ToTarget(perSent1, "area");
+        ? convert100ToTarget(perSent2, "price")
+        : convert100ToTarget(perSent1, "price");
     handleSubmit(
       {
-        [`${"area"}Number`]: [min, max],
-        ["area"]: `Từ ${min} - ${max} ${"m2"}`,
+        [`${"price"}Number`]: [min, max],
+        ["price"]: `Từ ${min} - ${max} ${"triệu"}`,
       },
-      { [`${"area"}Arr`]: [perSent1, perSent2] }
+      { [`${"price"}Arr`]: [perSent1, perSent2] }
     );
   };
-  const onClose = () => {
+  const onCLose = () => {
     setModals(false);
     setOverPlay(false);
   };
@@ -109,10 +109,10 @@ function ModalArea({
       {modals ? (
         <div className="filter-popup has-footer js-filter-popup js-filter-popup-price show">
           <div className="filter-popup-header">
-            <span className="header-label">CHỌN DIỆN TÍCH</span>{" "}
+            <span className="header-label">CHỌN GIÁ</span>{" "}
             <div
               className="popup-close js-filter-popup-close"
-              onClick={onClose}
+              onClick={onCLose}
             >
               Đóng
             </div>
@@ -136,8 +136,8 @@ function ModalArea({
                   }}
                 >
                   {perSent1 === 100 && perSent2 === 100
-                    ? `Trên ${number2} ${"m2"}`
-                    : `Từ ${number1} - ${number2}  ${"m2"}`}
+                    ? `Trên ${number2} ${"Triệu"}`
+                    : `Từ ${number1} - ${number2}  ${"Triệu"}`}
                 </p>
               </div>
               <div style={{ margin: "0 48px" }}>
@@ -197,7 +197,7 @@ function ModalArea({
                     className="translate-x-5"
                     onClick={handleClickMax}
                   >
-                    90m2
+                    +15 triệu/đồng
                   </span>
                 </div>
                 <div
@@ -233,4 +233,4 @@ function ModalArea({
   );
 }
 
-export default memo(ModalArea);
+export default memo(ModalPrice);

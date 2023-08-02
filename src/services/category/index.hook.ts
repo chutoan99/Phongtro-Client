@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { queryCategories } from "../services/category/index.service";
+import { queryCategories } from "./index.service";
 
 export const useQueryCategories = () => {
   const queryKey = ["Categories"];

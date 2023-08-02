@@ -1,6 +1,6 @@
-// APP
-import { whyUs } from "../../utils/why_us";
-import { renderStart } from "../../utils/Commom/renderStart";
+//? APP
+import { whyUs } from "../utils/why_us";
+import { renderStart } from "../utils/Commom/renderStart";
 import Link from "next/link";
 
 function WhyUs() {

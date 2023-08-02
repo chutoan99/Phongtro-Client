@@ -1,7 +1,7 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 import { AreaModel } from "../../models/area.model";
-// APP
+//? APP
 
 function AsideArea({ data, isLoading }) {
   return (

@@ -1,10 +1,10 @@
-// LIBRARY
+//? LIBRARY
 import React from "react";
+import Link from "next/link";
 import Slider from "react-slick";
 import { useRouter } from "next/router";
-// HOOKS
-import { useQueryPostId } from "../../hooks/useQueryPostId";
-import Link from "next/link";
+//? HOOKS
+import { useQueryPostId } from "../../services/post/index.hook";
 
 const PostDetail = () => {
   const router = useRouter();

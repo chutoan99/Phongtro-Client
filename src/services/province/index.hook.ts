@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { queryProvinces } from "../services/province/index.service";
+import { queryProvinces } from "./index.service";
 
 export const useQueryProvinces = () => {
   const queryKey = ["Provinces"];

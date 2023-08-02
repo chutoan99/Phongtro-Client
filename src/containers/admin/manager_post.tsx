@@ -1,20 +1,22 @@
-// LIBRARY
+//? LIBRARY
 import moment from "moment";
 import Link from "next/link";
 import { useState } from "react";
-// HOOKS
-import useTokenValidation from "../../hooks/useTokenValidation.hook";
-import { useQueryPostsOfUser } from "../../hooks/useQueryPostsOfUser";
-// APPS
-import InfoLocal from "../../models/infoLocal";
-import { useMutationDeletePost } from "../../hooks/useMutationDeletePost";
+//? HOOKS
+import {
+  useMutationDeletePost,
+  useQueryPostsOfUser,
+} from "../../services/post/index.hook";
+import useAuth from "../../hooks/useAuth.hook";
+
+//? APPS
 
 function AdminManagerPost() {
-  const dataLocal: InfoLocal = useTokenValidation();
+  const { dataUser } = useAuth();
   const [isShowDropDown1, setIsShowDropDown1] = useState(false);
   const [isShowDropDown2, setIsShowDropDown2] = useState(false);
   const [postId, setPostId] = useState();
-  const { data: dataPosts, isLoading } = useQueryPostsOfUser(dataLocal?.id);
+  const { data: dataPosts, isLoading } = useQueryPostsOfUser(dataUser?.id);
 
   const { mutate } = useMutationDeletePost(postId);
   const onDeletePOst = (item: any) => {

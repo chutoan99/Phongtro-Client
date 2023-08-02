@@ -1,10 +1,10 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 import { useRouter } from "next/router";
-// HOOKS
-import { useQueryCategories } from "../../hooks/useQueryCategories";
+//? HOOKS
+import { useQueryCategories } from "../../services/category/index.hook";
+//? APP
 import { CategoryModel } from "../../models/category.model";
-// APP
 
 const NavBarMenu = () => {
   const router = useRouter();

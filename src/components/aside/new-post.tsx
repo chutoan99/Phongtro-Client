@@ -1,10 +1,9 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 import { NewPostModel } from "../../models/post.model";
-// APP
+//? APP
 
 function AsideNewPost({ data, isLoading, path }) {
-  console.log(data, "data");
   return (
     <section className="section section-aside-tinmoidang">
       <div className="section-header">

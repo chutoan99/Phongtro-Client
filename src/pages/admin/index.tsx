@@ -1,9 +1,9 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 
-// APP
+//? APP
 import ICONS from "../../../public/assets/icons";
-import { Support } from "../../containers/public";
+import { Support } from "../../components";
 import { Section } from "../../containers/admin";
 import AdminLayout from "../../layouts/admin.layout";
 import { menuManage2 } from "../../utils/menuUser";

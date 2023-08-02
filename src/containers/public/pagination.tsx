@@ -1,4 +1,4 @@
-// LIBRARY
+//? LIBRARY
 import ReactPaginate from "react-paginate";
 function Pagination({ setPageNumber, totalPage }) {
   const handleClickPage = (e: any) => {

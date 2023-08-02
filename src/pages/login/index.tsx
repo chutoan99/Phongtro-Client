@@ -1,13 +1,13 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useQueryClient } from "react-query";
 import { GraphQLClient } from "graphql-request";
-//  ARGUMENTS
-import InputLogin from "../../graphql/arguments/login.args";
-// APP
+//?  ARGUMENTS
+import { InputLogin } from "../../graphql/arguments/login.args";
+//? APP
 const loginFilePath = require("../../graphql/mutations/login.graphql");
 import AuthLayout from "../../layouts/auth.layout";
 
@@ -39,7 +39,10 @@ const LoginPage = () => {
       Swal.fire("Oop !", data?.login?.msg, "error");
     }
   };
-
+  const onKeyDown = (e) => {
+    if (e.code !== "Enter") return;
+    handleLogin();
+  };
   return (
     <main id="main" style={{ height: "100vh" }}>
       <section className="section section-access">
@@ -52,6 +55,7 @@ const LoginPage = () => {
               <label htmlFor="inputPhoneEmailLogin">Số điện thoại</label>
               <input
                 value={payload.phone}
+                onKeyDown={onKeyDown}
                 onChange={(e) =>
                   setPayload((prev) => {
                     return {
@@ -71,6 +75,7 @@ const LoginPage = () => {
               <label htmlFor="password">Mật khẩu</label>
               <input
                 value={payload.password}
+                onKeyDown={onKeyDown}
                 onChange={(e) =>
                   setPayload((prev) => {
                     return {

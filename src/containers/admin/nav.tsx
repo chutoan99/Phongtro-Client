@@ -1,4 +1,4 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 
 function AdminNav() {
@@ -61,7 +61,7 @@ function AdminNav() {
         </ul>
       </div>
       <div className="button-item menu js_btn_menu">
-        <img src="/images/menu-hamburger.svg" />
+        {/* <img src="/images/menu-hamburger.svg" /> */}
         <span className="text">Danh mục</span>
       </div>
     </nav>

@@ -1,13 +1,13 @@
-// LIBRARY
+//? LIBRARY
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { GraphQLClient } from "graphql-request";
 import { useQueryClient } from "react-query";
-//  ARGUMENTS
-import InputRegister from "../../graphql/arguments/register.args";
-// APP
+//?  ARGUMENTS
+import { InputRegister } from "../../graphql/arguments/register.args";
+//? APP
 const registerFilePath = require("../../graphql/mutations/register.graphql");
 import AuthLayout from "../../layouts/auth.layout";
 
@@ -33,7 +33,10 @@ export default function RegisterPage() {
       Swal.fire("Oop !", data?.register?.msg, "error");
     }
   };
-
+  const onKeyDown = (e) => {
+    if (e.code !== "Enter") return;
+    handleRegister();
+  };
   return (
     <main id="main" style={{ height: "100vh" }}>
       <section className="section section-access">
@@ -48,6 +51,7 @@ export default function RegisterPage() {
                 type="text"
                 className="form-control"
                 value={payload.name}
+                onKeyDown={onKeyDown}
                 onChange={(e) => {
                   setPayload((prev) => {
                     return {
@@ -68,6 +72,7 @@ export default function RegisterPage() {
                 type="text"
                 className="form-control"
                 value={payload.phone}
+                onKeyDown={onKeyDown}
                 onChange={(e) =>
                   setPayload((prev) => {
                     return {
@@ -87,6 +92,7 @@ export default function RegisterPage() {
                 className="form-control"
                 id="password"
                 value={payload.password}
+                onKeyDown={onKeyDown}
                 onChange={(e) => {
                   setPayload((prev) => {
                     return {

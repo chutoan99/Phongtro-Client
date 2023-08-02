@@ -1,4 +1,4 @@
-// LIBRARY
+//? LIBRARY
 function AdminNote() {
   return (
     <div className="card-body">

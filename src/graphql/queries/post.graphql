@@ -4,6 +4,7 @@ query Post($input: InputPost!) {
     msg
     total
     pageSize
+    totalPage
     pageNumber
     response {
       address

@@ -1,6 +1,6 @@
-// LIBRARY
+//? LIBRARY
 import React from "react";
-// APP
+//? APP
 import DetailLayout from "../../layouts/detail.layout";
 import { PostDetail } from "../../containers/public";
 
