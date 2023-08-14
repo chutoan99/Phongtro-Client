@@ -1,4 +1,5 @@
 //? LIBRARY
+import { memo } from "react";
 function AdminNote() {
   return (
     <div className="card-body">
@@ -27,4 +28,4 @@ function AdminNote() {
     </div>
   );
 }
-export default AdminNote;
+export default memo(AdminNote);

@@ -1,6 +1,6 @@
 //? LIBRARY
 import Swal from "sweetalert2";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 //? ARGUMENTS
 import { InputCreatePost } from "../../graphql/arguments/post.args";
@@ -915,4 +915,4 @@ function AdminCreatePost() {
     </>
   );
 }
-export default AdminCreatePost;
+export default memo(AdminCreatePost);

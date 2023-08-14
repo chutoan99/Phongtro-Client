@@ -1,3 +1,4 @@
+import { memo } from "react";
 function User({ data }) {
   return (
     <>
@@ -55,4 +56,4 @@ function User({ data }) {
     </>
   );
 }
-export default User;
+export default memo(User);

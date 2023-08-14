@@ -1,7 +1,7 @@
 //? LIBRARY
 import moment from "moment";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, memo } from "react";
 //? HOOKS
 import {
   useMutationDeletePost,
@@ -310,4 +310,4 @@ function AdminManagerPost() {
     </>
   );
 }
-export default AdminManagerPost;
+export default memo(AdminManagerPost);

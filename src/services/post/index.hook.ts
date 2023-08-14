@@ -40,7 +40,6 @@ export const useQuerySearchPosts = (payloadPost: InputPost) => {
     payloadPost?.pageNumber,
     payloadPost?.categoryCode,
   ];
-
   const queryFn = async () => {
     const responseData = await querySearchPosts(payloadPost);
     return responseData;

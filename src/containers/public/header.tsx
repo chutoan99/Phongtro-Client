@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, memo } from "react";
 //? HOOKS
 import useAuth from "../../hooks/useAuth.hook";
 //? APP
@@ -143,4 +143,4 @@ const Header: NextPage = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

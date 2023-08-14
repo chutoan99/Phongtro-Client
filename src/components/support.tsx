@@ -1,4 +1,5 @@
 //? APP
+import { memo } from "react";
 import Link from "next/link";
 import { support } from "../utils/support";
 function Support() {
@@ -34,4 +35,4 @@ function Support() {
     </section>
   );
 }
-export default Support;
+export default memo(Support);

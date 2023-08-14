@@ -1,7 +1,7 @@
 //? LIBRARY
 import querystring from "querystring";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, memo } from "react";
 //? HOOKS
 import { useQueryPrices } from "../../services/price/index.hook";
 import { useQueryAreas } from "../../services/area/index.hook";
@@ -153,4 +153,4 @@ function Search({ setPayload, onSearch }) {
     </div>
   );
 }
-export default Search;
+export default memo(Search);

@@ -3,7 +3,6 @@ export { default as Post } from "./posts";
 
 export { default as Loading } from "./loading";
 export { default as Loading2 } from "./loading2";
-export { default as Input } from "./input";
 export { default as UpdatePost } from "./updatePost";
 export { default as Author } from "./author";
 export { default as Support } from "./support";

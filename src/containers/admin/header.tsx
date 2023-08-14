@@ -1,5 +1,5 @@
 //? LIBRARY
-import { useState } from "react";
+import { useState, memo } from "react";
 
 function AdminHeader({ text, alert, type }) {
   const [isShowMenu1, setIsShowMenu1] = useState(false);
@@ -82,4 +82,4 @@ function AdminHeader({ text, alert, type }) {
     </>
   );
 }
-export default AdminHeader;
+export default memo(AdminHeader);

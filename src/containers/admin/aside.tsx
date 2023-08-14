@@ -1,4 +1,5 @@
 //? LIBRARY
+import { memo } from "react";
 import Link from "next/link";
 //? APP
 import { menuManage } from "../../utils/menuUser";
@@ -71,4 +72,4 @@ function AdminAside({ dataUser }) {
     </nav>
   );
 }
-export default AdminAside;
+export default memo(AdminAside);

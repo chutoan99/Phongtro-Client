@@ -1,4 +1,5 @@
 //? LIBRARY
+import { memo } from "react";
 import ReactPaginate from "react-paginate";
 function Pagination({ setPageNumber, totalPage }) {
   const handleClickPage = (e: any) => {
@@ -31,4 +32,4 @@ function Pagination({ setPageNumber, totalPage }) {
   );
 }
 
-export default Pagination;
+export default memo(Pagination);

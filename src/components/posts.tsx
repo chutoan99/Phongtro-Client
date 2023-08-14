@@ -1,6 +1,7 @@
 //? LIBRARY
 import Link from "next/link";
 //? APP
+import { memo } from "react";
 import { renderStart } from "../utils/Commom/renderStart";
 import { useRouter } from "next/router";
 import { PostModel } from "../models/post.model";
@@ -109,4 +110,4 @@ function Post({ data }) {
     </>
   );
 }
-export default Post;
+export default memo(Post);

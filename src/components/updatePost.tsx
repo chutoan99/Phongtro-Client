@@ -1,3 +1,4 @@
+import { memo } from "react";
 function UpdatePost({ setEdit }) {
   return (
     <div
@@ -16,4 +17,4 @@ function UpdatePost({ setEdit }) {
     </div>
   );
 }
-export default UpdatePost;
+export default memo(UpdatePost);

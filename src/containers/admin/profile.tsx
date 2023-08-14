@@ -1,6 +1,6 @@
 //? LIBRARY
 import Link from "next/link";
-import { useState } from "react";
+import { useState, memo } from "react";
 //? HOOKS
 import useAuth from "../../hooks/useAuth.hook";
 //? APP
@@ -226,4 +226,4 @@ function AdminProfile() {
     </>
   );
 }
-export default AdminProfile;
+export default memo(AdminProfile);

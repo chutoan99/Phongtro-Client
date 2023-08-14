@@ -1,4 +1,5 @@
 //? LIBRARY
+import { memo } from "react";
 import { useRouter } from "next/router";
 //?  ARGUMENTS
 import { InputNewPost } from "../../graphql/arguments/post.args";
@@ -49,4 +50,4 @@ function Aside() {
     </div>
   );
 }
-export default Aside;
+export default memo(Aside);

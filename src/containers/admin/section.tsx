@@ -1,6 +1,6 @@
 //? LIBRARY
 import Link from "next/link";
-
+import { memo } from "react";
 function AdminSection({ data }) {
   return (
     <div className="list-group dashboard_list_menu mt-4">
@@ -33,4 +33,4 @@ function AdminSection({ data }) {
     </div>
   );
 }
-export default AdminSection;
+export default memo(AdminSection);

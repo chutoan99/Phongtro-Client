@@ -1,6 +1,6 @@
 //? LIBRARY
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 //?  ARGUMENTS
 import { InputPost } from "../../graphql/arguments/post.args";
 //? HOOKS
@@ -37,18 +37,17 @@ const Container = ({ categoryCode }: NavBar) => {
 
   const { data: dataPost, isLoading } = useQueryPosts(payload);
   const { data: dataSearch, refetch: onRefetch } = useQuerySearchPosts(payload);
-
   useEffect(() => {
     if (!dataPost) return;
     setData(dataPost.response);
     setTotalPage(dataPost?.totalPage);
   }, [dataPost]);
-
   const onSearch = () => {
+    setTotalPage(dataSearch.totalPage);
+    setData(dataSearch.response);
     onRefetch();
-    setTotalPage(dataSearch?.totalPage);
-    setData(dataSearch?.response);
   };
+
   return (
     <main id="main">
       <Search setPayload={setPayload} onSearch={onSearch} />
@@ -101,4 +100,4 @@ const Container = ({ categoryCode }: NavBar) => {
     </main>
   );
 };
-export default Container;
+export default memo(Container);

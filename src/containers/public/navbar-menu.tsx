@@ -1,5 +1,6 @@
 //? LIBRARY
 import Link from "next/link";
+import { memo } from "react";
 import { useRouter } from "next/router";
 //? HOOKS
 import { useQueryCategories } from "../../services/category/index.hook";
@@ -47,4 +48,4 @@ const NavBarMenu = () => {
   );
 };
 
-export default NavBarMenu;
+export default memo(NavBarMenu);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 function ModalCategory({
   items,
   isModals,
@@ -68,4 +69,4 @@ function ModalCategory({
   );
 }
 
-export default ModalCategory;
+export default memo(ModalCategory);

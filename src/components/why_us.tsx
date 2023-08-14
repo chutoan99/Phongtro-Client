@@ -1,4 +1,5 @@
 //? APP
+import { memo } from "react";
 import { whyUs } from "../utils/why_us";
 import { renderStart } from "../utils/Commom/renderStart";
 import Link from "next/link";
@@ -86,4 +87,4 @@ function WhyUs() {
     </section>
   );
 }
-export default WhyUs;
+export default memo(WhyUs);

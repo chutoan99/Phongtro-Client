@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
+import { memo } from "react";
 import { useRouter } from "next/router";
 //? HOOKS
 import { useQueryPostId } from "../../services/post/index.hook";
@@ -348,4 +349,4 @@ const PostDetail = () => {
     </div>
   );
 };
-export default PostDetail;
+export default memo(PostDetail);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 function ModalProvince({
   items,
   modals,
@@ -67,4 +68,4 @@ function ModalProvince({
   );
 }
 
-export default ModalProvince;
+export default memo(ModalProvince);
