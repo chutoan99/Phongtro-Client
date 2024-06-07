@@ -3,8 +3,8 @@ import ICONS from '../../../public/assets/icons'
 
 import { menuManage2 } from '../../utils/menuUser'
 import { SectionComponent } from '../../containers/admin'
-import { SupportComponent } from '../../components'
 import { AdminLayout } from '../../layouts/admin'
+import { SupportComponent } from '../../modules/support'
 export default function AdminPage() {
 	return (
 		<main role='main' className='ml-sm-auto col-lg-10' style={{ background: 'white' }}>

@@ -6,8 +6,8 @@ import { GraphQLClient } from 'graphql-request'
 import { useQueryClient } from 'react-query'
 const registerFilePath = require('../../modules/auth/graphql/register')
 import { InputRegister } from '../../modules/auth/interfaces/register.args'
-import { LoadingCustomComponent } from '../../components'
 import { AuthLayout } from '../../layouts/auth'
+import { LoadingCustomComponent } from '../../modules/loading'
 
 export default function RegisterPage() {
 	const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV)

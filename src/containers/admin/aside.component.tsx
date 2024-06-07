@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { menuManage } from '../../utils/menuUser'
+import menuManage from '../../utils/menuManage'
 
 export default function AdminAsideComponent({ dataUser }) {
 	return (

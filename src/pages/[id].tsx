@@ -1,6 +1,6 @@
 import React from 'react'
 import { DetailLayout } from '../layouts/detail'
-import PostDetailComponent from '../containers/public/post-detail.component'
+import PostDetailComponent from '../modules/postDetail/post-detail.component'
 
 export default function IndexDetailPage() {
 	return <PostDetailComponent />

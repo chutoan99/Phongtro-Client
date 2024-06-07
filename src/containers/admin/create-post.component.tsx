@@ -1,11 +1,8 @@
 import Swal from 'sweetalert2'
 import { useEffect, useState, memo } from 'react'
 import useAuth from '../../hooks/useAuth.hook'
-import { useQueryPrices } from '../../modules/price/hooks/price.hook'
-import { useQueryAreas } from '../../modules/area/hooks/area.hook'
 import { useQueryCategories } from '../../modules/category/hooks/category.hook'
 import { getCodesPrice, getCodesArea } from '../../utils/Commom/getCodePrice'
-import { requiredFieldsCreatePost } from '../../utils/validate'
 import { useRouter } from 'next/router'
 import { ICategoryModel } from '../../modules/category/interfaces'
 import { InputCreatePost } from '../../modules/post/interfaces'
@@ -16,10 +13,20 @@ import {
 	GetAllWardWithDistrictCode,
 	apiUploadImages
 } from '../../modules/orher/services'
-import { LoadingCustomComponent } from '../../components'
 import { NoteComponent } from '.'
+import { useQueryPrices } from '../../modules/aside/price/hooks'
+import { useQueryAreas } from '../../modules/aside/area/hooks'
+import { LoadingCustomComponent } from '../../modules/loading'
 
 export default function AdminCreatePostComponent() {
+	const requiredFieldsCreatePost = {
+		title: 'Tiêu đề',
+		description: 'nội dung mô tả',
+		priceNumber: 'giá tiền',
+		areaNumber: 'Diện tích'
+	}
+	
+
 	// * INIT
 	const router = useRouter()
 	const { dataUser } = useAuth()

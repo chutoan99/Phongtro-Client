@@ -1,12 +1,12 @@
-import { FooterComponent } from '../../components'
-import { NavBarMenuComponent } from '../../containers/public'
-import HeaderComponent from '../../containers/public/header.component'
+import CategoryComponent from '../../modules/category/category.component'
+import { FooterComponent } from '../../modules/footer'
+import HeaderComponent from '../../modules/header/header.component'
 
 export default function DefaultLayout({ children }) {
 	return (
 		<div className='w-[100vw]  bg-[#f5f5f5]'>
 			<HeaderComponent />
-			<NavBarMenuComponent />
+			<CategoryComponent />
 			{children}
 			<FooterComponent />
 		</div>

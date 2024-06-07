@@ -1,6 +1,6 @@
 import moment from 'moment'
 import Link from 'next/link'
-import { useState, memo } from 'react'
+import { useState } from 'react'
 import useAuth from '../../hooks/useAuth.hook'
 import { useMutationDeletePost, useQueryPostsOfUser } from '../../modules/post/hooks'
 export default function AdminManagerPostComponent() {

@@ -1,14 +1,20 @@
 import React from 'react'
 import Link from 'next/link'
-import HeaderComponent from '../../containers/public/header.component'
-import { AsideDetailComponent, NavBarMenuComponent } from '../../containers/public'
-import { FooterComponent, SupportComponent, WhyUsComponent } from '../../components'
+
+import CategoryComponent from '../../modules/category/category.component'
+import AsideNewPostComponent from '../../modules/aside/newPost/new-post.component'
+import HeaderComponent from '../../modules/header/header.component'
+import { AuthorComponent } from '../../modules/author'
+import { AsideAcreageComponent, AsideNewHotComponent, AsideSubLinkComponent } from '../../modules/aside'
+import { WhyUsComponent } from '../../modules/whyUs'
+import { SupportComponent } from '../../modules/support'
+import { FooterComponent } from '../../modules/footer'
 
 export default function DetailLayout({ children }) {
 	return (
 		<div className='webpage'>
 			<HeaderComponent />
-			<NavBarMenuComponent />
+			<CategoryComponent />
 			<main id='man'>
 				<div className='container clearfix'>
 					<div id='breadcrumb'>
@@ -36,7 +42,13 @@ export default function DetailLayout({ children }) {
 						</ol>
 					</div>
 					{children}
-					<AsideDetailComponent />
+					<aside id='aside'>
+						<AuthorComponent />
+						<AsideNewPostComponent />
+						<AsideNewHotComponent />
+						<AsideAcreageComponent />
+						<AsideSubLinkComponent />
+					</aside>
 				</div>
 				<WhyUsComponent />
 				<SupportComponent />

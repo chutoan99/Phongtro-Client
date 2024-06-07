@@ -1,8 +1,3 @@
-export interface InputNewPost {
-	pageSize: number
-	pageNumber: number
-}
-
 export interface InputPost {
 	pageSize: number
 	pageNumber: number
@@ -46,25 +41,6 @@ export interface PostResponse {
 		err: number
 		msg: string
 		response: PostModel[]
-	}
-}
-
-export interface PostIdResponse {
-	postId: {
-		err: number
-		msg: string
-		response: PostIdModel
-	}
-}
-
-export interface NewPostResponse {
-	newPost: {
-		err: number
-		msg: string
-		total: number
-		pageNumber: number
-		pageSize: number
-		response: NewPostModel[]
 	}
 }
 
@@ -140,80 +116,4 @@ export interface PostModel {
 		updatedAt: Date
 		avatar: string
 	}
-}
-
-export interface PostIdModel {
-	address: string
-	areaCode: string
-	areaNumber: number
-	attributesId: string
-	categoryCode: string
-	createdAt: Date
-	description: string
-	id: string
-	imagesId: string
-	labelCode: string
-	overviewId: string
-	priceCode: string
-	priceNumber: number
-	provinceCode: string
-	start: string
-	title: string
-	updatedAt: Date
-	userId: string
-	attributes: {
-		acreage: string
-		createdAt: Date
-		hashtag: string
-		id: string
-		price: string
-		published: string
-		updatedAt: Date
-	}
-	listImage: {
-		createdAt: Date
-		id: string
-		image: string
-		postImg: string
-		total: number
-		updatedAt: Date
-	}
-	overviews: {
-		area: string
-		bonus: string
-		code: string
-		created: string
-		createdAt: Date
-		id: string
-		expired: string
-		target: string
-		type: string
-		updatedAt: Date
-	}
-	user: {
-		avatar: string
-		createdAt: Date
-		id: string
-		password: string
-		name: string
-		phone: string
-		updatedAt: Date
-		zalo: string
-	}
-}
-
-export interface NewPostModel {
-	address: string
-	id: string
-	attributesId: string
-	attributes: {
-		price: number
-		acreage: number
-		published: boolean
-	}
-	listImage: {
-		postImg: string
-	}
-	title: string
-	updatedAt: string
 }

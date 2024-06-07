@@ -1,11 +1,11 @@
-import { NavBarMenuComponent } from '../../containers/public'
-import HeaderComponent from '../../containers/public/header.component'
+import CategoryComponent from '../../modules/category/category.component'
+import HeaderComponent from '../../modules/header/header.component'
 
 export default function AuthLayout({ children }) {
 	return (
 		<div id='webpage'>
 			<HeaderComponent />
-			<NavBarMenuComponent />
+			<CategoryComponent />
 			{children}
 		</div>
 	)

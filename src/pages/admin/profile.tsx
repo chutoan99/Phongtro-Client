@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 import { ProfileComponent } from '../../containers/admin'
-import { SupportComponent } from '../../components'
 import { AdminLayout } from '../../layouts/admin'
+import { SupportComponent } from '../../modules/support'
 export default function ProfilePage() {
 	return (
 		<main role='main' className='ml-sm-auto col-lg-10' style={{ background: 'white' }}>

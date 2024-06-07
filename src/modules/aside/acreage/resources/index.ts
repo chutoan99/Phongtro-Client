@@ -1,0 +1,1 @@
+export * from './acreage.resource'

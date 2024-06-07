@@ -4,18 +4,13 @@ import {
 	CreatePostResponse,
 	DeletePostResponse,
 	InputCreatePost,
-	InputNewPost,
 	InputPost,
 	InputUpdatePost,
-	NewPostResponse,
-	PostIdResponse,
 	PostResponse
 } from '../interfaces'
 
 // ACTIONS
 const postFilePath = require('../graphql/post.graphql')
-const postIdFilePath = require('../graphql/postId.graphql')
-const newPostFilePath = require('../graphql/newPost.graphql')
 const createPostFilePath = require('../graphql/create_post.graphql')
 const updatePostFilePath = require('../graphql/update_post.graphql')
 const deletePostFilePath = require('../graphql/delete_post.graphql')
@@ -40,24 +35,6 @@ export const queryPosts = async (payloadPost: InputPost) => {
 	}
 }
 
-export const queryPostId = async (postId: string) => {
-	try {
-		console.log(postId, 'postId')
-		const response: PostIdResponse = await graphQLClient.request(postIdFilePath, {
-			postId: postId
-		})
-
-		if (response.postId.err === 0) {
-			return response.postId.response
-		} else {
-			Swal.fire('Oop !', response.postId.msg, 'error')
-			return
-		}
-	} catch (error) {
-		throw new Error('Failed to fetch postid')
-	}
-}
-
 export const querySearchPosts = async (payloadPost: InputPost) => {
 	try {
 		const response: PostResponse = await graphQLClient.request(postFilePath, {
@@ -71,22 +48,6 @@ export const querySearchPosts = async (payloadPost: InputPost) => {
 		}
 	} catch (error) {
 		throw new Error('Failed to fetch  posts')
-	}
-}
-
-export const queryNewPosts = async (payloadNewPost: InputNewPost) => {
-	try {
-		const response: NewPostResponse = await graphQLClient.request(newPostFilePath, {
-			input: { ...payloadNewPost }
-		})
-		if (response.newPost.err === 0) {
-			return response.newPost.response
-		} else {
-			Swal.fire('Oop !', response.newPost.msg, 'error')
-			return
-		}
-	} catch (error) {
-		throw new Error('Failed to fetch new posts')
 	}
 }
 

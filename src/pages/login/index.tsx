@@ -6,8 +6,8 @@ import { useQueryClient } from 'react-query'
 import { GraphQLClient } from 'graphql-request'
 const loginFilePath = require('../../modules/auth/graphql/login')
 import { InputLogin } from '../../modules/auth/interfaces/login.args'
-import { LoadingCustomComponent } from '../../components'
 import { AuthLayout } from '../../layouts/auth'
+import { LoadingCustomComponent } from '../../modules/loading'
 
 export default function LoginPage() {
 	const graphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_API_URL_DEV)

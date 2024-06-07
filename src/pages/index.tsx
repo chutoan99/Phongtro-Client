@@ -1,5 +1,5 @@
-import ContainerComponent from '../containers/public/container.component'
 import { DefaultLayout } from '../layouts/default'
+import ContainerComponent from '../modules/container/container.component'
 
 export default function HomePage() {
 	return <ContainerComponent categoryCode='' />

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ManagerPostComponent } from '../../containers/admin'
-import { SupportComponent } from '../../components'
 import { AdminLayout } from '../../layouts/admin'
+import { SupportComponent } from '../../modules/support'
 
 export default function ManagePage() {
 	return (
