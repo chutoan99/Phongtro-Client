@@ -25,4 +25,3 @@ export const whyUsResources = {
 	des3: 'Bạn đang có phòng trọ / căn hộ cho thuê?',
 	des4: 'Không phải lo tìm người cho thuê, phòng trống kéo dài'
 }
-

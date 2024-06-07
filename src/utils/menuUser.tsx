@@ -1,4 +1,3 @@
-
 export const menuManage2 = [
 	{
 		id: 1,

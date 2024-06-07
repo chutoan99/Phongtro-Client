@@ -25,7 +25,6 @@ export default function AdminCreatePostComponent() {
 		priceNumber: 'giá tiền',
 		areaNumber: 'Diện tích'
 	}
-	
 
 	// * INIT
 	const router = useRouter()
