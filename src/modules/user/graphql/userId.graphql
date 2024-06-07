@@ -1,0 +1,15 @@
+query Query($userId: ID!) {
+	userId(userId: $userId) {
+		err
+		msg
+		response {
+			avatar
+			createdAt
+			id
+			name
+			phone
+			zalo
+			updatedAt
+		}
+	}
+}

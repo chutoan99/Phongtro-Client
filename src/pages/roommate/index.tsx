@@ -1,8 +1,7 @@
-//? APP
-import { Container } from "../../containers/public";
-import DefaultLayout from "../../layouts/default.layout";
+import { ContainerComponent } from '../../containers/public'
+import { DefaultLayout } from '../../layouts/default'
 
-export default function Roommate() {
-  return <Container categoryCode="TNOG" />;
+export default function RoommatePage() {
+	return <ContainerComponent categoryCode='TNOG' />
 }
-Roommate.Layout = DefaultLayout;
+RoommatePage.Layout = DefaultLayout

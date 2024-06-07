@@ -1,10 +1,8 @@
-//? LIBRARY
-import React from "react";
-//? APP
-import DetailLayout from "../layouts/detail.layout";
-import { PostDetail } from "../containers/public";
+import React from 'react'
+import { DetailLayout } from '../layouts/detail'
+import PostDetailComponent from '../containers/public/post-detail.component'
 
-export default function IndexDetail() {
-  return <PostDetail />;
+export default function IndexDetailPage() {
+	return <PostDetailComponent />
 }
-IndexDetail.Layout = DetailLayout;
+IndexDetailPage.Layout = DetailLayout

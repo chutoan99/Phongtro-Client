@@ -1,0 +1,64 @@
+query Query($userId: ID!) {
+	userId(userId: $userId) {
+		err
+		msg
+		response {
+			avatar
+			createdAt
+			id
+			name
+			phone
+			zalo
+			updatedAt
+			post {
+				id
+				title
+				start
+				labelCode
+				address
+				attributesId
+				categoryCode
+				priceCode
+				areaCode
+				provinceCode
+				description
+				userId
+				overviewId
+				imagesId
+				priceNumber
+				areaNumber
+				createdAt
+				updatedAt
+				listImage {
+					id
+					total
+					image
+					postImg
+					createdAt
+					updatedAt
+				}
+				attributes {
+					id
+					price
+					acreage
+					published
+					hashtag
+					createdAt
+					updatedAt
+				}
+				overviews {
+					id
+					code
+					area
+					type
+					target
+					created
+					expired
+					bonus
+					createdAt
+					updatedAt
+				}
+			}
+		}
+	}
+}

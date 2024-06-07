@@ -1,9 +1,7 @@
-//? APP
+import ContainerComponent from '../containers/public/container.component'
+import { DefaultLayout } from '../layouts/default'
 
-import { Container } from "../containers/public";
-import DefaultLayout from "../layouts/default.layout";
-
-export default function IndexPage() {
-  return <Container categoryCode="" />;
+export default function HomePage() {
+	return <ContainerComponent categoryCode='' />
 }
-IndexPage.Layout = DefaultLayout;
+HomePage.Layout = DefaultLayout

@@ -1,10 +1,8 @@
-//? LIBRARY
-import React from "react";
-//? APP
-import DetailLayout from "../../layouts/detail.layout";
-import { PostDetail } from "../../containers/public";
+import React from 'react'
+import { DetailLayout } from '../../layouts/detail'
+import { PostDetailComponent } from '../../containers/public'
 
-export default function RentalGroundDetail() {
-  return <PostDetail />;
+export default function RentalGroundDetailPage() {
+	return <PostDetailComponent />
 }
-RentalGroundDetail.Layout = DetailLayout;
+RentalGroundDetailPage.Layout = DetailLayout

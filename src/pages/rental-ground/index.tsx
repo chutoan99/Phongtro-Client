@@ -1,8 +1,7 @@
-//? APP
-import { Container } from "../../containers/public";
-import DefaultLayout from "../../layouts/default.layout";
+import { ContainerComponent } from '../../containers/public'
+import { DefaultLayout } from '../../layouts/default'
 
-export default function RentalGround() {
-  return <Container categoryCode="CTMB" />;
+export default function RentalGroundPage() {
+	return <ContainerComponent categoryCode='CTMB' />
 }
-RentalGround.Layout = DefaultLayout;
+RentalGroundPage.Layout = DefaultLayout

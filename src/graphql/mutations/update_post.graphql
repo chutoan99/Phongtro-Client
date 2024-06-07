@@ -1,6 +1,0 @@
-mutation updatePost($postId: ID!, $input: InputUpdatePostId!) {
-  updateProfile(postId: $postId, input: $input) {
-    err
-    msg
-  }
-}

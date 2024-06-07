@@ -1,8 +1,7 @@
-//? APP
-import { Container } from "../../containers/public";
-import DefaultLayout from "../../layouts/default.layout";
+import { ContainerComponent } from '../../containers/public'
+import { DefaultLayout } from '../../layouts/default'
 
 export default function RentalApartment() {
-  return <Container categoryCode="CTCH" />;
+	return <ContainerComponent categoryCode='CTCH' />
 }
-RentalApartment.Layout = DefaultLayout;
+RentalApartment.Layout = DefaultLayout
