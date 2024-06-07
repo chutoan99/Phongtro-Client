@@ -1,1 +1,1 @@
-export * from './why-us..resource'
+export * from './why-us.resource'
